@@ -1,25 +1,39 @@
 //
-//  SDKJunHai.h
+//  QKSdkProxy_junhai.m
 //  Unity-iPhone
 //
+//  Created by wending on 2018/5/23.
+//
 
-#import "QKSDKSupport_junhai.h"
-#import "SDKUnityApi.h"
+#import "QKSdkProxy_junhai.h"
+
 #import "JHAgentCommon.h"
+#import "QKSdkProxyUtility.h"
 #import "SdkDataManager.h"
 
-IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
+IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 
-@implementation QKSDKSupport_junhai
+@interface QKSdkProxy_junhai ()
 
--(void)action_init
+@property(nonatomic, copy) QKUnityCallbackFunc initCallback;
+@property(nonatomic, copy) QKUnityCallbackFunc loginCallback;
+@property(nonatomic, copy) QKUnityCallbackFunc logoutCallback;
+@property(nonatomic, copy) QKUnityCallbackFunc payCallback;
+
+@end
+
+@implementation QKSdkProxy_junhai
+
+- (void)SdkInit:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    self.initCallback = callback;
+    
     [[JHAgentCommon sharedJHAgentCommon] setRootViewController:UnityGetGLViewController()];
     // TODO:这里先进行游戏引擎初始化的相关操作
     // 先注册初始化回调
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junhai_onInitSuccess:) name:JHASonInitSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junhai_onInitFailed:) name:JHASonInitFailed object:nil];
-   
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junhai_onLogoutSuccess:) name:JHASonLogoutSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junhai_onLogoutFailed:) name:JHASonLogoutFailed object:nil];
     
@@ -34,162 +48,123 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
     [[JHAgentCommon sharedJHAgentCommon] initSDK];
 }
 
--(void)action_login
+- (void)Login:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    self.loginCallback = callback;
     [[JHAgentCommon sharedJHAgentCommon] setRootViewController:UnityGetGLViewController()];
     [[JHAgentCommon sharedJHAgentCommon] login];
 }
 
--(void)action_logout
+- (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    self.logoutCallback = callback;
     [[JHAgentCommon sharedJHAgentCommon] logout];
 }
 
--(void)action_showfloat
+- (void)Pay:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
-    
-}
-
--(void)action_hidefloat
-{
-    
-}
-
--(void)action_pay:(NSString*) _productName
-        productId:(NSString*) _productId
-          orderId:(NSString*) _orderId
-     productPrice:(NSString*) _productPrice
-       productNum:(NSString*) _productNum
-           roleId:(NSString*) _roleId
-         roleName:(NSString*) _roleName
-        roleLevel:(NSString*) _roleLevel
-         serverId:(NSString*) _serverId
-       serverName:(NSString*) _serverName
-{
+    self.payCallback = callback;
     /**
-    @property (strong) NSString *orderId;//订单号
-    @property (strong) NSString *productId;//商品ID
-    @property (strong) NSString *productName;//商品名称
-    @property (assign) unsigned int productCount;//商品数量
-    @property (assign) unsigned int payMoney;//总金额，单位为分
-    @property (assign) unsigned int serverId;//区服id
-    @property (strong) NSString *serverName;//区服名称
-    @property (strong) NSString *roleId;//角色id
-    @property (strong) NSString *roleName;//角色名
-    @property (assign) unsigned int rate;//兑换比例，即1元可以买多少商品
-    @property (strong) NSString *paymentDesc;//订单详情信息
-    @property (strong) NSString *notifyUrl;//充值回调地址
+     @property (strong) NSString *orderId;//订单号
+     @property (strong) NSString *productId;//商品ID
+     @property (strong) NSString *productName;//商品名称
+     @property (assign) unsigned int productCount;//商品数量
+     @property (assign) unsigned int payMoney;//总金额，单位为分
+     @property (assign) unsigned int serverId;//区服id
+     @property (strong) NSString *serverName;//区服名称
+     @property (strong) NSString *roleId;//角色id
+     @property (strong) NSString *roleName;//角色名
+     @property (assign) unsigned int rate;//兑换比例，即1元可以买多少商品
+     @property (strong) NSString *paymentDesc;//订单详情信息
+     @property (strong) NSString *notifyUrl;//充值回调地址
      **/
     
-    NSString* PaymentDescMsg = [NSString stringWithFormat:@"充值%@元宝", _productNum];
+    NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     
     JHASPaymentInfo *info = [[JHASPaymentInfo alloc] init];
-    [info setOrderId:_orderId];   //订单号，必传。
-    [info setPayMoney:[_productPrice intValue]]; //支付金额，单位为分，必传。
-    [info setProductCount:[_productNum intValue]]; //商品数量，必传。
-    [info setProductId: _productId];   //商品ID，必传。
-    [info setProductName: _productName];   //商品名，商品名称前请不要添加任何量词。如钻石。必传。
+    [info setOrderId:infoDic[@"OrderId"]];   //订单号，必传。
+    [info setPayMoney:[infoDic[@"Price"] intValue]]; //支付金额，单位为分，必传。
+    [info setProductCount:[infoDic[@"Count"] intValue]]; //商品数量，必传。
+    [info setProductId: infoDic[@"ProductId"]];   //商品ID，必传。
+    [info setProductName: infoDic[@"Title"]];   //商品名，商品名称前请不要添加任何量词。如钻石。必传。
     [info setRate:100]; //兑换比例，即1元可以买多少商品
-    [info setPaymentDesc:PaymentDescMsg];    //订单详情信息，必传
+    [info setPaymentDesc:infoDic[@"Des"]];    //订单详情信息，必传
     [info setNotifyUrl:@"http://rmb.jzsc3.xgd666.com/callback/51_1_ios_jh/pay.php"];    //支付结果回调地址，必传
-    [info setRoleId:_roleId];  //角色id，必传
-    [info setServerName:_serverName];   //区服名称，必传
-    [info setServerId: [_serverId intValue]];   //区服id，必传
-    [info setRoleName:_roleName];    //角色名，必传
+    [info setRoleId:[SdkDataManager Instance].RoleId];  //角色id，必传
+    [info setRoleName:[SdkDataManager Instance].RoleName];    //角色名，必传
+    [info setServerId:[[SdkDataManager Instance].ServerId intValue]];   //区服id，必传
+    [info setServerName:[SdkDataManager Instance].ServerName];   //区服名称，必传
     
     [[JHAgentCommon sharedJHAgentCommon] payWithPayMentInfo:info];
 }
 
--(void)action_createrole:(NSString*) _roleId
-               roleLevel:(NSString*) _roleLevel
-                roleName:(NSString*) _roleName
-          roleCreateTime:(NSString*) _roleCreateTime
-                serverId:(NSString*) _serverId
-              serverName:(NSString*) _serverName;
+- (void)SelectServer:(NSString*)strData
 {
-    NSDictionary *dict = @{JH_ROLE_ID:_roleId,   //角色ID
-                           JH_SERVER_ID:_serverId, //区服ID
-                           JH_SERVER_NAME:_serverName,   //区服名称
-                           JH_ROLE_NAME:_roleName,    //角色名
-                           JH_ROLE_LEVEL:_roleLevel,   //角色等级
-                           JH_VIP_LEVEL:@"0",   //VIP等级
-                           JH_PRODUCT_COUNT:@"0",   //商品数量
-                           JH_PRODUCT_NAME:@"0",};  //商品名
-    [[JHAgentCommon sharedJHAgentCommon] uploadUserData:JH_CREATE_ROLE userData:dict];
+    [super SelectServer:strData];
 }
 
--(void)action_rolelogin:(NSString*) _roleId
-              roleLevel:(NSString*) _roleLevel
-               roleName:(NSString*) _roleName
-         roleCreateTime:(NSString*) _roleCreateTime
-               serverId:(NSString*) _serverId
-             serverName:(NSString*) _serverName
+- (void)CreateRole:(NSString*)strData
 {
-    NSDictionary *dict = @{JH_ROLE_ID:_roleId,   //角色ID
-                             JH_SERVER_ID:_serverId, //区服ID
-                             JH_SERVER_NAME:_serverName,   //区服名称
-                             JH_ROLE_NAME:_roleName,    //角色名
-                             JH_ROLE_LEVEL:_roleLevel,   //角色等级
-                             JH_VIP_LEVEL:@"0",   //VIP等级
-                             JH_PRODUCT_COUNT:@"0",   //商品数量
-                             JH_PRODUCT_NAME:@"0",};  //商品名
+    [super CreateRole:strData];
+    [self uploadUserData:strData];
+}
+
+- (void)SelectRole:(NSString*)strData
+{
+    [super SelectRole:strData];
+    [self uploadUserData:strData];
+}
+
+- (void)LevelUp:(NSString*)strData
+{
+    [super LevelUp:strData];
+    [self uploadUserData:strData];
+}
+
+//上报物品变化信息
+- (void)UpdateUserGoods:(NSString*)strData
+{
+    NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
+    
+    JHASBuyItemInfo *itemInfo = [[JHASBuyItemInfo alloc]init];
+    itemInfo.userId = [SdkDataManager Instance].SdkUid;
+    itemInfo.roleId = [SdkDataManager Instance].RoleId;
+    itemInfo.playerName = [SdkDataManager Instance].RoleName;
+    itemInfo.serverId = [[SdkDataManager Instance].ServerId intValue];
+    itemInfo.consumeCoin = [infoDic[@"ConsumCoin"] intValue];  //消耗 10 虚拟货币
+    itemInfo.remainCoin = [infoDic[@"RemainCoin"] intValue];
+    itemInfo.consumeBindCoin = [infoDic[@"ConsumeBind"] intValue];
+    itemInfo.remainBindCoin = [infoDic[@"RemainBind"] intValue];
+    itemInfo.itemName = infoDic[@"ItemName"];
+    itemInfo.itemCount = [infoDic[@"ItemCount"] intValue];
+    itemInfo.itemDesc = infoDic[@"ItemDes"];
+    
+    [[JHAgentCommon sharedJHAgentCommon] onBuyItem:itemInfo];
+}
+
+//上报用户数据
+- (void)uploadUserData:(NSString*)strData
+{
+    NSDictionary *dict = @{JH_ROLE_ID:[SdkDataManager Instance].RoleId,   //角色ID
+                           JH_ROLE_NAME:[SdkDataManager Instance].RoleName,    //角色名
+                           JH_ROLE_LEVEL:[SdkDataManager Instance].RoleLevel,   //角色等级
+                           JH_SERVER_ID:[SdkDataManager Instance].ServerId, //区服ID
+                           JH_SERVER_NAME:[SdkDataManager Instance].ServerName,   //区服名称
+                           JH_VIP_LEVEL:[SdkDataManager Instance].RoleVipLevel,   //VIP等级
+                           JH_PRODUCT_COUNT:@"0",   //商品数量
+                           JH_PRODUCT_NAME:@"0",};  //商品名
     [[JHAgentCommon sharedJHAgentCommon] uploadUserData:JH_ENTER_SERVER userData:dict];
 }
-
--(void)action_levelup:(NSString*) _roleId
-            roleLevel:(NSString*) _roleLevel
-             roleName:(NSString*) _roleName
-       roleCreateTime:(NSString*) _roleCreateTime
-             serverId:(NSString*) _serverId
-           serverName:(NSString*) _serverName
-{
-    NSDictionary *dict = @{JH_ROLE_ID:_roleId,   //角色ID
-                           JH_SERVER_ID:_serverId, //区服ID
-                           JH_SERVER_NAME:_serverName,   //区服名称
-                           JH_ROLE_NAME:_roleName,    //角色名
-                           JH_ROLE_LEVEL:_roleLevel,   //角色等级
-                           JH_VIP_LEVEL:@"0",   //VIP等级
-                           JH_PRODUCT_COUNT:@"0",   //商品数量
-                           JH_PRODUCT_NAME:@"0",};  //商品名
-    [[JHAgentCommon sharedJHAgentCommon] uploadUserData:JH_ROLE_UPDATE userData:dict];
-}
-
--(void)action_UpdateUserGoods:(NSString*) _userId
-                    roleId:(NSString*) _roleId
-                     roleName:(NSString*) _roleName
-               serverId:(NSString*) _serverId
-                     consumeCoin:(NSString*) _consumeCoin
-                   remainCoin :(NSString*) _remainCoin
-                       consumeBindCoin :(NSString*) _consumeBindCoin
-                     remainBindCoin :(NSString*) _remainBindCoin
-                     itemName :(NSString*) _itemName
-                  itemCount :(NSString*) _itemCount
-                  itemDesc  :(NSString*) _itemDesc
-{
-    JHASBuyItemInfo *itemInfo = [[JHASBuyItemInfo alloc]init];
-    itemInfo.userId = _userId;
-    itemInfo.roleId = _roleId;
-    itemInfo.playerName = _roleName;
-    itemInfo.serverId = [_serverId intValue];
-    itemInfo.consumeCoin = [_consumeCoin intValue];  //消耗 10 虚拟货币
-    itemInfo.remainCoin = [_remainCoin intValue];
-    itemInfo.consumeBindCoin = [_consumeBindCoin intValue];
-    itemInfo.remainBindCoin = [_remainBindCoin intValue];
-    itemInfo.itemName = _itemName;
-    itemInfo.itemCount = [_itemCount intValue];
-    itemInfo.itemDesc = _itemDesc;
-    
-    [[JHAgentCommon sharedJHAgentCommon] onBuyItem:itemInfo];}
 
 //---------------JunHaiSdkDelegate---------------
 -(void)junhai_onInitSuccess:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onInitSuccess:result.object];
+    self.initCallback(@"true");
 }
 
 -(void)junhai_onInitFailed:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onInitFailed:result.object];
+    self.initCallback(@"false");
 }
 
 -(void)junhai_onLoginSuccess:(NSNotification *)result
@@ -213,7 +188,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
         //NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
         //NSString *appId = [dict objectForKey:@"DALAN_APPID"];
         //NSString* defurl = [NSString stringWithFormat:@"http://jzsc2.chklogin.xgd666.com/checklogin.php?appid=%@&channel=ios_jh&sessionid=", appId];
-//        NSString *loginUrl = [NSString stringWithFormat:@"http://chklogin.jzsc3.xgd666.com/checklogin.php?channel=%@&userId=%@&token=%@&productCode=%d@%d@%d", channel, userId, token, productCode, game_id, game_channel_id];
+        //        NSString *loginUrl = [NSString stringWithFormat:@"http://chklogin.jzsc3.xgd666.com/checklogin.php?channel=%@&userId=%@&token=%@&productCode=%d@%d@%d", channel, userId, token, productCode, game_id, game_channel_id];
         NSString *loginUrl = [NSString stringWithFormat:@"http://chklogin.jzsc3.xgd666.com/checklogin.php?channel=%@&userId=%@&token=%@&productCode=%d@%d@%d", channel, userId, token, channel_id, game_id, game_channel_id];
         
         NSLog(@"loginUrl:%@", loginUrl);
@@ -236,9 +211,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
         NSLog(@"HTTP请求结果: %ld; %@", [(NSHTTPURLResponse *)response statusCode], errorstr);
         if(strReturn!=nil){//返回有值
             if(errorstr){
-//                NSLog(@"HTTP请求失败");
+                //                NSLog(@"HTTP请求失败");
             }else if([(NSHTTPURLResponse *)response statusCode]!=200){
-//                NSLog(@"HTTP请求失败");
+                //                NSLog(@"HTTP请求失败");
             }else{
                 //登录成功
                 NSData *nsreturndata = [strReturn dataUsingEncoding:NSUTF8StringEncoding];
@@ -247,25 +222,26 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
                 if (dictionary != nil)
                 {
                     NSLog(@"Second check success:%@",dictionary);
-                    NSString *retIs = [dictionary objectForKey:@"ret"]; //是否成功
-                    if([retIs isEqualToString:@"1"]){//返回成功
+                    NSString *retCode = [dictionary objectForKey:@"ret"]; //是否成功
+                    if([retCode isEqualToString:@"1"]){//返回成功
                         
-//                        NSString *content = [dictionary objectForKey:@"content"];
-//                        NSData *contentDATA = [content dataUsingEncoding:NSUTF8StringEncoding];
-//                        NSDictionary *contentDic = [NSJSONSerialization JSONObjectWithData:contentDATA options:kNilOptions error:nil];
+                        //                        NSString *content = [dictionary objectForKey:@"content"];
+                        //                        NSData *contentDATA = [content dataUsingEncoding:NSUTF8StringEncoding];
+                        //                        NSDictionary *contentDic = [NSJSONSerialization JSONObjectWithData:contentDATA options:kNilOptions error:nil];
                         
                         NSDictionary *contentDic = [dictionary objectForKey:@"content"];
                         
                         if(contentDic !=nil)
                         {
-                            NSString *token = [contentDic objectForKey:@"access_token"]; //获取token
-                            NSString *userid = [contentDic objectForKey:@"user_id"]; //获取userid
+                            NSString *userid = [QKSdkProxyUtility stringValue:[contentDic objectForKey:@"user_id"]]; //获取userid
+                            NSString *token = [QKSdkProxyUtility stringValue:[contentDic objectForKey:@"access_token"]]; //获取token
                             
-                            [[SdkDataManager Instance] setSdkUserId:userid];
-                            //NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
-                            //NSString* channel_id = [dict objectForKey:@"CHANNEL_LABEL"];
-                            
-                            [[SDKUnityApi Instance] onLoginSuccess:result.object];
+                            [SdkDataManager Instance].SdkUid = userid;
+                            NSDictionary* dic = @{@"IsSuccess":@YES,
+                                                  @"Uid":userid,
+                                                  @"Token":token};
+                            NSString* retStr = [QKSdkProxyUtility Json_DicToString:dic];
+                            self.loginCallback(retStr);
                             
                             JHASLoginUser  *loginUser = [JHASLoginUser new];
                             loginUser.uid = userid;
@@ -276,14 +252,23 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
                             NSLog(@"loginUser uid:%@,accessToken:%@",userid,token);
                             
                         }else{
-                            NSLog(@"contentDic null");
+                            NSLog(@"login error contentDic == null");
+                            NSDictionary* dic = @{@"IsSuccess":@NO};
+                            NSString* retStr = [QKSdkProxyUtility Json_DicToString:dic];
+                            self.loginCallback(retStr);
                         }
                         
                     }else{//返回失败
-                        NSLog(@"登录失败");
+                        NSLog(@"login error retCode: %@", retCode);
+                        NSDictionary* dic = @{@"IsSuccess":@NO};
+                        NSString* retStr = [QKSdkProxyUtility Json_DicToString:dic];
+                        self.loginCallback(retStr);
                     }
                 }else{//解析dictionary失败
-                    NSLog(@"解析dictionary失败");
+                    NSLog(@"login error 解析dictionary失败");
+                    NSDictionary* dic = @{@"IsSuccess":@NO};
+                    NSString* retStr = [QKSdkProxyUtility Json_DicToString:dic];
+                    self.loginCallback(retStr);
                 }
             }
         }
@@ -292,32 +277,35 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
 
 -(void)junhai_onLoginFailed:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onLoginFailed:result.object];
+    NSLog(@"login junhai_onLoginFailed");
+    NSDictionary* dic = @{@"IsSuccess":@NO};
+    NSString* retStr = [QKSdkProxyUtility Json_DicToString:dic];
+    self.loginCallback(retStr);
 }
 
 -(void)junhai_onLogoutSuccess:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onLogoutSuccess:result.object];
+    self.logoutCallback(@"true");
 }
 
 -(void)junhai_onLogoutFailed:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onLogoutFailed:result.object];
+    self.logoutCallback(@"false");
 }
 
 -(void)junhai_onPaySuccess:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onPaySuccess:result.object];
+    self.payCallback(@"true");
 }
 
 -(void)junhai_onPayFailed:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onPayFailed:result.object];
+    self.payCallback(@"false");
 }
 
 -(void)junhai_onPayCancel:(NSNotification *)result
 {
-    [[SDKUnityApi Instance] onPayCancel:result.object];
+    self.payCallback(@"false");
 }
 
 //--------------- for AppController ---------------
@@ -383,11 +371,6 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSDKSupport_junhai)
 {
     //程序意外退出
     [[JHAgentCommon sharedJHAgentCommon]applicationWillTerminate:application];
-}
-
-//---
-- (void)didReceiveMemoryWarning
-{
 }
 
 @end

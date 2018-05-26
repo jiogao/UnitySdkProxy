@@ -26,6 +26,15 @@
     return [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
 }
 
++ (NSString*)GetDeviceId
+{
+    NSString* deviceId = [self GetIDFA];
+    if (deviceId == nil) {
+        deviceId = [self GetIDFV];
+    }
+    return deviceId;
+}
+
 + (NSString*)GetIDFA
 {
     NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
@@ -39,12 +48,25 @@
     return idfv;
 }
 
-+ (NSString*)GetPrower
++ (float)GetPrower
 {
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-    double deviceLevel = [UIDevice currentDevice].batteryLevel;
-    NSNumber *num = [NSNumber numberWithDouble:deviceLevel];
-    return [num stringValue];
+    float deviceLevel = [UIDevice currentDevice].batteryLevel;
+    return deviceLevel;
+}
+
++ (NSString*)stringValue:(id)value
+{
+    if (value == nil) {
+        return @"";
+    } else if ([value isKindOfClass:[NSString class]]) {
+        return value;
+    } else if ([value respondsToSelector:@selector(stringValue)]) {
+        return [value stringValue];
+    } else {
+        return [NSString stringWithFormat:@"%@", value];
+    }
+    
 }
 
 + (NSDictionary *)Json_StringToDic:(NSString *)string

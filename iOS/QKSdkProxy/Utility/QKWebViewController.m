@@ -7,7 +7,7 @@
 
 #import "QKWebViewController.h"
 
-#import "SDKUnityApi.h"
+#import "QKSdkProxyUtility.h"
 
 @interface QKWebViewController ()
 
@@ -28,7 +28,7 @@ QKWebViewController *webViewController = nil;
         
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [[[SDKUnityApi Instance] getViewController] presentViewController:webViewController animated:NO completion:^{
+            [[QKSdkProxyUtility getViewController] presentViewController:webViewController animated:NO completion:^{
                 
             }];
         });

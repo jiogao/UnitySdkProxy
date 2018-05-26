@@ -13,9 +13,13 @@
 
 + (NSString*)GetVersion;
 + (NSString*)GetBundleVersion;
++ (NSString*)GetDeviceId;
 + (NSString*)GetIDFA;
 + (NSString*)GetIDFV;
-+ (NSString*)GetPrower;
++ (float)GetPrower;
+
+//各种类型转string
++ (NSString*)stringValue:(id)value;
 
 + (NSDictionary *)Json_StringToDic:(NSString *)string;
 + (NSArray *)Json_StringToArr:(NSString *)string;
