@@ -1,14 +1,11 @@
 //
-//  QKSdkProxy_junhai.h
+//  QKSdkProxyConstant.h
 //  Unity-iPhone
 //
-//  Created by wending on 2018/5/23.
+//  Created by wending on 2018/5/4.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef QKSdkProxyConstant_h
+#define QKSdkProxyConstant_h
 
-#import "QKSdkProxyFactory.h"
-
-@interface QKSdkProxy_junhai : QKBaseSdkProxy
-
-@end
+#endif /* QKSdkProxyConstant_h */
