@@ -1,10 +1,27 @@
 #xcodeproj文档: https://www.rubydoc.info/gems/xcodeproj/Xcodeproj
-
+#https://github.com/typedef/Xcodeproj
 #require 'xcodeproj'
 #require 'set'
 require 'cocoapods'
 require "fileutils"
 require 'find'
+
+#https://github.com/typedef/Xcodeproj/commit/925280230c8d591d9b3e02ed9d1b0438b8d1e413
+#  add tbd type 
+#
+#
+def add_system_tbds(project, target, names)
+    Array(names).each do |name|
+        path = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib#{name}.tbd"
+        files = project.frameworks_group.files
+        unless reference = files.find { |ref| ref.path == path }
+            reference = project.frameworks_group.new_file(path, :sdk_root)
+        end
+        target.frameworks_build_phase.add_file_reference(reference, true)
+        reference
+    end
+end
+# alias_method :add_system_tbds, :add_system_tbd
 
 class XcodeAutoSet
 
@@ -133,11 +150,19 @@ class XcodeAutoSet
                     file_ref = group.new_reference(subItem)
                     # p 'add reference ' + file_ref.path
                     if !subItem.end_with?('.h')
-                        target.add_file_references([file_ref])
                         #为所有.a和.framework 设置 force_load
-                        if subItem.end_with?('.a') or subItem.end_with?('.framework')
+                        if subItem.end_with?('.m') or subItem.end_with?('.mm') \
+                            or subItem.end_with?('.c') or subItem.end_with?('.cpp')
+                            #编译文件
+                            target.add_file_references([file_ref])
+                        elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
+                            #库文件
+                            target.frameworks_build_phases.add_file_reference(file_ref)
                             relatively_path = fullSubItem[@root_dir.length, fullSubItem.length - @root_dir.length]
                             xcode_set_build_libfiles_settings(target, relatively_path)
+                        else
+                            #资源文件
+                            target.add_resources([file_ref])
                         end
                     end
                 end
@@ -171,10 +196,8 @@ class XcodeAutoSet
             end
 
             library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
-            
             dir_path = File.dirname(relatively_path)
-            #$(PROJECT_DIR) #$(SRCROOT)
-            str = '"$(PROJECT_DIR)' + dir_path + '"'
+            str = '$(PROJECT_DIR)' + dir_path
             add_unique_items(library_search_paths, str)
         end
     end
@@ -234,7 +257,7 @@ class XcodeAutoSet
                 end
             end
             if !isAdded
-                puts 'add + ' + lib_name
+                # puts 'add + ' + lib_name
                 list = target.add_system_framework(lib_name)
                 # for ref in list
                 #     p ref,ref.path,ref.source_tree
@@ -246,7 +269,10 @@ class XcodeAutoSet
             # end
         end
 
-        target.add_system_library("stdc++")
+        # target.add_system_library("stdc++")
+        add_system_tbds(@project, target, "stdc++.6.0.9")
     end
+
+    
 
 end
