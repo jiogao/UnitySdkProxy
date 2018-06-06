@@ -1,17 +1,37 @@
 #!/usr/bin/ruby
 
 require File.expand_path('../XcodeAutoSet', __FILE__)
+include XcodeAutoSet
 
 p 'ARGV:'
 ARGV.each do |parameter|
     puts parameter
 end
 
-project_path = ARGV[0]    # 工程的全路径
-sdk_name = ARGV[1]    #sdk名
+projectPath = ARGV[0]    # 工程的全路径
+sdkName = ARGV[1]    #sdk名
 
-# puts 'project_path: ' + project_path
-# puts 'sdk_name: ' + sdk_name
+puts 'projectPath: ' + projectPath
+puts 'sdkName: ' + sdkName
 
-obj = XcodeAutoSet.new(project_path, sdk_name)
+srcArray = Array.[](
+	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/QKUnityBridge',
+	'QKSdkProxy'),
+	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy',
+	'QKSdkProxy'),
+	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/Utility',
+	'QKSdkProxy'),
+	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/' + sdkName,
+	'QKSdkProxy/SdkProxy_channel'),
+	)
+
+frameworkArray = Array.[](
+	"AdSupport",
+	"AudioToolbox",
+	"UIKit"
+	)
+
+systemTbdsArray = Array.[]("stdc++.6.0.9")
+
+obj = AutoSet.new(projectPath, srcArray, frameworkArray, systemTbdsArray)
 obj.start()
