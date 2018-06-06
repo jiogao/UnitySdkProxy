@@ -1,5 +1,8 @@
+#!/usr/bin/ruby
+
 #xcodeproj文档: https://www.rubydoc.info/gems/xcodeproj/Xcodeproj
 #https://github.com/typedef/Xcodeproj
+
 #require 'xcodeproj'
 #require 'set'
 require 'cocoapods'
