@@ -60,11 +60,12 @@ module XcodeAutoSet
 
     class AutoSet
 
-        def initialize(projectPath, copyArray, systemFrameworkArray, systemTbdsArray)
+        def initialize(projectPath, copyArray, systemFrameworkArray, systemTbdsArray, product_bundle_identifier)
             @projectPath = projectPath
             @copyArray = copyArray
             @systemFrameworkArray = systemFrameworkArray
             @systemTbdsArray = systemTbdsArray
+            @product_bundle_identifier = product_bundle_identifier
 
             @rootDir = File.dirname(@projectPath)
             puts 'rootDir: ' + @rootDir
@@ -217,6 +218,7 @@ module XcodeAutoSet
 
                 #Enable Bitcode
                 configuration.build_settings['ENABLE_BITCODE'] = 'NO'
+                configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @product_bundle_identifier
 
                 #$(SRCROOT) 和 $(SRCROOT)/Libraries 带有双引号会导致找不到库文件， 原因不明
                 library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
@@ -290,11 +292,11 @@ module XcodeAutoSet
                 add_system_tbds(@project, target, lib_name)
             end
 
-            for ref in frameworks_build_phases.files_references
-                p 'refref:'
-                # p ref
-                p ref,ref.path,ref.source_tree
-            end
+            # for ref in frameworks_build_phases.files_references
+            #     p 'refref:'
+            #     # p ref
+            #     p ref,ref.path,ref.source_tree
+            # end
         end
     end
 end

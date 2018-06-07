@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>channelName</key>
+	<string>test</string>
+	<key>version</key>
+	<string>1.0.2</string>
+	<key>buildVersion</key>
+	<string>100</string>
+	<key>bundleDisplayName</key>
+	<string>测试包</string>
+	<key>scheme</key>
+	<string>Unity-iPhone</string>
+	<key>configuration</key>
+	<string>ad-hoc</string>
+	<key>CODE_SIGN_IDENTITY</key>
+	<string>iPhone Distribution</string>
+	<key>DEVELOPMENT_TEAM</key>
+	<string>UAUHKD2RK7</string>
+	<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+	<string>xjcs.com.ts</string>
+	<key>PROVISIONING_PROFILE_SPECIFIER</key>
+	<string>xjcs.com.ts.adhoc</string>
+	<key>PROVISIONING_PROFILE</key>
+	<string>43bba664-6605-41f1-bb68-db68d5224166</string>
+</dict>
+</plist>

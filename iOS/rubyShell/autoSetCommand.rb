@@ -9,10 +9,11 @@ ARGV.each do |parameter|
 end
 
 projectPath = ARGV[0]    # 工程的全路径
-sdkName = ARGV[1]    #sdk名
+channelName = ARGV[1]    #sdk名
+product_bundle_identifier = ARGV[2]  #bundleId
 
 puts 'projectPath: ' + projectPath
-puts 'sdkName: ' + sdkName
+puts 'channelName: ' + channelName
 
 srcArray = Array.[](
 	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/QKUnityBridge',
@@ -21,7 +22,7 @@ srcArray = Array.[](
 	'QKSdkProxy'),
 	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/Utility',
 	'QKSdkProxy'),
-	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/' + sdkName,
+	CopyInfo.new('/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/' + channelName,
 	'QKSdkProxy/SdkProxy_channel'),
 	)
 
@@ -33,5 +34,5 @@ frameworkArray = Array.[](
 
 systemTbdsArray = Array.[]("stdc++.6.0.9")
 
-obj = AutoSet.new(projectPath, srcArray, frameworkArray, systemTbdsArray)
+obj = AutoSet.new(projectPath, srcArray, frameworkArray, systemTbdsArray, product_bundle_identifier)
 obj.start()
