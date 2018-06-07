@@ -8,8 +8,19 @@ echo "Shell 输出脚本名称及参数";
 echo "所有参数为：$@";
 # echo "当前选项：$-";
 
-projectPath="/Users/Megatron/Documents/work/QKSdkProxy_ios/Unity-iPhone.xcodeproj"
-optionsPlistPath="/Users/Megatron/Documents/work/UnitySdkProxy/iOS/ExportOptions.plist"
+if [ ! -n $1 ]; then
+	echo "工程路径为空"
+	exit
+fi
+if [ ! -n $2 ]; then
+	echo "配置文件路径为空"
+	exit
+fi
+
+projectPath="$1"
+optionsPlistPath="$2"
+# projectPath="/Users/Megatron/Documents/work/QKSdkProxy_ios/Unity-iPhone.xcodeproj"
+# optionsPlistPath="/Users/Megatron/Documents/work/UnitySdkProxy/iOS/ExportOptions.plist"
 # optionsPlistPath="$(PWD)/ExportOptions.plist"
 
 # 工程文件夹路径
