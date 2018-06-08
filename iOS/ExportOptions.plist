@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>channelName</key>
-	<string>test</string>
 	<key>version</key>
 	<string>1.0.2</string>
 	<key>buildVersion</key>
@@ -24,5 +22,18 @@
 	<string>xjcs.com.ts.adhoc</string>
 	<key>PROVISIONING_PROFILE</key>
 	<string>43bba664-6605-41f1-bb68-db68d5224166</string>
+	<key>srcArray</key>
+	<array>
+		<string>/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy</string>
+		<string>/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/test</string>
+	</array>
+	<key>frameworkArray</key>
+	<array>
+		<string>AdSupport</string>
+	</array>
+	<key>systemTbdsArray</key>
+	<array>
+		<string>stdc++.6.0.9</string>
+	</array>
 </dict>
 </plist>

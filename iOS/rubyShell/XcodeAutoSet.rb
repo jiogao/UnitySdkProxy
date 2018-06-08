@@ -43,29 +43,14 @@ module XcodeAutoSet
         end
     end
 
-    class CopyInfo
-        def initialize(srcPath, dstPath)
-            @srcPath = srcPath
-            @dstPath = dstPath
-        end
-
-        def getSrcPath()
-            return @srcPath
-        end
-
-        def getDstPath()
-            return @dstPath
-        end
-    end
-
     class AutoSet
 
-        def initialize(projectPath, copyArray, systemFrameworkArray, systemTbdsArray, product_bundle_identifier)
+        def initialize(projectPath, productBundleIdentifier, copyArray, frameworkArray, systemTbdsArray)
             @projectPath = projectPath
             @copyArray = copyArray
-            @systemFrameworkArray = systemFrameworkArray
+            @frameworkArray = frameworkArray
             @systemTbdsArray = systemTbdsArray
-            @product_bundle_identifier = product_bundle_identifier
+            @productBundleIdentifier = productBundleIdentifier
 
             @rootDir = File.dirname(@projectPath)
             puts 'rootDir: ' + @rootDir
@@ -89,9 +74,10 @@ module XcodeAutoSet
                 FileUtils.rm_rf(fullDstRootDir)
             end
 
-            for copyInfo in @copyArray
-                autoSetDstPath = File::expand_path(copyInfo.getDstPath(), fullDstRootDir)
-                copyFiles(copyInfo.getSrcPath(), autoSetDstPath)
+            if @copyArray != nil
+                for copyPath in @copyArray
+                    copyFiles(copyPath, fullDstRootDir)
+                end
             end
 
             xcode_group_readd(target, fullDstRootDir)
@@ -218,7 +204,7 @@ module XcodeAutoSet
 
                 #Enable Bitcode
                 configuration.build_settings['ENABLE_BITCODE'] = 'NO'
-                configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @product_bundle_identifier
+                configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @productBundleIdentifier
 
                 #$(SRCROOT) 和 $(SRCROOT)/Libraries 带有双引号会导致找不到库文件， 原因不明
                 library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
@@ -260,36 +246,40 @@ module XcodeAutoSet
             # p frameworks_build_phases.files_references 
             # frameworks_build_phases.add_file_reference()
 
-            for lib_name in @systemFrameworkArray
-                # lib_name_with_suffix = lib_name + '.framework'
-                # isAdded = false
-                # for ref in frameworks_build_phases.files_references
-                #     if ref != nil and lib_name_with_suffix == ref.name
-                #         isAdded = true
-                #     end
-                # end
-                # if !isAdded
-                    
-                # end
-                # puts 'add + ' + lib_name
+            if @frameworkArray != nil
+                for lib_name in @frameworkArray
+                    # lib_name_with_suffix = lib_name + '.framework'
+                    # isAdded = false
+                    # for ref in frameworks_build_phases.files_references
+                    #     if ref != nil and lib_name_with_suffix == ref.name
+                    #         isAdded = true
+                    #     end
+                    # end
+                    # if !isAdded
+                        
+                    # end
+                    # puts 'add + ' + lib_name
 
-                # list = target.add_system_framework(lib_name)
-                list = add_system_framework(@project, target, lib_name)
+                    # list = target.add_system_framework(lib_name)
+                    list = add_system_framework(@project, target, lib_name)
+                end
             end
 
-            for lib_name in @systemTbdsArray
-                # lib_name_with_suffix = 'lib' + lib_name + '.tbd'
-                # isAdded = false
-                # for ref in frameworks_build_phases.files_references
-                #     if ref != nil and lib_name_with_suffix == ref.name
-                #         isAdded = true
-                #     end
-                # end
-                # if !isAdded
-                    
-                # end
-                # target.add_system_library("stdc++")
-                add_system_tbds(@project, target, lib_name)
+            if @systemTbdsArray != nil
+                for lib_name in @systemTbdsArray
+                    # lib_name_with_suffix = 'lib' + lib_name + '.tbd'
+                    # isAdded = false
+                    # for ref in frameworks_build_phases.files_references
+                    #     if ref != nil and lib_name_with_suffix == ref.name
+                    #         isAdded = true
+                    #     end
+                    # end
+                    # if !isAdded
+                        
+                    # end
+                    # target.add_system_library("stdc++")
+                    add_system_tbds(@project, target, lib_name)
+                end
             end
 
             # for ref in frameworks_build_phases.files_references

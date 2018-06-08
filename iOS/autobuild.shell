@@ -8,14 +8,52 @@ echo "Shell 输出脚本名称及参数";
 echo "所有参数为：$@";
 # echo "当前选项：$-";
 
-if [ ! -n $1 ]; then
+if [[ ! -n $1 ]]; then
 	echo "工程路径为空"
 	exit
 fi
-if [ ! -n $2 ]; then
+if [[ ! -n $2 ]]; then
 	echo "配置文件路径为空"
 	exit
 fi
+
+# plist解析相关函数
+
+# 读取 array
+# $1: plist 文件路径
+# $2: key
+# return: getArrayReturn
+plistGetArray()
+{
+	getArrayReturn=()
+	local array
+	local index=0
+	local item=$(/usr/libexec/PlistBuddy -c "print $2:$index" "$1")
+
+	while [[ -n $item ]];
+	do
+		getArrayReturn[index]="$item"
+		index=$(expr ${index} + 1)
+		item=$(/usr/libexec/PlistBuddy -c "print $2:$index" "$1")
+	done
+}
+
+# 写入字段, 如果没有则先新建再写入
+# $1: plist 文件路径
+# $2: key
+# $3: type (Types: string array dict bool real integer date data)
+# $4: value
+plistResetValue()
+{
+	#先删除避免dict array 等类型残留原有内容
+	/usr/libexec/PlistBuddy -c "Delete $2 $3" "$1"
+	/usr/libexec/PlistBuddy -c "Add $2 $3" "$1"
+	if [[ -n $4 ]]; then
+		/usr/libexec/PlistBuddy -c "Set $2 $4" "$1"
+	fi
+}
+
+
 
 projectPath="$1"
 optionsPlistPath="$2"
@@ -26,14 +64,14 @@ optionsPlistPath="$2"
 # 工程文件夹路径
 projectDir="${projectPath%/*}"
 
+mkdir "${projectDir}/build"
+
 # 导出配置文件生成位置 exportOptions.plist
 exportOptionsPlistPath="${projectDir}/build/exportOptions.plist"
 # /usr/libexec/PlistBuddy -c "Save" "${exportOptionsPlistPath}"
 
 
 # 一、读取参数
-# SdkProxy_channel 中的文件名
-channelName=`/usr/libexec/PlistBuddy -c "print channelName" "${optionsPlistPath}"`
 # target名
 version=`/usr/libexec/PlistBuddy -c "print version" "${optionsPlistPath}"`
 buildVersion=`/usr/libexec/PlistBuddy -c "print buildVersion" "${optionsPlistPath}"`
@@ -51,34 +89,38 @@ PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "print PROVISIONING_PROFILE" "$
 # 选择证书方式 CODE_SIGN_STYLE=Manual/Automatic
 CODE_SIGN_STYLE=Manual
 
+# 需要拷贝的资源列表 srcArray
+plistGetArray "${optionsPlistPath}" 'srcArray'
+srcArray="${getArrayReturn[*]}"
+
+plistGetArray "${optionsPlistPath}" 'frameworkArray'
+frameworkArray="${getArrayReturn[*]}"
+
+plistGetArray "${optionsPlistPath}" 'systemTbdsArray'
+systemTbdsArray="${getArrayReturn[*]}"
+
+# 导出配置需要改为小写
 signingStyle=`echo "$CODE_SIGN_STYLE" | tr '[A-Z]' '[a-z]'`
 
 #app-store, ad-hoc, enterprise, development
 method="$configuration"
 
 # 设置 exportOptionsPlist 可以先手动到处一个ipa 参考导出目录中的 ExportOptions.plist 文件
-/usr/libexec/PlistBuddy -c "Add :compileBitcode bool" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :compileBitcode NO" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :method string" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :method $method" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Delete :provisioningProfiles dict" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :provisioningProfiles dict" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :provisioningProfiles:$PRODUCT_BUNDLE_IDENTIFIER string $PROVISIONING_PROFILE_SPECIFIER" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :signingCertificate string" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :signingCertificate $CODE_SIGN_IDENTITY" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :signingStyle string" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :signingStyle $signingStyle" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :stripSwiftSymbols bool" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :stripSwiftSymbols YES" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :teamID string" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :teamID $DEVELOPMENT_TEAM" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Add :thinning string" "${exportOptionsPlistPath}"
-/usr/libexec/PlistBuddy -c "Set :thinning <none>" "${exportOptionsPlistPath}"
+plistResetValue "${exportOptionsPlistPath}" compileBitcode bool NO
+plistResetValue "${exportOptionsPlistPath}" method string "$method"
+plistResetValue "${exportOptionsPlistPath}" provisioningProfiles dict
+plistResetValue "${exportOptionsPlistPath}" "provisioningProfiles:$PRODUCT_BUNDLE_IDENTIFIER" string "$PROVISIONING_PROFILE_SPECIFIER"
+plistResetValue "${exportOptionsPlistPath}" signingCertificate string "$CODE_SIGN_IDENTITY"
+plistResetValue "${exportOptionsPlistPath}" signingStyle string "$signingStyle"
+plistResetValue "${exportOptionsPlistPath}" stripSwiftSymbols bool YES
+plistResetValue "${exportOptionsPlistPath}" teamID string "$DEVELOPMENT_TEAM"
+plistResetValue "${exportOptionsPlistPath}" thinning string "<none>"
 /usr/libexec/PlistBuddy -c "Save" "${exportOptionsPlistPath}"
 
 # 拷贝文件、添加到工程引用、打包前设置
 /Users/Megatron/Documents/work/UnitySdkProxy/iOS/rubyShell/autoSetCommand.rb \
- "$projectPath" "$channelName" "$PRODUCT_BUNDLE_IDENTIFIER"
+ "$projectPath" "$PRODUCT_BUNDLE_IDENTIFIER" \
+ -srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}"
 
 # 各种输出文件夹
 # 时间戳
