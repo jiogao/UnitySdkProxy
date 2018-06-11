@@ -93,7 +93,7 @@ configuration=`/usr/libexec/PlistBuddy -c "Print configuration" "${optionsPlistP
 CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
 DEVELOPMENT_TEAM=`/usr/libexec/PlistBuddy -c "Print DEVELOPMENT_TEAM" "${optionsPlistPath}"`
 # 选择证书方式 CODE_SIGN_STYLE=Manual/Automatic
-CODE_SIGN_STYLE=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
+CODE_SIGN_STYLE=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_STYLE" "${optionsPlistPath}"`
 PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
 if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
 	PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
