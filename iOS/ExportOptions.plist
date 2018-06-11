@@ -21,7 +21,7 @@
 	<key>PROVISIONING_PROFILE_SPECIFIER</key>
 	<string>xjcs.com.ts.adhoc</string>
 	<key>PROVISIONING_PROFILE</key>
-	<string>43bba664-6605-41f1-bb68-db68d5224166</string>
+	<string></string>
 	<key>srcArray</key>
 	<array>
 		<string>/Users/Megatron/Documents/work/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy</string>

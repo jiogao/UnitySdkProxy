@@ -8,6 +8,13 @@ echo "Shell 输出脚本名称及参数";
 echo "所有参数为：$@";
 # echo "当前选项：$-";
 
+unbuild=false
+for i in $@; do
+	if [[ $i == "-unbuild" ]]; then
+		unbuild=true
+	fi
+done
+
 if [[ ! -n $1 ]]; then
 	echo "工程路径为空"
 	exit
@@ -16,6 +23,7 @@ if [[ ! -n $2 ]]; then
 	echo "配置文件路径为空"
 	exit
 fi
+
 
 # plist解析相关函数
 
@@ -54,12 +62,12 @@ plistResetValue()
 }
 
 
-
-projectPath="$1"
-optionsPlistPath="$2"
 # projectPath="/Users/Megatron/Documents/work/QKSdkProxy_ios/Unity-iPhone.xcodeproj"
 # optionsPlistPath="/Users/Megatron/Documents/work/UnitySdkProxy/iOS/ExportOptions.plist"
 # optionsPlistPath="$(PWD)/ExportOptions.plist"
+projectPath="$1"
+optionsPlistPath="$2"
+infoExtraPlistPath="$3"
 
 # 工程文件夹路径
 projectDir="${projectPath%/*}"
@@ -67,25 +75,25 @@ projectDir="${projectPath%/*}"
 mkdir "${projectDir}/build"
 
 # 导出配置文件生成位置 exportOptions.plist
-exportOptionsPlistPath="${projectDir}/build/exportOptions.plist"
+exportOptionsPlistPath="${projectDir}/build/ExportOptions.plist"
 # /usr/libexec/PlistBuddy -c "Save" "${exportOptionsPlistPath}"
 
 
 # 一、读取参数
 # target名
-version=`/usr/libexec/PlistBuddy -c "print version" "${optionsPlistPath}"`
-buildVersion=`/usr/libexec/PlistBuddy -c "print buildVersion" "${optionsPlistPath}"`
-temDisplayName=`/usr/libexec/PlistBuddy -c "print bundleDisplayName" "${optionsPlistPath}"`
+version=`/usr/libexec/PlistBuddy -c "Print version" "${optionsPlistPath}"`
+buildVersion=`/usr/libexec/PlistBuddy -c "Print buildVersion" "${optionsPlistPath}"`
+temDisplayName=`/usr/libexec/PlistBuddy -c "Print bundleDisplayName" "${optionsPlistPath}"`
 bundleDisplayName="${temDisplayName-e}"
 
-scheme=`/usr/libexec/PlistBuddy -c "print scheme" "${optionsPlistPath}"`
+scheme=`/usr/libexec/PlistBuddy -c "Print scheme" "${optionsPlistPath}"`
 #app-store, ad-hoc, enterprise, development
-configuration=`/usr/libexec/PlistBuddy -c "print configuration" "${optionsPlistPath}"`
-CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
-DEVELOPMENT_TEAM=`/usr/libexec/PlistBuddy -c "print DEVELOPMENT_TEAM" "${optionsPlistPath}"`
-PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
-PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
-PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "print PROVISIONING_PROFILE" "${optionsPlistPath}"`
+configuration=`/usr/libexec/PlistBuddy -c "Print configuration" "${optionsPlistPath}"`
+CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
+DEVELOPMENT_TEAM=`/usr/libexec/PlistBuddy -c "Print DEVELOPMENT_TEAM" "${optionsPlistPath}"`
+PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
+PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
+PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
 # 选择证书方式 CODE_SIGN_STYLE=Manual/Automatic
 CODE_SIGN_STYLE=Manual
 
@@ -98,6 +106,9 @@ frameworkArray="${getArrayReturn[*]}"
 
 plistGetArray "${optionsPlistPath}" 'systemTbdsArray'
 systemTbdsArray="${getArrayReturn[*]}"
+
+plistGetArray "${optionsPlistPath}" 'systemTbdsArray'
+infoPlistExtraArray="${getArrayReturn[*]}"
 
 # 导出配置需要改为小写
 signingStyle=`echo "$CODE_SIGN_STYLE" | tr '[A-Z]' '[a-z]'`
@@ -131,12 +142,21 @@ exportPath="${projectDir}/build/export/${bundleDisplayName}_${configuration}_${b
 
 # 二、修改 Info.plist
 infoPlistPath="${projectDir}/Info.plist"
-echo $infoPlistPath
+
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${version}" "${infoPlistPath}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${buildVersion}" "${infoPlistPath}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName ${bundleDisplayName}" "${infoPlistPath}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier \${PRODUCT_BUNDLE_IDENTIFIER}" "${infoPlistPath}"
+# 添加Info.plist 额外设置 权限等
+if [[ -n "${infoExtraPlistPath}" ]]; then
+	/usr/libexec/PlistBuddy -c "Merge ${infoExtraPlistPath}" "${infoPlistPath}"
+fi
 /usr/libexec/PlistBuddy -c "Save" "${infoPlistPath}"
+
+if [[ $unbuild == true ]]; then
+	exit
+fi
+
 
 # # 三、打开钥匙串访问， 导入证书
 # # security unlock-keychain "-p" 系统密码 "/Users/***/Library/Keychains/login.keychain" ;
