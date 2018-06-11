@@ -27,6 +27,5 @@ exp:
     需要添加的系统framework名列表(frameworkArray)
     需要添加的系统库tdb名列表(systemTbdsArray)
     
-2.支持在InfoExtra.plist中添加额外的Info.plist条目.
+2.支持在InfoExtra.plist中添加额外的Info.plist条目
 
-3.
