@@ -21,6 +21,7 @@ exp:
     证书类型(CODE_SIGN_IDENTITY) # 发布: iPhone Distribution, 开发: iPhone Developer
     开发者ID(DEVELOPMENT_TEAM) # 登录开发者账号查看,也可以在相应的Provisioning Profile签名文件的信息中找到
     包名(PRODUCT_BUNDLE_IDENTIFIER) #如 com.yourcompany.appname
+    签名类型(CODE_SIGN_STYLE) # 可选类型: Manual, Automatic. 当使用 Automatic时可以不用设置 签名标识 和 签名文件UUID
     签名标识(PROVISIONING_PROFILE_SPECIFIER) #在 Provisioning Profile 的文件信息中可以看到,如 com.yourcompany.appname.dev
     签名文件UUID(PROVISIONING_PROFILE) #可选,如果不填可能会使用当前签名标识中最新的签名文件, 在 Provisioning Profile 的文件信息中可以看到,如 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     需要拷贝的文件路径列表(srcArray)

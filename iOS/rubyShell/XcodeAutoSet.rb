@@ -134,7 +134,8 @@ module XcodeAutoSet
             Dir.foreach(path) do |subItem|
                 if !subItem.start_with?('.') and subItem !="." and subItem !=".." then
                     fullSubItem = File.expand_path(subItem, path)
-                    if File.directory? fullSubItem and !subItem.end_with?('.bundle')
+                    # .bundle 和 .framework 是文件夹
+                    if File.directory? fullSubItem and !subItem.end_with?('.bundle') and !subItem.end_with?('.framework')
                         sub_group = group.new_group(subItem, subItem)
                         xcode_group_add_all_children(target, fullSubItem, sub_group)
                     else
@@ -169,9 +170,13 @@ module XcodeAutoSet
                 #Other Linker Flags
                 other_Linker_Flags = configuration.build_settings['OTHER_LDFLAGS']
                 flag_str = '$(PROJECT_DIR)' + relatively_path
+                search_paths_settings = nil
                 if relatively_path.end_with?('.framework')
-                   fileName = File::basename(relatively_path, '.framework')
-                   flag_str = flag_str + '/' + fileName
+                    fileName = File::basename(relatively_path, '.framework')
+                    flag_str = flag_str + '/' + fileName
+                    search_paths_settings = configuration.build_settings['FRAMEWORK_SEARCH_PATHS']
+                else
+                    search_paths_settings = configuration.build_settings['LIBRARY_SEARCH_PATHS']
                 end
                 flag_str = '"' + flag_str + '"'#加双引号避免路径包含特殊字符导致错误
 
@@ -186,10 +191,11 @@ module XcodeAutoSet
                     other_Linker_Flags.push('-force_load', flag_str)
                 end
 
-                library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
+                
+                
                 dir_path = File.dirname(relatively_path)
                 str = '$(PROJECT_DIR)' + dir_path
-                add_unique_items(library_search_paths, str)
+                add_unique_items(search_paths_settings, str)
             end
         end
 

@@ -69,6 +69,7 @@ projectPath="$1"
 optionsPlistPath="$2"
 infoExtraPlistPath="$3"
 
+shellDir=$(dirname "$0")
 # 工程文件夹路径
 projectDir="${projectPath%/*}"
 
@@ -91,11 +92,16 @@ scheme=`/usr/libexec/PlistBuddy -c "Print scheme" "${optionsPlistPath}"`
 configuration=`/usr/libexec/PlistBuddy -c "Print configuration" "${optionsPlistPath}"`
 CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
 DEVELOPMENT_TEAM=`/usr/libexec/PlistBuddy -c "Print DEVELOPMENT_TEAM" "${optionsPlistPath}"`
-PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
-PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
-PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
 # 选择证书方式 CODE_SIGN_STYLE=Manual/Automatic
-CODE_SIGN_STYLE=Manual
+CODE_SIGN_STYLE=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
+PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
+if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
+	PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
+	PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
+	allowProvisioningUpdates=''
+else
+	allowProvisioningUpdates='-allowProvisioningUpdates'
+fi
 
 # 需要拷贝的资源列表 srcArray
 plistGetArray "${optionsPlistPath}" 'srcArray'
@@ -119,9 +125,11 @@ method="$configuration"
 # 设置 exportOptionsPlist 可以先手动到处一个ipa 参考导出目录中的 ExportOptions.plist 文件
 plistResetValue "${exportOptionsPlistPath}" compileBitcode bool NO
 plistResetValue "${exportOptionsPlistPath}" method string "$method"
-plistResetValue "${exportOptionsPlistPath}" provisioningProfiles dict
-plistResetValue "${exportOptionsPlistPath}" "provisioningProfiles:$PRODUCT_BUNDLE_IDENTIFIER" string "$PROVISIONING_PROFILE_SPECIFIER"
-plistResetValue "${exportOptionsPlistPath}" signingCertificate string "$CODE_SIGN_IDENTITY"
+if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
+	plistResetValue "${exportOptionsPlistPath}" provisioningProfiles dict
+	plistResetValue "${exportOptionsPlistPath}" "provisioningProfiles:$PRODUCT_BUNDLE_IDENTIFIER" string "$PROVISIONING_PROFILE_SPECIFIER"
+	plistResetValue "${exportOptionsPlistPath}" signingCertificate string "$CODE_SIGN_IDENTITY"
+fi
 plistResetValue "${exportOptionsPlistPath}" signingStyle string "$signingStyle"
 plistResetValue "${exportOptionsPlistPath}" stripSwiftSymbols bool YES
 plistResetValue "${exportOptionsPlistPath}" teamID string "$DEVELOPMENT_TEAM"
@@ -129,7 +137,7 @@ plistResetValue "${exportOptionsPlistPath}" thinning string "<none>"
 /usr/libexec/PlistBuddy -c "Save" "${exportOptionsPlistPath}"
 
 # 拷贝文件、添加到工程引用、打包前设置
-/Users/Megatron/Documents/work/UnitySdkProxy/iOS/rubyShell/autoSetCommand.rb \
+${shellDir}/rubyShell/autoSetCommand.rb \
  "$projectPath" "$PRODUCT_BUNDLE_IDENTIFIER" \
  -srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}"
 
@@ -175,7 +183,7 @@ xcodebuild archive -project $projectPath -scheme "$scheme" \
  -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
  DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
  PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
- PROVISIONING_PROFILE="$PROVISIONING_PROFILE" \
+ PROVISIONING_PROFILE="$PROVISIONING_PROFILE" "$allowProvisioningUpdates" \
  IPHONEOS_DEPLOYMENT_TARGET="8.0" CODE_SIGN_STYLE="$CODE_SIGN_STYLE"
 
 # -configuration "$configuration" 
