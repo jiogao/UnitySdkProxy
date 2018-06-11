@@ -89,7 +89,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [TBsdkManagerCode TBstartPayWithRequestModel:requestModelCode];
 }
 
-- (void)TBLoginDistributionDidSuccess:(NSString*)strData
+- (void)TBLoginDistribution:(NSString*)strData
 {
     [TBsdkManagerCode TBLoginDistributionDidSuccess:^(NSString *url) {
         if (url != nil) {
@@ -100,7 +100,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     }];
 }
 
-- (void)TBwithdrawalWithRoleName:(NSString*)strData
+- (void)TBwithdrawal:(NSString*)strData
 {
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     NSString* roleName = [SdkDataManager Instance].RoleName;
