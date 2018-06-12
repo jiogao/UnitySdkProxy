@@ -89,6 +89,21 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [TBsdkManagerCode TBstartPayWithRequestModel:requestModelCode];
 }
 
+- (void)CreateRole:(NSString*)strData
+{
+    [super CreateRole:strData];
+}
+
+- (void)SelectRole:(NSString*)strData
+{
+    [super SelectRole:strData];
+}
+
+- (void)LevelUp:(NSString*)strData
+{
+    [super LevelUp:strData];
+}
+
 - (void)TBLoginDistribution:(NSString*)strData
 {
     [TBsdkManagerCode TBLoginDistributionDidSuccess:^(NSString *url) {
@@ -242,6 +257,21 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [dataTask resume];
 }
 
+//上报角色信息
+- (void)submitRoleInfo {
+    TBRoleModelCode* roleModelCode = [[TBRoleModelCode alloc] init];
+    roleModelCode.TBRoleName = [SdkDataManager Instance].RoleName;
+    /** 角色等级 */
+    roleModelCode.TBRoleLevel = [SdkDataManager Instance].RoleLevel;
+    /** 服务器id */
+    roleModelCode.TBSerVerID = [SdkDataManager Instance].ServerId;
+    /** 服务器名字, urlencode(转码) */
+    roleModelCode.TBServerName = [SdkDataManager Instance].ServerName;
+    
+    [TBsdkManagerCode TBUpdateRoleInfoWithRoleModel:roleModelCode didSuccess:^(BOOL isUpdateRoleSuccess) {
+        
+    }];
+}
 
 //设置web Agent
 - (void)getUserAgentMesasge {

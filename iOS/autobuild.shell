@@ -98,7 +98,7 @@ PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDEN
 if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
 	PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
 	PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
-	allowProvisioningUpdates=''
+	allowProvisioningUpdates=
 else
 	allowProvisioningUpdates='-allowProvisioningUpdates'
 fi
@@ -183,7 +183,7 @@ xcodebuild archive -project $projectPath -scheme "$scheme" \
  -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
  DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
  PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
- PROVISIONING_PROFILE="$PROVISIONING_PROFILE" "$allowProvisioningUpdates" \
+ PROVISIONING_PROFILE="$PROVISIONING_PROFILE" $allowProvisioningUpdates\
  IPHONEOS_DEPLOYMENT_TARGET="8.0" CODE_SIGN_STYLE="$CODE_SIGN_STYLE"
 
 # -configuration "$configuration" 

@@ -11,7 +11,7 @@
 	<key>scheme</key>
 	<string>Unity-iPhone</string>
 	<key>configuration</key>
-	<string>development</string>
+	<string>enterprise</string>
 	<key>CODE_SIGN_IDENTITY</key>
 	<string>iPhone Developer</string>
 	<key>DEVELOPMENT_TEAM</key>
