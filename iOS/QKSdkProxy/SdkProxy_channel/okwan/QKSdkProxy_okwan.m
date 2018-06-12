@@ -35,7 +35,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (void)Login:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
     self.loginCallback = callback;
-    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
+//    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
+    
+    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0" attach:@""];
 }
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
@@ -123,9 +125,10 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     NSString* roleName = [SdkDataManager Instance].RoleName;
     NSString* serverID = [SdkDataManager Instance].ServerId;
-    NSString* amount = infoDic[@"Amount"];
+    NSInteger amount = [infoDic[@"Amount"] integerValue];
+    amount /= 100;
     NSString* extraInfo = infoDic[@"ExtraInfo"];
-    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:amount attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
+    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:[NSString stringWithFormat:@"%lu", amount] attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
         if (url != nil) {
             [QKWebViewController showWeb:url];
         }
