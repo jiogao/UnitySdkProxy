@@ -35,7 +35,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (void)Login:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
     self.loginCallback = callback;
-    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:[QKSdkProxyUtility GetBundleVersion]];
+    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
 }
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
@@ -92,16 +92,19 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (void)CreateRole:(NSString*)strData
 {
     [super CreateRole:strData];
+    [self submitRoleInfo];
 }
 
 - (void)SelectRole:(NSString*)strData
 {
     [super SelectRole:strData];
+    [self submitRoleInfo];
 }
 
 - (void)LevelUp:(NSString*)strData
 {
     [super LevelUp:strData];
+    [self submitRoleInfo];
 }
 
 - (void)TBLoginDistribution:(NSString*)strData
