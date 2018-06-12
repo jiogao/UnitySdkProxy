@@ -99,7 +99,7 @@ if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
 	PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
 	PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
 	allowProvisioningUpdates=
-else
+elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
 	allowProvisioningUpdates='-allowProvisioningUpdates'
 fi
 
@@ -123,12 +123,14 @@ signingStyle=`echo "$CODE_SIGN_STYLE" | tr '[A-Z]' '[a-z]'`
 method="$configuration"
 
 # 设置 exportOptionsPlist 可以先手动到处一个ipa 参考导出目录中的 ExportOptions.plist 文件
+/usr/libexec/PlistBuddy -c "Clear" "${exportOptionsPlistPath}"
 plistResetValue "${exportOptionsPlistPath}" compileBitcode bool NO
 plistResetValue "${exportOptionsPlistPath}" method string "$method"
 if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
 	plistResetValue "${exportOptionsPlistPath}" provisioningProfiles dict
 	plistResetValue "${exportOptionsPlistPath}" "provisioningProfiles:$PRODUCT_BUNDLE_IDENTIFIER" string "$PROVISIONING_PROFILE_SPECIFIER"
 	plistResetValue "${exportOptionsPlistPath}" signingCertificate string "$CODE_SIGN_IDENTITY"
+# elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
 fi
 plistResetValue "${exportOptionsPlistPath}" signingStyle string "$signingStyle"
 plistResetValue "${exportOptionsPlistPath}" stripSwiftSymbols bool YES
@@ -138,8 +140,8 @@ plistResetValue "${exportOptionsPlistPath}" thinning string "<none>"
 
 # 拷贝文件、添加到工程引用、打包前设置
 ${shellDir}/rubyShell/autoSetCommand.rb \
- "$projectPath" "$PRODUCT_BUNDLE_IDENTIFIER" \
- -srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}"
+	"$projectPath" "$PRODUCT_BUNDLE_IDENTIFIER" \
+	-srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}"
 
 # 各种输出文件夹
 # 时间戳
