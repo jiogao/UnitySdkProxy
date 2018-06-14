@@ -103,25 +103,35 @@ module XcodeAutoSet
             basename = File::basename(path)
             group = main_group.find_subpath(basename, false)
             if group != nil then
-                xcode_group_clear(group)
+                xcode_group_clear(target, group)
             else
                 group = main_group.new_group(basename, basename)
             end
 
             # group.set_source_tree('SOURCE_ROOT')
 
-
-
             xcode_group_add_all_children(target, path, group)
         end
 
         #工程设置中删除文件夹中的引用
-        def xcode_group_clear(group)
+        def xcode_group_clear(target, group)
             for file_ref_temp in group.recursive_children
                 # p file_ref_temp
                 if file_ref_temp.is_a? Xcodeproj::Project::Object::PBXGroup then
                     # xcode_group_clear_recursive(file_ref_temp)
+                    # p file_ref_temp
                 elsif file_ref_temp.is_a? Xcodeproj::Project::Object::PBXFileReference then
+                    if file_ref_temp.path.end_with?('.m') or file_ref_temp.path.end_with?('.mm') \
+                        or file_ref_temp.path.end_with?('.c') or file_ref_temp.path.end_with?('.cpp')
+                        # 编译文件列表
+                        target.source_build_phase.remove_file_reference(file_ref_temp)
+                    elsif file_ref_temp.path.end_with?('.a') or file_ref_temp.path.end_with?('.framework')
+                        # 库文件列表
+                        target.frameworks_build_phases.remove_file_reference(file_ref_temp)
+                    else
+                        # 资源文件列表
+                        target.resources_build_phase.remove_file_reference(file_ref_temp)
+                    end
                     file_ref_temp.remove_from_project
                     # p 'delete reference ' + file_ref_temp.path
                 end
@@ -142,19 +152,21 @@ module XcodeAutoSet
                         file_ref = group.new_reference(subItem)
                         # p 'add reference ' + file_ref.path
                         if !subItem.end_with?('.h')
-                            #为所有.a和.framework 设置 force_load
                             if subItem.end_with?('.m') or subItem.end_with?('.mm') \
                                 or subItem.end_with?('.c') or subItem.end_with?('.cpp')
-                                #编译文件
-                                target.add_file_references([file_ref])
+                                # 编译文件列表
+                                # target.add_file_references([file_ref])
+                                target.source_build_phase.add_file_reference(file_ref)
                             elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
-                                #库文件
+                                # 库文件列表
                                 target.frameworks_build_phases.add_file_reference(file_ref)
+                                # 为所有.a和.framework 设置 force_load
                                 relatively_path = fullSubItem[@rootDir.length, fullSubItem.length - @rootDir.length]
                                 xcode_set_build_libfiles_settings(target, relatively_path)
                             else
-                                #资源文件
-                                target.add_resources([file_ref])
+                                # 资源文件列表
+                                # target.add_resources([file_ref])
+                                target.resources_build_phase.add_file_reference(file_ref)
                             end
                         end
                     end
