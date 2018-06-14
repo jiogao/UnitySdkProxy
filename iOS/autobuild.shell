@@ -172,9 +172,10 @@ fi
 # # security unlock-keychain "-p" 系统密码 "/Users/***/Library/Keychains/login.keychain" ;
 
 # 四、清理项目
+rm -rf "${projectDir}/build/archive/${configuration}.xcarchive" #注意防止误删
 xcodebuild clean -project "$projectPath" -scheme "$scheme"
 # -configuration $configuration clean
-
+exit
 # 五、编译
 # 1、编译 pods
 # xcodebuild -workspace ***.xcworkspace -scheme Pods-*** -derivedDataPath build/DerivedData OBJROOT=$(PWD)/build SYMROOT=$(PWD)/build -configuration $(configWay)

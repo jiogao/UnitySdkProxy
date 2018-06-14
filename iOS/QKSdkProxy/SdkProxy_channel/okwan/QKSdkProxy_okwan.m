@@ -77,7 +77,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     /** 等级 */
     requestModelCode.TBRoleLevel = [SdkDataManager Instance].RoleLevel;
     /** 价格 */
-    requestModelCode.TBamount = infoDic[@"Price"];
+    NSInteger amount = [infoDic[@"Price"] integerValue];
+    NSString* amountStr = [NSString stringWithFormat:@"%lu", amount / 100];
+    requestModelCode.TBamount = amountStr;
     /** 商品数量 */
     requestModelCode.TBgoodsNum = infoDic[@"Count"];
     /** 服务器id */
@@ -126,9 +128,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     NSString* roleName = [SdkDataManager Instance].RoleName;
     NSString* serverID = [SdkDataManager Instance].ServerId;
     NSInteger amount = [infoDic[@"Amount"] integerValue];
-    amount /= 100;
+    NSString* amountStr = [NSString stringWithFormat:@"%lu", amount / 100];
     NSString* extraInfo = infoDic[@"ExtraInfo"];
-    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:[NSString stringWithFormat:@"%lu", amount] attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
+    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:amountStr attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
         if (url != nil) {
             [QKWebViewController showWeb:url];
         }
