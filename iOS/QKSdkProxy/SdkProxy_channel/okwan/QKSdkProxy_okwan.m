@@ -37,7 +37,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     self.loginCallback = callback;
 //    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
     
-    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0" attach:@""];
+//    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0" attach:@""];
+    
+    [TBsdkManagerCode TBstartLoginWithGid:@"221" apiKey:@"fc52cee945d6b99a92ceb1cf853696f6" secretKey:@"962cd36ac0cf3c462fc774f2d28d60a4" version:@"1.0.0" attach:@""];
 }
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
