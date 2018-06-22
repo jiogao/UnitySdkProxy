@@ -16,7 +16,7 @@ index = 0
 ARGV.each do |parameter|
     puts parameter
     if parameter == "-srcArray" and ARGV[index+1] != nil
-    	srcArray = ARGV[index+1].split
+    	srcArray = ARGV[index+1].split(';')
     end
     if parameter == "-frameworkArray" and ARGV[index+1] != nil
     	frameworkArray = ARGV[index+1].split

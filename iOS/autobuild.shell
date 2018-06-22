@@ -46,6 +46,29 @@ plistGetArray()
 	done
 }
 
+# 读取 array 用分号隔开
+# $1: plist 文件路径
+# $2: key
+# return: arrayWithSemicolonReturn
+plistGetArrayWithSemicolon()
+{
+	arrayWithSemicolonReturn=''
+	local array
+	local index=0
+	local item=$(/usr/libexec/PlistBuddy -c "print $2:$index" "$1")
+
+	while [[ -n $item ]];
+	do
+		if [[ $index == 0 ]]; then
+			arrayWithSemicolonReturn="$item"
+		else
+			arrayWithSemicolonReturn="$arrayWithSemicolonReturn;$item"
+		fi
+		index=$(expr ${index} + 1)
+		item=$(/usr/libexec/PlistBuddy -c "print $2:$index" "$1")
+	done
+}
+
 # 写入字段, 如果没有则先新建再写入
 # $1: plist 文件路径
 # $2: key
@@ -104,8 +127,8 @@ elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
 fi
 
 # 需要拷贝的资源列表 srcArray
-plistGetArray "${optionsPlistPath}" 'srcArray'
-srcArray="${getArrayReturn[*]}"
+plistGetArrayWithSemicolon "${optionsPlistPath}" 'srcArray'
+srcArray="${arrayWithSemicolonReturn}"
 
 plistGetArray "${optionsPlistPath}" 'frameworkArray'
 frameworkArray="${getArrayReturn[*]}"

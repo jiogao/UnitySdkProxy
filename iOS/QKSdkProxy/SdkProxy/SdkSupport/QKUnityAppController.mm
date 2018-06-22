@@ -35,20 +35,20 @@ IMPL_APP_CONTROLLER_SUBCLASS(QKUnityAppController)
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
     [super application:application didReceiveRemoteNotification:userInfo];
-    [[QKSdkProxyManager SdkProxy]] application:application didReceiveRemoteNotification:userInfo];
+    [[QKSdkProxyFactory SdkProxy] application:application didReceiveRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     [super application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-    [[QKSdkProxyManager SdkProxy] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [[QKSdkProxyFactory SdkProxy] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 #if !UNITY_TVOS
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
 {
     [super application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:handler];
-    [[QKSdkProxyManager SdkProxy] application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:handler];
+    [[QKSdkProxyFactory SdkProxy] application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:handler];
 }
 
 #endif
@@ -56,7 +56,7 @@ IMPL_APP_CONTROLLER_SUBCLASS(QKUnityAppController)
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     [super application:application didFailToRegisterForRemoteNotificationsWithError:error];
-    [[QKSdkProxyManager SdkProxy] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+    [[QKSdkProxyFactory SdkProxy] application:application didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 #endif
