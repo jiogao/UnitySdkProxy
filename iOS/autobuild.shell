@@ -113,17 +113,15 @@ bundleDisplayName="${temDisplayName-e}"
 scheme=`/usr/libexec/PlistBuddy -c "Print scheme" "${optionsPlistPath}"`
 #app-store, ad-hoc, enterprise, development
 configuration=`/usr/libexec/PlistBuddy -c "Print configuration" "${optionsPlistPath}"`
-CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
 DEVELOPMENT_TEAM=`/usr/libexec/PlistBuddy -c "Print DEVELOPMENT_TEAM" "${optionsPlistPath}"`
 # 选择证书方式 CODE_SIGN_STYLE=Manual/Automatic
 CODE_SIGN_STYLE=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_STYLE" "${optionsPlistPath}"`
 PRODUCT_BUNDLE_IDENTIFIER=`/usr/libexec/PlistBuddy -c "Print PRODUCT_BUNDLE_IDENTIFIER" "${optionsPlistPath}"`
 if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
+	CODE_SIGN_IDENTITY=`/usr/libexec/PlistBuddy -c "Print CODE_SIGN_IDENTITY" "${optionsPlistPath}"`
 	PROVISIONING_PROFILE_SPECIFIER=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE_SPECIFIER" "${optionsPlistPath}"`
 	PROVISIONING_PROFILE=`/usr/libexec/PlistBuddy -c "Print PROVISIONING_PROFILE" "${optionsPlistPath}"`
-	allowProvisioningUpdates=
-elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
-	allowProvisioningUpdates='-allowProvisioningUpdates'
+# elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
 fi
 
 # 需要拷贝的资源列表 srcArray
@@ -143,7 +141,7 @@ infoPlistExtraArray="${getArrayReturn[*]}"
 signingStyle=`echo "$CODE_SIGN_STYLE" | tr '[A-Z]' '[a-z]'`
 
 #app-store, ad-hoc, enterprise, development
-method="$configuration"
+method="${configuration}"
 
 # 设置 exportOptionsPlist 可以先手动到处一个ipa 参考导出目录中的 ExportOptions.plist 文件
 /usr/libexec/PlistBuddy -c "Clear" "${exportOptionsPlistPath}"
@@ -179,6 +177,7 @@ infoPlistPath="${projectDir}/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${version}" "${infoPlistPath}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${buildVersion}" "${infoPlistPath}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName ${bundleDisplayName}" "${infoPlistPath}"
+# 把CFBundleIdentifier 设置为 "${PRODUCT_BUNDLE_IDENTIFIER}" 这个字符串, 即可自动引用工程文件中的设置
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier \${PRODUCT_BUNDLE_IDENTIFIER}" "${infoPlistPath}"
 # 添加Info.plist 额外设置 权限等
 if [[ -n "${infoExtraPlistPath}" ]]; then
@@ -204,19 +203,38 @@ xcodebuild clean -project "$projectPath" -scheme "$scheme"
 # xcodebuild -workspace ***.xcworkspace -scheme Pods-*** -derivedDataPath build/DerivedData OBJROOT=$(PWD)/build SYMROOT=$(PWD)/build -configuration $(configWay)
 # 2、编译 workspace
 
-# xcodebuild archive -workspace "${projectPath}/project.xcworkspace" \
-xcodebuild archive -project $projectPath -scheme "$scheme" \
- -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
- DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
- PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
- PROVISIONING_PROFILE="$PROVISIONING_PROFILE" $allowProvisioningUpdates\
- IPHONEOS_DEPLOYMENT_TARGET="8.0" CODE_SIGN_STYLE="$CODE_SIGN_STYLE"
-
-# -configuration "$configuration" 
-
 echo `/usr/libexec/PlistBuddy -c "print" "$exportOptionsPlistPath"`
-# 3、导出ipa
-xcodebuild -exportArchive -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
-# -exportFormat IPA  -exportProvisioningProfile $profileName
+
+# xcodebuild archive -workspace "${projectPath}/project.xcworkspace" \
+
+if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
+	xcodebuild archive -project $projectPath -scheme "$scheme" \
+	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
+	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+	 CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
+	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
+	 PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
+	 PROVISIONING_PROFILE="$PROVISIONING_PROFILE" \
+	 IPHONEOS_DEPLOYMENT_TARGET="8.0"
+
+	# 3、导出ipa
+	xcodebuild -exportArchive \
+	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
+	# -exportFormat IPA  -exportProvisioningProfile $profileName
+elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
+	xcodebuild archive -project $projectPath -scheme "$scheme" \
+	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
+	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
+	 IPHONEOS_DEPLOYMENT_TARGET="8.0"
+
+	# 3、导出ipa
+	xcodebuild -exportArchive -allowProvisioningUpdates \
+	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
+	# -exportFormat IPA  -exportProvisioningProfile $profileName
+fi
+
 
 # pause

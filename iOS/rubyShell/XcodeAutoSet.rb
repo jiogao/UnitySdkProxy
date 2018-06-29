@@ -186,10 +186,11 @@ module XcodeAutoSet
                 if relatively_path.end_with?('.framework')
                     fileName = File::basename(relatively_path, '.framework')
                     flag_str = flag_str + '/' + fileName
-                    search_paths_settings = configuration.build_settings['FRAMEWORK_SEARCH_PATHS']
+                    search_paths_settings = reset_setting_to_array(configuration.build_settings, 'FRAMEWORK_SEARCH_PATHS')
                 else
-                    search_paths_settings = configuration.build_settings['LIBRARY_SEARCH_PATHS']
+                    search_paths_settings = reset_setting_to_array(configuration.build_settings, 'LIBRARY_SEARCH_PATHS')
                 end
+
                 flag_str = '"' + flag_str + '"'#加双引号避免路径包含特殊字符导致错误
 
                 # p configuration.name + ' => Other Linker Flags: ' + flag_str
@@ -203,8 +204,6 @@ module XcodeAutoSet
                     other_Linker_Flags.push('-force_load', flag_str)
                 end
 
-                
-                
                 dir_path = File.dirname(relatively_path)
                 str = '$(PROJECT_DIR)' + dir_path
                 add_unique_items(search_paths_settings, str)
@@ -225,18 +224,25 @@ module XcodeAutoSet
                 configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @productBundleIdentifier
 
                 #$(SRCROOT) 和 $(SRCROOT)/Libraries 带有双引号会导致找不到库文件， 原因不明
-                library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
-                if library_search_paths == nil or library_search_paths.is_a? String
-                    configuration.build_settings['LIBRARY_SEARCH_PATHS'] = Array.new
-                    if library_search_paths.is_a? String
-                        configuration.build_settings['LIBRARY_SEARCH_PATHS'].push(library_search_paths)
-                    end
-                    library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
-                end
+                library_search_paths = reset_setting_to_array(configuration.build_settings, 'LIBRARY_SEARCH_PATHS')
+
                 add_unique_items(library_search_paths, '$(SRCROOT)')
                 add_unique_items(library_search_paths, '$(SRCROOT)/Libraries')
                 # $(PROJECT_DIR)/SdkLibs/okwan
             end
+        end
+
+        #把configuration中的指定条目扩展为array, 再添加不重复项
+        def reset_setting_to_array(build_settings, key)
+            setting = build_settings[key]
+            if setting == nil or setting.is_a? String
+                build_settings[key] = Array.new
+                if setting.is_a? String
+                    build_settings[key].push(setting)
+                end
+                setting = build_settings[key]
+            end
+            return setting
         end
 
         #添加不重复项
