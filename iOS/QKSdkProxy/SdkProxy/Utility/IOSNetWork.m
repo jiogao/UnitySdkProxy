@@ -32,7 +32,8 @@
 //网络状态改变 返回
 -(void)reachabilityChanged:(NSNotification *)note
 {
-    Reachability* curReach = [note object];
+//    Reachability* curReach = [note object];
+    Reachability* curReach = hostReach;
 //    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
     if (curReach != nil && [curReach isKindOfClass: [Reachability class]]) {
         NetworkStatus status = [curReach currentReachabilityStatus];
