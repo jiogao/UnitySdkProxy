@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<string>1.0.1</string>
+	<key>buildVersion</key>
+	<string>1.0.1</string>
+	<key>bundleDisplayName</key>
+	<string>赏金传奇</string>
+	<key>scheme</key>
+	<string>Unity-iPhone</string>
+	<key>configuration</key>
+	<string>enterprise</string>
+	<key>CODE_SIGN_IDENTITY</key>
+	<string>iPhone Developer</string>
+	<key>DEVELOPMENT_TEAM</key>
+	<string>M33VC739Z2</string>
+	<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+	<string>com.qiku.shangjin</string>
+	<key>CODE_SIGN_STYLE</key>
+	<string>Automatic</string>
+	<key>PROVISIONING_PROFILE_SPECIFIER</key>
+	<string></string>
+	<key>PROVISIONING_PROFILE</key>
+	<string></string>
+	<key>srcArray</key>
+	<array>
+		<string>/Users/wending/Desktop/SdkProxy/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy</string>
+		<string>/Users/wending/Desktop/SdkProxy/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/okwan</string>
+		<string>/Users/wending/Desktop/SdkProxy/SdkLibs/Bugly</string>
+		<string>/Users/wending/Desktop/shangjin/赏金传奇/5月3日赏金传奇iOS_SDK更新/SDK</string>
+	</array>
+	<key>frameworkArray</key>
+	<array>
+		<string>StoreKit</string>
+		<string>CoreTelephony</string>
+		<string>AdSupport</string>
+	</array>
+	<key>systemTbdsArray</key>
+	<array>
+		<string>z</string>
+		<string>sqlite3</string>
+	</array>
+</dict>
+</plist>

@@ -18,6 +18,8 @@
 	<string>UAUHKD2RK7</string>
 	<key>PRODUCT_BUNDLE_IDENTIFIER</key>
 	<string>xjcs.com.ts</string>
+	<key>CODE_SIGN_STYLE</key>
+	<string>Manual</string>
 	<key>PROVISIONING_PROFILE_SPECIFIER</key>
 	<string>xjcs.com.ts.adhoc</string>
 	<key>PROVISIONING_PROFILE</key>
@@ -30,10 +32,14 @@
 	<key>frameworkArray</key>
 	<array>
 		<string>AdSupport</string>
+		<string>StoreKit</string>
+		<string>CoreTelephony</string>
 	</array>
 	<key>systemTbdsArray</key>
 	<array>
 		<string>stdc++.6.0.9</string>
+		<string>z</string>
+		<string>sqlite3</string>
 	</array>
 </dict>
 </plist>

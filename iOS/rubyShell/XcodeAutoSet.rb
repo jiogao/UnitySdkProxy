@@ -103,25 +103,35 @@ module XcodeAutoSet
             basename = File::basename(path)
             group = main_group.find_subpath(basename, false)
             if group != nil then
-                xcode_group_clear(group)
+                xcode_group_clear(target, group)
             else
                 group = main_group.new_group(basename, basename)
             end
 
             # group.set_source_tree('SOURCE_ROOT')
 
-
-
             xcode_group_add_all_children(target, path, group)
         end
 
         #工程设置中删除文件夹中的引用
-        def xcode_group_clear(group)
+        def xcode_group_clear(target, group)
             for file_ref_temp in group.recursive_children
                 # p file_ref_temp
                 if file_ref_temp.is_a? Xcodeproj::Project::Object::PBXGroup then
                     # xcode_group_clear_recursive(file_ref_temp)
+                    # p file_ref_temp
                 elsif file_ref_temp.is_a? Xcodeproj::Project::Object::PBXFileReference then
+                    if file_ref_temp.path.end_with?('.m') or file_ref_temp.path.end_with?('.mm') \
+                        or file_ref_temp.path.end_with?('.c') or file_ref_temp.path.end_with?('.cpp')
+                        # 编译文件列表
+                        target.source_build_phase.remove_file_reference(file_ref_temp)
+                    elsif file_ref_temp.path.end_with?('.a') or file_ref_temp.path.end_with?('.framework')
+                        # 库文件列表
+                        target.frameworks_build_phases.remove_file_reference(file_ref_temp)
+                    else
+                        # 资源文件列表
+                        target.resources_build_phase.remove_file_reference(file_ref_temp)
+                    end
                     file_ref_temp.remove_from_project
                     # p 'delete reference ' + file_ref_temp.path
                 end
@@ -134,26 +144,29 @@ module XcodeAutoSet
             Dir.foreach(path) do |subItem|
                 if !subItem.start_with?('.') and subItem !="." and subItem !=".." then
                     fullSubItem = File.expand_path(subItem, path)
-                    if File.directory? fullSubItem and !subItem.end_with?('.bundle')
+                    # .bundle 和 .framework 是文件夹
+                    if File.directory? fullSubItem and !subItem.end_with?('.bundle') and !subItem.end_with?('.framework')
                         sub_group = group.new_group(subItem, subItem)
                         xcode_group_add_all_children(target, fullSubItem, sub_group)
                     else
                         file_ref = group.new_reference(subItem)
                         # p 'add reference ' + file_ref.path
                         if !subItem.end_with?('.h')
-                            #为所有.a和.framework 设置 force_load
                             if subItem.end_with?('.m') or subItem.end_with?('.mm') \
                                 or subItem.end_with?('.c') or subItem.end_with?('.cpp')
-                                #编译文件
-                                target.add_file_references([file_ref])
+                                # 编译文件列表
+                                # target.add_file_references([file_ref])
+                                target.source_build_phase.add_file_reference(file_ref)
                             elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
-                                #库文件
+                                # 库文件列表
                                 target.frameworks_build_phases.add_file_reference(file_ref)
+                                # 为所有.a和.framework 设置 force_load
                                 relatively_path = fullSubItem[@rootDir.length, fullSubItem.length - @rootDir.length]
                                 xcode_set_build_libfiles_settings(target, relatively_path)
                             else
-                                #资源文件
-                                target.add_resources([file_ref])
+                                # 资源文件列表
+                                # target.add_resources([file_ref])
+                                target.resources_build_phase.add_file_reference(file_ref)
                             end
                         end
                     end
@@ -169,10 +182,15 @@ module XcodeAutoSet
                 #Other Linker Flags
                 other_Linker_Flags = configuration.build_settings['OTHER_LDFLAGS']
                 flag_str = '$(PROJECT_DIR)' + relatively_path
+                search_paths_settings = nil
                 if relatively_path.end_with?('.framework')
-                   fileName = File::basename(relatively_path, '.framework')
-                   flag_str = flag_str + '/' + fileName
+                    fileName = File::basename(relatively_path, '.framework')
+                    flag_str = flag_str + '/' + fileName
+                    search_paths_settings = reset_setting_to_array(configuration.build_settings, 'FRAMEWORK_SEARCH_PATHS')
+                else
+                    search_paths_settings = reset_setting_to_array(configuration.build_settings, 'LIBRARY_SEARCH_PATHS')
                 end
+
                 flag_str = '"' + flag_str + '"'#加双引号避免路径包含特殊字符导致错误
 
                 # p configuration.name + ' => Other Linker Flags: ' + flag_str
@@ -186,10 +204,9 @@ module XcodeAutoSet
                     other_Linker_Flags.push('-force_load', flag_str)
                 end
 
-                library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
                 dir_path = File.dirname(relatively_path)
                 str = '$(PROJECT_DIR)' + dir_path
-                add_unique_items(library_search_paths, str)
+                add_unique_items(search_paths_settings, str)
             end
         end
 
@@ -207,18 +224,25 @@ module XcodeAutoSet
                 configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @productBundleIdentifier
 
                 #$(SRCROOT) 和 $(SRCROOT)/Libraries 带有双引号会导致找不到库文件， 原因不明
-                library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
-                if library_search_paths == nil or library_search_paths.is_a? String
-                    configuration.build_settings['LIBRARY_SEARCH_PATHS'] = Array.new
-                    if library_search_paths.is_a? String
-                        configuration.build_settings['LIBRARY_SEARCH_PATHS'].push(library_search_paths)
-                    end
-                    library_search_paths = configuration.build_settings['LIBRARY_SEARCH_PATHS']
-                end
+                library_search_paths = reset_setting_to_array(configuration.build_settings, 'LIBRARY_SEARCH_PATHS')
+
                 add_unique_items(library_search_paths, '$(SRCROOT)')
                 add_unique_items(library_search_paths, '$(SRCROOT)/Libraries')
                 # $(PROJECT_DIR)/SdkLibs/okwan
             end
+        end
+
+        #把configuration中的指定条目扩展为array, 再添加不重复项
+        def reset_setting_to_array(build_settings, key)
+            setting = build_settings[key]
+            if setting == nil or setting.is_a? String
+                build_settings[key] = Array.new
+                if setting.is_a? String
+                    build_settings[key].push(setting)
+                end
+                setting = build_settings[key]
+            end
+            return setting
         end
 
         #添加不重复项

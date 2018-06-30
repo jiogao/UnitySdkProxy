@@ -35,7 +35,11 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (void)Login:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
     self.loginCallback = callback;
-    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:[QKSdkProxyUtility GetBundleVersion]];
+//    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
+    
+//    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0" attach:@""];
+    
+    [TBsdkManagerCode TBstartLoginWithGid:@"221" apiKey:@"fc52cee945d6b99a92ceb1cf853696f6" secretKey:@"962cd36ac0cf3c462fc774f2d28d60a4" version:@"1.0.0" attach:@""];
 }
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
@@ -75,7 +79,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     /** 等级 */
     requestModelCode.TBRoleLevel = [SdkDataManager Instance].RoleLevel;
     /** 价格 */
-    requestModelCode.TBamount = infoDic[@"Price"];
+    NSInteger amount = [infoDic[@"Price"] integerValue];
+    NSString* amountStr = [NSString stringWithFormat:@"%lu", amount / 100];
+    requestModelCode.TBamount = amountStr;
     /** 商品数量 */
     requestModelCode.TBgoodsNum = infoDic[@"Count"];
     /** 服务器id */
@@ -89,7 +95,25 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [TBsdkManagerCode TBstartPayWithRequestModel:requestModelCode];
 }
 
-- (void)TBLoginDistributionDidSuccess:(NSString*)strData
+- (void)CreateRole:(NSString*)strData
+{
+    [super CreateRole:strData];
+    [self submitRoleInfo];
+}
+
+- (void)SelectRole:(NSString*)strData
+{
+    [super SelectRole:strData];
+    [self submitRoleInfo];
+}
+
+- (void)LevelUp:(NSString*)strData
+{
+    [super LevelUp:strData];
+    [self submitRoleInfo];
+}
+
+- (void)TBLoginDistribution:(NSString*)strData
 {
     [TBsdkManagerCode TBLoginDistributionDidSuccess:^(NSString *url) {
         if (url != nil) {
@@ -100,14 +124,15 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     }];
 }
 
-- (void)TBwithdrawalWithRoleName:(NSString*)strData
+- (void)TBwithdrawal:(NSString*)strData
 {
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     NSString* roleName = [SdkDataManager Instance].RoleName;
     NSString* serverID = [SdkDataManager Instance].ServerId;
-    NSString* amount = infoDic[@"Amount"];
+    NSInteger amount = [infoDic[@"Amount"] integerValue];
+    NSString* amountStr = [NSString stringWithFormat:@"%lu", amount / 100];
     NSString* extraInfo = infoDic[@"ExtraInfo"];
-    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:amount attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
+    [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:amountStr attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
         if (url != nil) {
             [QKWebViewController showWeb:url];
         }
@@ -242,6 +267,21 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [dataTask resume];
 }
 
+//上报角色信息
+- (void)submitRoleInfo {
+    TBRoleModelCode* roleModelCode = [[TBRoleModelCode alloc] init];
+    roleModelCode.TBRoleName = [SdkDataManager Instance].RoleName;
+    /** 角色等级 */
+    roleModelCode.TBRoleLevel = [SdkDataManager Instance].RoleLevel;
+    /** 服务器id */
+    roleModelCode.TBSerVerID = [SdkDataManager Instance].ServerId;
+    /** 服务器名字, urlencode(转码) */
+    roleModelCode.TBServerName = [SdkDataManager Instance].ServerName;
+    
+    [TBsdkManagerCode TBUpdateRoleInfoWithRoleModel:roleModelCode didSuccess:^(BOOL isUpdateRoleSuccess) {
+        
+    }];
+}
 
 //设置web Agent
 - (void)getUserAgentMesasge {
