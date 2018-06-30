@@ -33,27 +33,29 @@
 -(void)reachabilityChanged:(NSNotification *)note
 {
     Reachability* curReach = [note object];
-    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
-    NetworkStatus status = [curReach currentReachabilityStatus];
-    NSDictionary* dic;
-    switch (status)
-    {
-        case NotReachable:
-            NSLog(@"没有网络连接");
-            dic = @{@"data":@{@"network":@"0"},@"resultCode":@301};
-            break;
-        case ReachableViaWWAN:
-            NSLog(@"使用移动网络");
-            dic = @{@"data":@{@"network":@"1"},@"resultCode":@301};
-            break;
-        case ReachableViaWiFi:
-            NSLog(@"使用本地网络");
-            dic = @{@"data":@{@"network":@"2"},@"resultCode":@301};
-            break;
-    }
-    
-    if (self.callback != nil) {
-        self.callback([QKSdkProxyUtility Json_DicToString:dic]);
+//    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    if (curReach != nil && [curReach isKindOfClass: [Reachability class]]) {
+        NetworkStatus status = [curReach currentReachabilityStatus];
+        NSDictionary* dic;
+        switch (status)
+        {
+            case NotReachable:
+                NSLog(@"没有网络连接");
+                dic = @{@"data":@{@"network":@"0"},@"resultCode":@301};
+                break;
+            case ReachableViaWWAN:
+                NSLog(@"使用移动网络");
+                dic = @{@"data":@{@"network":@"1"},@"resultCode":@301};
+                break;
+            case ReachableViaWiFi:
+                NSLog(@"使用本地网络");
+                dic = @{@"data":@{@"network":@"2"},@"resultCode":@301};
+                break;
+        }
+        
+        if (self.callback != nil) {
+            self.callback([QKSdkProxyUtility Json_DicToString:dic]);
+        }
     }
 }
 
