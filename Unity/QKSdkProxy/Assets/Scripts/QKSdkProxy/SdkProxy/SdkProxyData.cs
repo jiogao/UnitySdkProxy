@@ -59,6 +59,7 @@ namespace QKSdkProxy
         public string RoleUpdateTime;//角色信息更新时间
         public string RoleVipLevel;//角色vip等级
         public string RoleGold;//角色拥有的金币
+        public string CpUid;//游戏CP方帐号ID，无此参数时使用角色ID
     }
     
     //商品信息
