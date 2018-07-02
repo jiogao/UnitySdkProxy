@@ -141,8 +141,17 @@
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
-    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
-    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
+//    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
+//    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
+    
+    // No rootViewController is set because we are switching from one view controller to another, all orientations should be enabled
+    if ([window rootViewController] == nil)
+        return UIInterfaceOrientationMaskAll;
+    
+    // Before it was UIInterfaceOrientationAll because some presentation controllers insisted on being portrait only
+    // (e.g. GameCenter) so we did that do avoid crashes.
+    // As this was fixed in iOS 6.1 we can use exact same set of constraints as root view controller.
+    return [[window rootViewController] supportedInterfaceOrientations];
 }
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification

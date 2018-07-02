@@ -85,4 +85,10 @@ QKWebViewController *webViewController = nil;
     return NO;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+//    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

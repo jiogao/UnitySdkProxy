@@ -37,8 +37,10 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     self.loginCallback = callback;
 //    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0"];//[QKSdkProxyUtility GetBundleVersion]
     
+    // adhoc 企业包
 //    [TBsdkManagerCode TBstartLoginWithGid:@"204" apiKey:@"90a7559f6a4b414861cb6c7f85b18865" secretKey:@"8bc0e788fb2c69d193f04fe0be804507" version:@"1.0.0" attach:@""];
     
+    // appstore
     [TBsdkManagerCode TBstartLoginWithGid:@"221" apiKey:@"fc52cee945d6b99a92ceb1cf853696f6" secretKey:@"962cd36ac0cf3c462fc774f2d28d60a4" version:@"1.0.0" attach:@""];
 }
 
@@ -142,8 +144,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
-    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
-    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
+    return [super application:application supportedInterfaceOrientationsForWindow:window];
+//    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
+//    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
 }
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
