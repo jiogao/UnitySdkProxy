@@ -32,31 +32,43 @@
 //网络状态改变 返回
 -(void)reachabilityChanged:(NSNotification *)note
 {
-//    Reachability* curReach = [note object];
-    Reachability* curReach = hostReach;
-//    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
-    if (curReach != nil && [curReach isKindOfClass: [Reachability class]]) {
-        NetworkStatus status = [curReach currentReachabilityStatus];
-        NSDictionary* dic;
-        switch (status)
-        {
-            case NotReachable:
-                NSLog(@"没有网络连接");
-                dic = @{@"data":@{@"network":@"0"},@"resultCode":@301};
-                break;
-            case ReachableViaWWAN:
-                NSLog(@"使用移动网络");
-                dic = @{@"data":@{@"network":@"1"},@"resultCode":@301};
-                break;
-            case ReachableViaWiFi:
-                NSLog(@"使用本地网络");
-                dic = @{@"data":@{@"network":@"2"},@"resultCode":@301};
-                break;
-        }
-        
-        if (self.callback != nil) {
-            self.callback([QKSdkProxyUtility Json_DicToString:dic]);
-        }
+    Reachability* curReach = [note object];
+    if (curReach != hostReach && curReach != nil) {
+        return;
+    }
+//    Reachability* curReach = hostReach;
+    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    // 转化为unity中的网络状态枚举
+//    //Describes network reachability options.
+//    public enum NetworkReachability
+//    {
+//        //     Network is not reachable.
+//        NotReachable = 0,
+//        //     Network is reachable via carrier data network.
+//        ReachableViaCarrierDataNetwork = 1,
+//        //     Network is reachable via WiFi or cable.
+//        ReachableViaLocalAreaNetwork = 2
+//    }
+    int statutCode = 0;
+    switch (status)
+    {
+        case NotReachable:
+            NSLog(@"没有网络连接");
+            statutCode = 0;
+            break;
+        case ReachableViaWWAN:
+            NSLog(@"使用移动网络");
+            statutCode = 1;
+            break;
+        case ReachableViaWiFi:
+            NSLog(@"使用本地网络");
+            statutCode = 2;
+            break;
+    }
+    
+    if (self.callback != nil) {
+        self.callback([[NSNumber numberWithInt:statutCode] stringValue]);
     }
 }
 
@@ -67,7 +79,7 @@
     // 监测网络情况
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
-                                                 name: sevencoolkReachabilityChangedNotification
+                                                 name: kNetworkReachabilityChangedNotification_7cool
                                                object: nil];
     hostReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     [hostReach startNotifier];

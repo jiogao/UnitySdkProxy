@@ -6,7 +6,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "Reachability.h"
 
-NSString *sevencoolkReachabilityChangedNotification = @"kNetworkReachabilityChangedNotification";
+NSString *kNetworkReachabilityChangedNotification_7cool = @"kNetworkReachabilityChangedNotification_7cool";
 
 #pragma mark - Supporting functions
 
@@ -41,7 +41,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
     Reachability* noteObject = (__bridge Reachability *)info;
     // Post a notification to notify the client that the network reachability changed.
-    [[NSNotificationCenter defaultCenter] postNotificationName: sevencoolkReachabilityChangedNotification object: noteObject];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kNetworkReachabilityChangedNotification_7cool object: noteObject];
 }
 
 
