@@ -19,6 +19,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 @interface QKSdkProxy_okwan ()
 
 @property(nonatomic, copy) QKUnityCallbackFunc loginCallback;
+@property (nonatomic ,assign) UIInterfaceOrientationMask orientationMaskValue;
 
 @end
 
@@ -26,6 +27,8 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 - (void)SdkInit:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    self.orientationMaskValue = UIInterfaceOrientationMaskAll;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(okwan_didReceiveScreenChanged:) name:@"TBOrientationChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(okwan_onLogin:) name:@"login" object:nil];
     [TBsdkManagerCode manager];
     
@@ -118,9 +121,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (void)TBLoginDistribution:(NSString*)strData
 {
     [TBsdkManagerCode TBLoginDistributionDidSuccess:^(NSString *url) {
-        if (url != nil) {
-            [QKWebViewController showWeb:url];
-        }
+//        if (url != nil) {
+//            [QKWebViewController showWeb:url];
+//        }
     } error:^(NSString *errorMsg) {
         
     }];
@@ -135,9 +138,9 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     NSString* amountStr = [NSString stringWithFormat:@"%lu", amount / 100];
     NSString* extraInfo = infoDic[@"ExtraInfo"];
     [TBsdkManagerCode TBwithdrawalWithRoleName:roleName serverID:serverID amount:amountStr attach:extraInfo completion:^(BOOL isSuccess, NSString *url, NSString *errorMsg) {
-        if (url != nil) {
-            [QKWebViewController showWeb:url];
-        }
+//        if (url != nil) {
+//            [QKWebViewController showWeb:url];
+//        }
     }];
 }
 
@@ -145,8 +148,10 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
 //    return [super application:application supportedInterfaceOrientationsForWindow:window];
-    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
-    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
+    return self.orientationMaskValue;
+//    return UIInterfaceOrientationMaskAll;
+//    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
+//    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
 }
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
@@ -269,6 +274,10 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     //发送请求
     [dataTask resume];
 }
+- (void)okwan_didReceiveScreenChanged:(NSNotification*)notif {
+    NSInteger changeValue = [notif.object integerValue];
+    self.orientationMaskValue = changeValue;
+}
 
 //上报角色信息
 - (void)submitRoleInfo {
@@ -305,6 +314,11 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
         [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
         i++;
     }
+}
+
+//
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
