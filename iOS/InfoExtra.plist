@@ -30,5 +30,7 @@
 	<string>App需要您的同意,才能访问相册,从而把账号和密码保存到相册中,当您忘记账号密码可在相册中找回,允许后请再次点击保存</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>App需要您的同意,才能访问提醒事项</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>App需要您的同意,才能保存到相册,从而把账号和密码保存到相册中,当您忘记账号密码可在相册中找回,允许后请再次点击保存</string>
 </dict>
 </plist>
