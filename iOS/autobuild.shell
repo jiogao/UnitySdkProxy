@@ -236,5 +236,6 @@ elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
 	# -exportFormat IPA  -exportProvisioningProfile $profileName
 fi
 
+open "$exportPath"
 
 # pause

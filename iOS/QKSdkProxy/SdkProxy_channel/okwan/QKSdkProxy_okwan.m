@@ -62,16 +62,22 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 - (void)Pay:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
-//    public struct PayInfo
+//    public class PayInfo
 //    {
 //        public string OrderId;     //订单号
-//        public string ItemId;      //计费点id
+//        
+//        //1 消耗型计费点,如金币，元宝等
+//        //2:非消耗型计费点,一次购买永远拥有的，如vip等功能
+//        //3:订阅型计费点，如使用周期一个星期，到期后还需要续费的
+//        public string paymentType;
+//        
+//        public string ProductId;   //商品id
 //        public string Title;       //商品名称
-//        public string Des;         //商品描述
 //        public string Price;       //充值金额，单位分
+//        public string Des;         //商品描述
 //        public string Count;       //商品数量
 //        public string Vcname;      //虚拟货币名称
-//        public string Addvc;       //添加的虚拟货币数量
+//        public string AddVCount;       //添加的虚拟货币数量
 //        public string ExtraInfo;   //透传参数
 //    }
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
@@ -98,7 +104,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     /** 服务器id */
     requestModelCode.TBserverID = [SdkDataManager Instance].ServerId;
     /** 苹果内购的商品id */
-    requestModelCode.TBproductID = infoDic[@"ItemId"];
+    requestModelCode.TBproductID = infoDic[@"ProductId"];
     /** 详情见文档 */
     requestModelCode.TBUrl = @"http://rmb.sjcq.xgd666.com/callback/55_1_ios_okw/pay.php";
     
