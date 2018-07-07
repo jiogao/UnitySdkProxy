@@ -26,7 +26,7 @@
     static __strong SdkDataManager* _Instance = nil;
     if(_Instance == NULL)
     {
-        _Instance = [SdkDataManager alloc];
+        _Instance = [[SdkDataManager alloc] init];
     }
     return _Instance;
 }
