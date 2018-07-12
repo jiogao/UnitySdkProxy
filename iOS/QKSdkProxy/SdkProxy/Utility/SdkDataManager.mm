@@ -19,6 +19,7 @@
     _##VALUE_NAME = VALUE_NAME; \
 }
 
+
 @implementation SdkDataManager
 
 +(SdkDataManager*)Instance
@@ -44,6 +45,7 @@
         
         self.ServerId = @"";
         self.ServerName = @"";
+        self.loginToken = @"";
     }
     return self;
 }
@@ -57,5 +59,6 @@ NO_NULL_STRING(RoleVipLevel, @"")
 NO_NULL_STRING(RoleGold, @"")
 NO_NULL_STRING(ServerId, @"")
 NO_NULL_STRING(ServerName, @"")
+NO_NULL_STRING(loginToken,@"");
 
 @end

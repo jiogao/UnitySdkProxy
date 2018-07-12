@@ -92,6 +92,19 @@ projectPath="$1"
 optionsPlistPath="$2"
 infoExtraPlistPath="$3"
 
+if [[ ! -f "$projectPath" ]]; then
+	echo "文件不存在：$projectPath"
+	exit
+fi
+if [[ ! -f "$optionsPlistPath" ]]; then
+	echo "文件不存在：$optionsPlistPath"
+	exit
+fi
+if [[ ! -f "$infoExtraPlistPath" ]]; then
+	echo "文件不存在：$infoExtraPlistPath"
+	exit
+fi
+
 shellDir=$(dirname "$0")
 # 工程文件夹路径
 projectDir="${projectPath%/*}"

@@ -10,7 +10,7 @@
 typedef void (^QKUnityCallbackFunc)(NSString*);
 
 @interface QKUnityBridgeManager : NSObject
-
+		
 @property(nonatomic, weak) id unityDelegate;
 
 + (QKUnityBridgeManager *)Instance;

@@ -47,7 +47,7 @@
             void(*func)(id, SEL, NSString*) = (void(*)(id, SEL, NSString*))imp;
             
             func(self.unityDelegate, sel, strData);
-//            [self.unityDelegate performSelector:sel withObject:strData];
+            //[self.unityDelegate performSelector:sel withObject:strData];
         } else {
             //尝试有回调的函数
             ocFuncName = [funcName stringByAppendingString:@":callback:"];

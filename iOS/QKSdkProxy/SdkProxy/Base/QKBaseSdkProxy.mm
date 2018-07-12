@@ -137,6 +137,8 @@
     [SdkDataManager Instance].RoleCreateTime = infoDic[@"RoleCreateTime"];
     [SdkDataManager Instance].RoleVipLevel = infoDic[@"RoleVipLevel"];
     [SdkDataManager Instance].RoleGold = infoDic[@"RoleGold"];
+    [SdkDataManager Instance].CpuId = infoDic[@"CpUid"];
+    [SdkDataManager Instance].RoleUpdateTime = infoDic[@"RoleUpdateTime"];
 }
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window

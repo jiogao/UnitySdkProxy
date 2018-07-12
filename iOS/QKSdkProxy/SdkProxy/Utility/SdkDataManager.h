@@ -16,8 +16,11 @@
 @property(nonatomic, copy) NSString* RoleCreateTime;
 @property(nonatomic, copy) NSString* RoleVipLevel;
 @property(nonatomic, copy) NSString* RoleGold;
+@property(nonatomic,copy) NSString* RoleUpdateTime;
 
 @property(nonatomic, copy) NSString* ServerId;
 @property(nonatomic, copy) NSString* ServerName;
+@property(nonatomic,copy) NSString* loginToken;
+@property(nonatomic,copy) NSString* CpuId;
 
 @end
