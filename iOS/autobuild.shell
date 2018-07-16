@@ -92,8 +92,8 @@ projectPath="$1"
 optionsPlistPath="$2"
 infoExtraPlistPath="$3"
 
-if [[ ! -f "$projectPath" ]]; then
-	echo "文件不存在：$projectPath"
+if [[ ! -d "$projectPath" ]]; then
+	echo "xcode工程不存在：$projectPath"
 	exit
 fi
 if [[ ! -f "$optionsPlistPath" ]]; then
