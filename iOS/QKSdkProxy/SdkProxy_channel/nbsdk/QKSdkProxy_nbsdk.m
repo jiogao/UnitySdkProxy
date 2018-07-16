@@ -30,12 +30,12 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_nbsdk)
 
 
 //--------------- for AppController ---------------
-- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
-{
-//    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
-//    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
-    return [[NBSDK getInstance] application:application supportedInterfaceOrientationsForWindow:window];
-}
+//- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+//{
+////    return (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationPortraitUpsideDown)
+////    | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationLandscapeLeft);
+//    return [[NBSDK getInstance] application:application supportedInterfaceOrientationsForWindow:window];
+//}
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
 {
