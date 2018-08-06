@@ -106,44 +106,44 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 - (void)CreateRole:(NSString*)strData
 {
     [super CreateRole:strData];
-    [self uploadUserData:strData];
+    [self uploadUserData:strData type:JH_CREATE_ROLE];
 }
 
 - (void)SelectRole:(NSString*)strData
 {
     [super SelectRole:strData];
-    [self uploadUserData:strData];
+    [self uploadUserData:strData type:JH_ENTER_SERVER];
 }
 
 - (void)LevelUp:(NSString*)strData
 {
     [super LevelUp:strData];
-    [self uploadUserData:strData];
+    [self uploadUserData:strData type:JH_ROLE_UPDATE];
 }
 
 //上报物品变化信息
 - (void)UpdateUserGoods:(NSString*)strData
 {
-    NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
+    [super UpdateUserGoods:strData];
     
     JHASBuyItemInfo *itemInfo = [[JHASBuyItemInfo alloc]init];
     itemInfo.userId = [SdkDataManager Instance].SdkUid;
     itemInfo.roleId = [SdkDataManager Instance].RoleId;
     itemInfo.playerName = [SdkDataManager Instance].RoleName;
     itemInfo.serverId = [[SdkDataManager Instance].ServerId intValue];
-    itemInfo.consumeCoin = [infoDic[@"ConsumCoin"] intValue];  //消耗 10 虚拟货币
-    itemInfo.remainCoin = [infoDic[@"RemainCoin"] intValue];
-    itemInfo.consumeBindCoin = [infoDic[@"ConsumeBind"] intValue];
-    itemInfo.remainBindCoin = [infoDic[@"RemainBind"] intValue];
-    itemInfo.itemName = infoDic[@"ItemName"];
-    itemInfo.itemCount = [infoDic[@"ItemCount"] intValue];
-    itemInfo.itemDesc = infoDic[@"ItemDes"];
+    itemInfo.consumeCoin = [[SdkDataManager Instance].ConsumCoin intValue];  //消耗 10 虚拟货币
+    itemInfo.remainCoin = [[SdkDataManager Instance].RemainCoin intValue];
+    itemInfo.consumeBindCoin = [[SdkDataManager Instance]. ConsumeBind intValue];
+    itemInfo.remainBindCoin = [[SdkDataManager Instance].RemainBind intValue];
+    itemInfo.itemName = [SdkDataManager Instance].ItemName;
+    itemInfo.itemCount = [[SdkDataManager Instance].ItemCount intValue];
+    itemInfo.itemDesc = [SdkDataManager Instance].ItemDes;
     
     [[JHAgentCommon sharedJHAgentCommon] onBuyItem:itemInfo];
 }
 
 //上报用户数据
-- (void)uploadUserData:(NSString*)strData
+- (void)uploadUserData:(NSString*)strData type:(NSString*)type
 {
     NSDictionary *dict = @{JH_ROLE_ID:[SdkDataManager Instance].RoleId,   //角色ID
                            JH_ROLE_NAME:[SdkDataManager Instance].RoleName,    //角色名
@@ -237,6 +237,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
                             NSString *token = [QKSdkProxyUtility stringValue:[contentDic objectForKey:@"access_token"]]; //获取token
                             
                             [SdkDataManager Instance].SdkUid = userid;
+                            [SdkDataManager Instance].loginToken = token;
                             NSDictionary* dic = @{@"IsSuccess":@YES,
                                                   @"Uid":userid,
                                                   @"Token":token};

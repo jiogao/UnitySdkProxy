@@ -23,4 +23,13 @@
 @property(nonatomic,copy) NSString* loginToken;
 @property(nonatomic,copy) NSString* CpuId;
 
+
+@property(nonatomic, copy) NSString* ConsumCoin;
+@property(nonatomic, copy) NSString* RemainCoin;
+@property(nonatomic, copy) NSString* ConsumeBind;
+@property(nonatomic, copy) NSString* RemainBind;
+@property(nonatomic, copy) NSString* ItemName;
+@property(nonatomic, copy) NSString* ItemCount;
+@property(nonatomic,copy) NSString* ItemDes;
+
 @end
