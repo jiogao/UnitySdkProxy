@@ -45,12 +45,13 @@ module XcodeAutoSet
 
     class AutoSet
 
-        def initialize(projectPath, productBundleIdentifier, copyArray, frameworkArray, systemTbdsArray)
+        def initialize(projectPath, productBundleIdentifier, copyArray, frameworkArray, systemTbdsArray, embedFrameworkArray = nil)
             @projectPath = projectPath
+            @productBundleIdentifier = productBundleIdentifier
             @copyArray = copyArray
             @frameworkArray = frameworkArray
             @systemTbdsArray = systemTbdsArray
-            @productBundleIdentifier = productBundleIdentifier
+            @embedFrameworkArray = embedFrameworkArray
 
             @rootDir = File.dirname(@projectPath)
             puts 'rootDir: ' + @rootDir
@@ -170,22 +171,31 @@ module XcodeAutoSet
                                 target.source_build_phase.add_file_reference(file_ref)
                             elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
                                 # 库文件列表
-
                                 # 动态 framework 需要添加到 Embed Frameworks
-                                if subItem.end_with?('.framework')
-                                    puts '库文件列表', file_ref.path
-                                    build_file = embed_frameworks_phases.add_file_reference(file_ref)
-                                    if build_file != nil
-                                        settings = build_file.settings
-                                        if settings == nil
-                                            build_file.settings = Hash.new
-                                            settings = build_file.settings
+                                if @embedFrameworkArray!= nil
+                                    isNeedEmbed = false
+                                    for item in @embedFrameworkArray
+                                        if subItem.end_with?(item)
+                                            isNeedEmbed = true
+                                            break
                                         end
-                                        settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                                    end
+                                    if isNeedEmbed
+                                        puts '库文件列表', file_ref.path
+                                        build_file = embed_frameworks_phases.add_file_reference(file_ref)
+                                        if build_file != nil
+                                            settings = build_file.settings
+                                            if settings == nil
+                                                build_file.settings = Hash.new
+                                                settings = build_file.settings
+                                            end
+                                            settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                                        end
                                     end
                                 end
 
                                 target.frameworks_build_phases.add_file_reference(file_ref)
+
                                 # 为所有.a和.framework 设置 force_load
                                 relatively_path = fullSubItem[@rootDir.length, fullSubItem.length - @rootDir.length]
                                 xcode_set_build_libfiles_settings(target, relatively_path)
@@ -282,6 +292,9 @@ module XcodeAutoSet
             end
             if embed_frameworks_phases == nil
                 embed_frameworks_phases = target.new_copy_files_build_phase('Embed Frameworks')
+                puts 'get_embed_frameworks_phasesget_embed_frameworks_phasesget_embed_frameworks_phasesget_embed_frameworks_phases'
+                puts embed_frameworks_phases.dst_subfolder_spec.class
+                embed_frameworks_phases.dst_subfolder_spec = '10' #意义未知, 根据手动添加引用时的工程文件设置, 默认为7会报错
             end
             return embed_frameworks_phases
         end
