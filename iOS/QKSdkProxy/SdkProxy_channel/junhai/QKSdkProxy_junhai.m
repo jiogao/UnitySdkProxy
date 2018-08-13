@@ -50,6 +50,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 
 - (void)Login:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    NSLog(@"Login()........");
     self.loginCallback = callback;
     [[JHAgentCommon sharedJHAgentCommon] setRootViewController:UnityGetGLViewController()];
     [[JHAgentCommon sharedJHAgentCommon] login];
@@ -57,6 +58,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+     NSLog(@"Logout()........");
     self.logoutCallback = callback;
     [[JHAgentCommon sharedJHAgentCommon] logout];
 }
@@ -79,6 +81,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
      @property (strong) NSString *notifyUrl;//充值回调地址
      **/
     
+    NSLog(@"充值接口调用。。。。");
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     
     JHASPaymentInfo *info = [[JHASPaymentInfo alloc] init];
@@ -124,6 +127,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 //上报物品变化信息
 - (void)UpdateUserGoods:(NSString*)strData
 {
+    NSLog(@"上报物品信息变化。。。。");
     [super UpdateUserGoods:strData];
     
     JHASBuyItemInfo *itemInfo = [[JHASBuyItemInfo alloc]init];
@@ -153,17 +157,19 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
                            JH_VIP_LEVEL:[SdkDataManager Instance].RoleVipLevel,   //VIP等级
                            JH_PRODUCT_COUNT:@"0",   //商品数量
                            JH_PRODUCT_NAME:@"0",};  //商品名
-    [[JHAgentCommon sharedJHAgentCommon] uploadUserData:JH_ENTER_SERVER userData:dict];
+    [[JHAgentCommon sharedJHAgentCommon] uploadUserData:type userData:dict];
 }
 
 //---------------JunHaiSdkDelegate---------------
 -(void)junhai_onInitSuccess:(NSNotification *)result
 {
+     NSLog(@"onInitSuccess()........");
     self.initCallback(@"true");
 }
 
 -(void)junhai_onInitFailed:(NSNotification *)result
 {
+     NSLog(@"onInitFailed()........");
     self.initCallback(@"false");
 }
 
@@ -251,7 +257,6 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
                             [[JHAgentCommon sharedJHAgentCommon] onLoginResp:loginUser];
                             
                             NSLog(@"loginUser uid:%@,accessToken:%@",userid,token);
-                            
                         }else{
                             NSLog(@"login error contentDic == null");
                             NSDictionary* dic = @{@"IsSuccess":@NO};
@@ -296,17 +301,69 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 
 -(void)junhai_onPaySuccess:(NSNotification *)result
 {
+    NSLog(@"充值成功。。。。");
     self.payCallback(@"true");
 }
 
 -(void)junhai_onPayFailed:(NSNotification *)result
 {
+    NSLog(@"充值失败。。。。");
     self.payCallback(@"false");
 }
 
 -(void)junhai_onPayCancel:(NSNotification *)result
 {
+    NSLog(@"充值取消。。。。");
     self.payCallback(@"false");
+}
+
+-(void)JunhaiGetRealNameInfo:(NSString*)strData callback:(QKUnityCallbackFunc)callback{
+    NSLog(@"获取实名认证信息接口调用。。。。。。。");
+    [[JHAgentCommon sharedJHAgentCommon] ga_getUserAuthenticationInfo:^(JHAuthentication authenticationCode, NSDictionary *userInfo) {
+        if (authenticationCode == JHAuthenticationOK) {
+            NSLog(@"获取实名制信息成功并回调!!!!!");
+            
+            NSDictionary*data = @{
+                                  @"retCode": [NSNumber numberWithInteger:41],
+                                  @"age":[NSNumber numberWithInteger:[userInfo[@"age"] integerValue]],
+                                  @"is_adult":[NSNumber numberWithBool:[userInfo[@"is_adult"] isEqualToString:@"true"]],
+                                  @"real_name_authentication":[NSNumber numberWithBool:[userInfo[@"real_name_authentication"] isEqualToString:@"true"]],
+                                  @"mobile":userInfo[@"mobile"],
+                                  @"real_name":userInfo[@"real_name"],
+                                  @"id_card":userInfo[@"id_card"]
+                                  };
+            NSString*userData = [QKSdkProxyUtility Json_DicToString:data];
+            callback(userData);
+            
+        } else if (authenticationCode == JHAuthenticationUnknow) {
+            NSLog(@"实名制未知!!!!!");
+            NSDictionary*data = @{
+                                  @"retCode": [NSNumber numberWithInteger:40],
+                                  };
+            NSString*userData = [QKSdkProxyUtility Json_DicToString:data];
+            callback(userData);
+        }  else if (authenticationCode == JHAuthenticationNever) {
+            NSLog(@"实名制功能不存在!!!!!");
+            NSDictionary*data = @{
+                                  @"retCode": [NSNumber numberWithInteger:42],
+                                  };
+            NSString*userData = [QKSdkProxyUtility Json_DicToString:data];
+            callback(userData);
+        }
+    }];
+}
+
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonInitFailed object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonLogoutSuccess object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonLogoutFailed object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonLoginSuccess object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonLoginFailed object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonPaySuccess object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonPayFailed object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:JHASonPayCancel object:nil];
 }
 
 //--------------- for AppController ---------------

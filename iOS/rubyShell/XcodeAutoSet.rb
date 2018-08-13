@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 
-#xcodeproj文档: https://www.rubydoc.info/gems/xcodeproj/Xcodeproj
-#https://github.com/typedef/Xcodeproj
+# xcodeproj文档: https://www.rubydoc.info/gems/xcodeproj/Xcodeproj
+# https://github.com/CocoaPods/Xcodeproj
 
-#require 'xcodeproj'
-#require 'set'
+# require 'xcodeproj'
+# require 'set'
 require 'cocoapods'
 require "fileutils"
 require 'find'
@@ -115,6 +115,10 @@ module XcodeAutoSet
 
         #工程设置中删除文件夹中的引用
         def xcode_group_clear(target, group)
+
+            # Embed Frameworks 列表
+            embed_frameworks_phases = get_embed_frameworks_phases(target)
+
             for file_ref_temp in group.recursive_children
                 # p file_ref_temp
                 if file_ref_temp.is_a? Xcodeproj::Project::Object::PBXGroup then
@@ -128,6 +132,9 @@ module XcodeAutoSet
                     elsif file_ref_temp.path.end_with?('.a') or file_ref_temp.path.end_with?('.framework')
                         # 库文件列表
                         target.frameworks_build_phases.remove_file_reference(file_ref_temp)
+                        if embed_frameworks_phases != nil
+                            embed_frameworks_phases.remove_file_reference(file_ref_temp)
+                        end
                     else
                         # 资源文件列表
                         target.resources_build_phase.remove_file_reference(file_ref_temp)
@@ -141,6 +148,10 @@ module XcodeAutoSet
 
         #为文件夹中的所有文件添加引用
         def xcode_group_add_all_children(target, path, group)
+
+            # Embed Frameworks 列表
+            embed_frameworks_phases = get_embed_frameworks_phases(target)
+
             Dir.foreach(path) do |subItem|
                 if !subItem.start_with?('.') and subItem !="." and subItem !=".." then
                     fullSubItem = File.expand_path(subItem, path)
@@ -159,6 +170,21 @@ module XcodeAutoSet
                                 target.source_build_phase.add_file_reference(file_ref)
                             elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
                                 # 库文件列表
+
+                                # 动态 framework 需要添加到 Embed Frameworks
+                                if subItem.end_with?('.framework')
+                                    puts '库文件列表', file_ref.path
+                                    build_file = embed_frameworks_phases.add_file_reference(file_ref)
+                                    if build_file != nil
+                                        settings = build_file.settings
+                                        if settings == nil
+                                            build_file.settings = Hash.new
+                                            settings = build_file.settings
+                                        end
+                                        settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                                    end
+                                end
+
                                 target.frameworks_build_phases.add_file_reference(file_ref)
                                 # 为所有.a和.framework 设置 force_load
                                 relatively_path = fullSubItem[@rootDir.length, fullSubItem.length - @rootDir.length]
@@ -243,6 +269,21 @@ module XcodeAutoSet
                 setting = build_settings[key]
             end
             return setting
+        end
+
+        # 获取或新建 Embed Frameworks 列表
+        def get_embed_frameworks_phases(target)
+            embed_frameworks_phases = nil
+            puts target.copy_files_build_phases[0].class
+            for item in target.copy_files_build_phases
+                if 'Embed Frameworks' == item.name
+                    embed_frameworks_phases = item
+                end
+            end
+            if embed_frameworks_phases == nil
+                embed_frameworks_phases = target.new_copy_files_build_phase('Embed Frameworks')
+            end
+            return embed_frameworks_phases
         end
 
         #添加不重复项

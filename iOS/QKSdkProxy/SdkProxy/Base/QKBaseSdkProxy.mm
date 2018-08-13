@@ -75,12 +75,12 @@
 
 - (void)CreateRole:(NSString*)strData
 {
-    [self saveRoleInfo:strData];
+    [self saveRoleInfo:strData isCreateRole:YES];
 }
 
 - (void)SelectRole:(NSString*)strData
 {
-    [self saveRoleInfo:strData];
+    [self saveRoleInfo:strData isCreateRole:YES];
 }
 
 - (void)EnterGame:(NSString*)strData
@@ -89,12 +89,12 @@
 
 - (void)LevelUp:(NSString*)strData
 {
-    [self saveRoleInfo:strData];
+    [self saveRoleInfo:strData isCreateRole:NO];
 }
 
 - (void)UpdateUserGoods:(NSString*)strData
 {
-    [self saveRoleInfo:strData];
+    [self saveGoodsInfo:strData];
 }
 
 - (void)OpenUrl:(NSString*)strData
@@ -128,17 +128,33 @@
     [SdkDataManager Instance].ServerName = infoDic[@"ServerName"];
 }
 
-- (void)saveRoleInfo:(NSString*)strData
+- (void)saveRoleInfo:(NSString*)strData isCreateRole:(BOOL)isCreate
 {
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
     [SdkDataManager Instance].RoleId = infoDic[@"RoleId"];
     [SdkDataManager Instance].RoleName = infoDic[@"RoleName"];
     [SdkDataManager Instance].RoleLevel = infoDic[@"RoleLevel"];
-    [SdkDataManager Instance].RoleCreateTime = infoDic[@"RoleCreateTime"];
+    if (isCreate){
+        NSLog(@"CreateRoleTime is %@",infoDic[@"RoleCreateTime"]);
+        [SdkDataManager Instance].RoleCreateTime = infoDic[@"RoleCreateTime"];
+    }
+
     [SdkDataManager Instance].RoleVipLevel = infoDic[@"RoleVipLevel"];
     [SdkDataManager Instance].RoleGold = infoDic[@"RoleGold"];
     [SdkDataManager Instance].CpuId = infoDic[@"CpUid"];
     [SdkDataManager Instance].RoleUpdateTime = infoDic[@"RoleUpdateTime"];
+}
+
+- (void)saveGoodsInfo:(NSString*)strData
+{
+    NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
+    [SdkDataManager Instance].ConsumCoin = infoDic[@"ConsumCoin"];
+    [SdkDataManager Instance].RemainCoin = infoDic[@"RemainCoin"];
+    [SdkDataManager Instance]. ConsumeBind= infoDic[@"ConsumeBind"];
+    [SdkDataManager Instance].RemainBind = infoDic[@"RemainBind"];
+    [SdkDataManager Instance].ItemName = infoDic[@"ItemName"];
+    [SdkDataManager Instance].ItemCount = infoDic[@"ItemCount"];
+    [SdkDataManager Instance].ItemDes = infoDic[@"ItemDes"];
 }
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window

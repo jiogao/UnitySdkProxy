@@ -42,7 +42,6 @@
         self.RoleCreateTime = @"";
         self.RoleVipLevel = @"";
         self.RoleGold = @"";
-        
         self.ServerId = @"";
         self.ServerName = @"";
         self.loginToken = @"";
