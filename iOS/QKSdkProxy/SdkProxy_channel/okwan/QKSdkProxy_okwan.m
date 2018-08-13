@@ -62,6 +62,8 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 - (void)Pay:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    // 额外提交一次玩家信息
+    [self submitRoleInfo];
 //    public class PayInfo
 //    {
 //        public string OrderId;     //订单号

@@ -40,7 +40,7 @@ namespace QKNativeBridge
 
         protected Dictionary<string, UnityAction<string>> CallbackDic = new Dictionary<string, UnityAction<string>>();
 
-        protected void AddCallback(String funcName, UnityAction<string> callback)
+        public void AddCallback(String funcName, UnityAction<string> callback)
         {
             CallbackDic[funcName] = callback;
         }
