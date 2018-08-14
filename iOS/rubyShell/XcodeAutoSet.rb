@@ -45,7 +45,7 @@ module XcodeAutoSet
 
     class AutoSet
 
-        def initialize(projectPath, productBundleIdentifier, copyArray, frameworkArray, systemTbdsArray, embedFrameworkArray = nil)
+        def initialize(projectPath, productBundleIdentifier, copyArray, frameworkArray, systemTbdsArray, embedFrameworkArray)
             @projectPath = projectPath
             @productBundleIdentifier = productBundleIdentifier
             @copyArray = copyArray
@@ -175,7 +175,7 @@ module XcodeAutoSet
                                 if @embedFrameworkArray!= nil
                                     isNeedEmbed = false
                                     for item in @embedFrameworkArray
-                                        if subItem.end_with?(item)
+                                        if subItem.end_with?(item+'.framework')
                                             isNeedEmbed = true
                                             break
                                         end

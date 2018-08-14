@@ -27,6 +27,7 @@ exp:
     需要拷贝的文件路径列表(srcArray)
     需要添加的系统framework名列表(frameworkArray)
     需要添加的系统库tdb名列表(systemTbdsArray)
+    需要添加到Embed Frameworks中的framework名列表(embedFrameworkArray)
     
 2.支持在InfoExtra.plist中添加额外的Info.plist条目
 

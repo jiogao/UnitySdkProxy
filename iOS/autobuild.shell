@@ -147,8 +147,8 @@ frameworkArray="${getArrayReturn[*]}"
 plistGetArray "${optionsPlistPath}" 'systemTbdsArray'
 systemTbdsArray="${getArrayReturn[*]}"
 
-plistGetArray "${optionsPlistPath}" 'systemTbdsArray'
-infoPlistExtraArray="${getArrayReturn[*]}"
+plistGetArray "${optionsPlistPath}" 'embedFrameworkArray'
+embedFrameworkArray="${getArrayReturn[*]}"
 
 # 导出配置需要改为小写
 signingStyle=`echo "$CODE_SIGN_STYLE" | tr '[A-Z]' '[a-z]'`
@@ -175,7 +175,7 @@ plistResetValue "${exportOptionsPlistPath}" thinning string "<none>"
 # 拷贝文件、添加到工程引用、打包前设置
 ${shellDir}/rubyShell/autoSetCommand.rb \
 	"$projectPath" "$PRODUCT_BUNDLE_IDENTIFIER" \
-	-srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}"
+	-srcArray "${srcArray[*]}" -frameworkArray "${frameworkArray[*]}" -systemTbdsArray "${systemTbdsArray[*]}" -embedFrameworkArray "${embedFrameworkArray[*]}"
 
 # 各种输出文件夹
 # 时间戳
