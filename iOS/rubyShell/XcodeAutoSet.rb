@@ -284,7 +284,6 @@ module XcodeAutoSet
         # 获取或新建 Embed Frameworks 列表
         def get_embed_frameworks_phases(target)
             embed_frameworks_phases = nil
-            puts target.copy_files_build_phases[0].class
             for item in target.copy_files_build_phases
                 if 'Embed Frameworks' == item.name
                     embed_frameworks_phases = item
@@ -292,9 +291,18 @@ module XcodeAutoSet
             end
             if embed_frameworks_phases == nil
                 embed_frameworks_phases = target.new_copy_files_build_phase('Embed Frameworks')
-                puts 'get_embed_frameworks_phasesget_embed_frameworks_phasesget_embed_frameworks_phasesget_embed_frameworks_phases'
-                puts embed_frameworks_phases.dst_subfolder_spec.class
                 embed_frameworks_phases.dst_subfolder_spec = '10' #意义未知, 根据手动添加引用时的工程文件设置, 默认为7会报错
+
+                # 存在 embed frameworks 时 runpath_search_paths 需要添加 @executable_path/Frameworks
+                configurations = target.build_configurations
+                configurations.each do |configuration|
+
+                    ld_runpath_search_paths = reset_setting_to_array(configuration.build_settings, 'LD_RUNPATH_SEARCH_PATHS')
+
+                    add_unique_items(ld_runpath_search_paths, '$(inherited)')
+                    add_unique_items(ld_runpath_search_paths, '@executable_path/Frameworks')
+                    # $(PROJECT_DIR)/SdkLibs/okwan
+                end
             end
             return embed_frameworks_phases
         end
