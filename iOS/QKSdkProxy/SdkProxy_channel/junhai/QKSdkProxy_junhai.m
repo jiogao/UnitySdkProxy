@@ -291,12 +291,20 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_junhai)
 
 -(void)junhai_onLogoutSuccess:(NSNotification *)result
 {
-    self.logoutCallback(@"true");
+    if (self.logoutCallback) {
+        self.logoutCallback(@"true");
+        self.logoutCallback = nil;
+    } else {
+      [QKUnityBridgeManager.Instance CallUnity:@"SdkLogoutEvent" strData:@""];
+    }
 }
 
 -(void)junhai_onLogoutFailed:(NSNotification *)result
 {
-    self.logoutCallback(@"false");
+    if (self.logoutCallback) {
+        self.logoutCallback(@"false");
+        self.logoutCallback = nil;
+    }
 }
 
 -(void)junhai_onPaySuccess:(NSNotification *)result
