@@ -13,7 +13,7 @@ public class MyHttpURLConnect {
         public void onResult(String result);
     }
 
-    public static void doPost(String urlstr, String param, HttpHander handler)
+    public static void doPost(final String urlstr, final String param, final HttpHander handler)
     {
         String result = "";
         new Thread() {

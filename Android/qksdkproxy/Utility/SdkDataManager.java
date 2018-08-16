@@ -15,6 +15,7 @@ public class SdkDataManager {
     private Map data = new HashMap();
 
     public String SdkUserId;
+    public String scode;
 
     public String ServerId;
     public String ServerName;
@@ -26,6 +27,7 @@ public class SdkDataManager {
     public String UpdateRoleTime;
     public String RoleVipLevel;
     public String RoleGold;
+    public String CpUid;
 
 
     //保存服务器信息
@@ -52,7 +54,7 @@ public class SdkDataManager {
             UpdateRoleTime = jsonObject.getString("RoleUpdateTime");
             RoleVipLevel = jsonObject.getString("RoleVipLevel");
             RoleGold = jsonObject.getString("RoleGold");
-
+            CpUid = jsonObject.getString("CpUid");
 
             data.put("RoleId",RoleId);
             data.put("RoleName",RoleName);
@@ -61,6 +63,7 @@ public class SdkDataManager {
             data.put("RoleUpdateTime",UpdateRoleTime);
             data.put("RoleVipLevel",RoleVipLevel);
             data.put("RoleGold",RoleGold);
+            data.put("CpUid",CpUid);
         } catch (JSONException e) {
             e.printStackTrace();
         }

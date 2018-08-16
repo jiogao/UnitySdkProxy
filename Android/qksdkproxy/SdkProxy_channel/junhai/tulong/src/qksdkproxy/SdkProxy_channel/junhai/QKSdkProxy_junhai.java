@@ -1,5 +1,6 @@
 package qksdkproxy.SdkProxy_channel.junhai;
 
+import android.widget.Toast;
 import asynchttp.AsyncHttpClient;
 import asynchttp.JsonHttpResponseHandler;
 import asynchttp.RequestParams;
@@ -44,6 +45,7 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
     public void Login(String strData, QKUnityBridgeManager.QKUnityCallbackFunc callback) {
         super.Login(strData,callback);
         Log.e(TAG,"Login()....");
+        QKUnityBridgeManager.getInstance().CallUnity("ReSetLoginUI", "");
         ChannelInterface.login(QKUnityPlayerActivity.getInstance(),
                 new IDispatcherCb() {
                     @Override
@@ -107,7 +109,14 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
                                                             callback.Invoke(jo.toString());
 
                                                         } catch (JSONException e) {
-                                                            Log.e(TAG,"111111111111。。。。" + e.getMessage());
+                                                            try {
+                                                                JSONObject jo = new JSONObject();
+                                                                jo.put("IsSuccess",false);
+                                                                callback.Invoke(jo.toString());
+                                                            }catch  (JSONException ex) {
+                                                                ex.printStackTrace();
+                                                            }
+                                                            Log.e(TAG,"111111111111。。。。Json解析失败了，渠道参数有问题！麻烦查一下。" + e.getMessage());
                                                             e.printStackTrace();
                                                         }
                                                     }
@@ -133,6 +142,16 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
                                 e.printStackTrace();
                             }
                         } else {
+                            try
+                            {
+                                JSONObject jo = new JSONObject();
+                                jo.put("IsSuccess",false);
+                                callback.Invoke(jo.toString());
+                            }catch (Exception e)
+                            {
+                                Log.e(TAG,"登录失败。。。。");
+                            }
+
                             Log.e(TAG,"code != Constants.ErrorCode.ERR_OK");
                         }
                     }
@@ -227,6 +246,7 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
                     jo.put("real_name", real_name);
                     jo.put("id_card", id_card);
 
+
                     callback.Invoke(jo.toString());
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -300,14 +320,17 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
         ChannelInterface.exit(QKUnityPlayerActivity.getInstance(), new IDispatcherCb() {
             public void onFinished(int retCode, JSONObject data) {
                 switch(retCode) {
-                    case 25:
-                        int result = data.optInt("content", 33);
-                        if (result != 33) {
+                    case Constants.ErrorCode.EXIT_WITH_UI:
+                        int result = data.optInt("content", Constants.ErrorCode.CONTINUE_GAME);
+                        if (result != Constants.ErrorCode.CONTINUE_GAME) {
                             callback.Invoke("YES");
                             QKUnityPlayerActivity.getInstance().finish();
+                            System.exit(0);
                         }
                         break;
-                    case 26:
+                    case Constants.ErrorCode.EXIT_NO_UI:
+                        callback.Invoke("NO");
+                        //QKUnityBridgeManager.getInstance().OnCall("BackPressedEvent", "");
                         Log.e(TAG,"ExitGame FAILURE  ！！！");
                         break;
                 }
@@ -341,6 +364,7 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
     public void SelectRole(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {
         super.SelectRole(strData,callback);
         Log.e(TAG,"SelectRole()....");
+        Log.e(TAG,"LoginRole()....");
         HashMap<String, Object> params = new HashMap();
         params.put("serverID", SdkDataManager.getInstance().ServerId);
         params.put("serverName",SdkDataManager.getInstance().ServerName);
@@ -394,4 +418,6 @@ public class QKSdkProxy_junhai extends QKBaseSdkProxy
         params.put("action", 3);
         ChannelInterface.uploadUserData( QKUnityPlayerActivity.getInstance(), params);
     }
+
+
 }

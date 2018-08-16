@@ -1,11 +1,21 @@
 package qksdkproxy.Utility;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
-import com.okw.sjcq.QKUnityPlayerActivity;
+
+import com.unity3d.player.UnityPlayer;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import xjcs.com.nb.QKUnityPlayerActivity;
 
 public class QKSdkProxyUtility {
     static final String TAG = "qksdkproxy";
@@ -43,10 +53,16 @@ public class QKSdkProxyUtility {
         return versionName;
     }
 
-    public static String getDeviceId() {
-        Context ctx = QKUnityPlayerActivity.getInstance().getApplicationContext();
-        String deviceId = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
-        return deviceId;
+    public static String getIMEI(){
+        Log.e("qiku","getIMEI.....");
+        String imei = "no permission";
+        Context context =  QKUnityPlayerActivity.getInstance();
+        TelephonyManager tm = (TelephonyManager)context.getSystemService("phone");
+        if(null != tm){
+            Log.e("qiku","getIMEI-1.....");
+            imei = tm.getDeviceId();
+        }
+        return imei;
     }
 
 }

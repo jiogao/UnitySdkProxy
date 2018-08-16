@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import com.tulongshijie.union.tulong.QKUnityPlayerActivity;
 import com.unity3d.player.UnityPlayer;
 
 import org.json.JSONException;
@@ -41,15 +43,26 @@ public class QKUnityBridgeManager {
 
     //调用unity函数
     public void CallUnity(String funcName,String strData) {
+        QKUnityPlayerActivity.getInstance().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                CallUnityFunc(funcName,strData);
+            }
+        });
+    }
+
+
+    public void CallUnityFunc(String funcName, String strData){
+
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("funcName", funcName);
             jsonObject.put("strData", strData);
             UnityPlayer.UnitySendMessage(BRIDGE_OBJ_NAME, "OnNativeCall",  jsonObject.toString());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     //接收unity调用

@@ -1,14 +1,14 @@
 package qksdkproxy.SdkProxy.Base;
 
+import android.content.Context;
 import qksdkproxy.QKUnityBridge.QKUnityBridgeManager;
 import qksdkproxy.Utility.QKSdkProxyUtility;
 import qksdkproxy.Utility.QKWebActivity;
 import qksdkproxy.Utility.SdkDataManager;
-import android.content.Context;
 import android.view.KeyEvent;
-import com.okw.sjcq.QKUnityPlayerActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 public class QKBaseSdkProxy
@@ -46,27 +46,22 @@ public class QKBaseSdkProxy
         SdkDataManager.getInstance().SaveServerInfo(strData);
     }
     public void CreateRole(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {
-        SdkDataManager.getInstance().SaveRoleInfo(strData);
+        SdkDataManager.getInstance().SaveRoleInfo(strData,true);
     }
     public void SelectRole(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {
-        SdkDataManager.getInstance().SaveRoleInfo(strData);
-    }
-
-    public void LoginRole(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback)
-    {
-        SdkDataManager.getInstance().SaveRoleInfo(strData);
+        SdkDataManager.getInstance().SaveRoleInfo(strData,true);
     }
 
     public void EnterGame(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {}
     public void LevelUp(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {
-        SdkDataManager.getInstance().SaveRoleInfo(strData);
+        SdkDataManager.getInstance().SaveRoleInfo(strData,false);
     }
     public void UpdateUserGoods(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback) {}
     public void OpenUrl(String strData) {
 
     }
     public void OpenUrlWithWebView(String strData,boolean isLandScape) {
-        QKWebActivity.showWeb(QKUnityPlayerActivity.getInstance(), strData, isLandScape);
+        QKWebActivity.showWeb(context, strData, isLandScape);
     }
 
     public void SdkExtraAction(String strData,QKUnityBridgeManager.QKUnityCallbackFunc callback)
@@ -76,11 +71,14 @@ public class QKBaseSdkProxy
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if(event.getKeyCode() == KeyEvent.KEYCODE_BACK)
         {
-            QKUnityBridgeManager.getInstance().OnCall("ExitGame","");
+//            QKUnityBridgeManager.getInstance().OnCall("ExitGame","");
+            QKUnityBridgeManager.getInstance().CallUnity("BackPressedEvent", "");
         }
         return true;
     }
 
     public String getGameName(){return "";}
+
+
 
 }
