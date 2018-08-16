@@ -12,6 +12,8 @@ namespace QKSdkProxy
     {
         //安卓返回键
         public const string BackPressedEvent = "BackPressedEvent";
+        //注册sdk主动登出
+        public const string SdkLogoutEvent = "SdkLogoutEvent";
 
         virtual public void RegisterEvent(string eventName, UnityAction<string> callback)
         {

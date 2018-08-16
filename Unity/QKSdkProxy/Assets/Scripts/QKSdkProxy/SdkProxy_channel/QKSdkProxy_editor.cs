@@ -20,7 +20,7 @@ namespace QKSdkProxy
         {
             LoginInfoRet edutorlogin = new LoginInfoRet();
             edutorlogin.IsSuccess = true;
-            edutorlogin.Uid = "920516911005";
+            edutorlogin.Uid = "463295";
             callback(edutorlogin);
         }
 
