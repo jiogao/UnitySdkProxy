@@ -15,19 +15,23 @@
 #import "SdkDataManager.h"
 
 //// adhoc 企业包
-//#define OKWan_Gid @"204"
-//#define OKWan_apiKey @"90a7559f6a4b414861cb6c7f85b18865"
-//#define OKWan_secretKey @"8bc0e788fb2c69d193f04fe0be804507"
+//#define OKWan_Gid @"247"
+//#define OKWan_apiKey @"6fd2cf0da9a59a3ca37a1e9a09270f37"
+//#define OKWan_secretKey @"d9795f07265f938c53187f62297c993b"
 
-// appstore
-#define OKWan_Gid @"221"
-#define OKWan_apiKey @"fc52cee945d6b99a92ceb1cf853696f6"
-#define OKWan_secretKey @"962cd36ac0cf3c462fc774f2d28d60a4"
+//// appstore
+//#define OKWan_Gid @"221"
+//#define OKWan_apiKey @"fc52cee945d6b99a92ceb1cf853696f6"
+//#define OKWan_secretKey @"962cd36ac0cf3c462fc774f2d28d60a4"
 
 
 IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 @interface QKSdkProxy_okwan ()
+
+@property(nonatomic, copy) NSString* okwan_gid;
+@property(nonatomic, copy) NSString* okwan_apiKey;
+@property(nonatomic, copy) NSString* okwan_secretKey;
 
 @property(nonatomic, copy) QKUnityCallbackFunc loginCallback;
 @property (nonatomic ,assign) UIInterfaceOrientationMask orientationMaskValue;
@@ -38,6 +42,8 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 - (void)SdkInit:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
+    [self read_okwan_info];
+    
     self.orientationMaskValue = UIInterfaceOrientationMaskAll;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(okwan_didReceiveScreenChanged:) name:@"TBOrientationChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(okwan_onLogin:) name:@"login" object:nil];
@@ -50,7 +56,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 {
     self.loginCallback = callback;
     
-    [TBsdkManagerCode TBstartLoginWithGid:OKWan_Gid apiKey:OKWan_apiKey secretKey:OKWan_secretKey version:@"1.0.0" attach:@""];
+    [TBsdkManagerCode TBstartLoginWithGid:self.okwan_gid apiKey:self.okwan_apiKey secretKey:self.okwan_secretKey version:@"1.0.0" attach:@""];
 }
 
 - (void)Logout:(NSString*)strData callback:(QKUnityCallbackFunc)callback
@@ -62,8 +68,6 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
 
 - (void)Pay:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
-    // 额外提交一次玩家信息
-    [self submitRoleInfo];
 //    public class PayInfo
 //    {
 //        public string OrderId;     //订单号
@@ -158,6 +162,20 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     }];
 }
 
+- (void)TBLaladui:(NSString*)strData callback:(QKUnityCallbackFunc)callback
+{
+    NSURL* url = [NSURL URLWithString:@"laladui://goToCashPage/legendsOfBounty"];
+//    NSURL* url = [NSURL URLWithString:strData];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+        callback(@"true");
+    } else {
+//        NSURL* weburl = [NSURL URLWithString:@"https://www.raradui.com/shangjin_index.php"];
+//        [[UIApplication sharedApplication] openURL:weburl];
+        callback(@"false");
+    }
+}
+
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
@@ -247,7 +265,7 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     NSString* scode = notif.userInfo[@"scode"];
 //    NSString* uid = notif.userInfo[@"uid"];
     
-    NSString *urlStr = [NSString stringWithFormat:@"http://chklogin.sjcq.xgd666.com/checklogin.php?channel=ios_okw&token=%@&api_key=%@", scode, OKWan_apiKey];
+    NSString *urlStr = [NSString stringWithFormat:@"http://chklogin.sjcq.xgd666.com/checklogin.php?channel=ios_okw&token=%@&api_key=%@", scode, self.okwan_apiKey];
     NSLog(@"urlStr: %@", urlStr);
     NSURL *url=[NSURL URLWithString:urlStr];
     
@@ -307,6 +325,19 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     [TBsdkManagerCode TBUpdateRoleInfoWithRoleModel:roleModelCode didSuccess:^(BOOL isUpdateRoleSuccess) {
         
     }];
+}
+
+- (void)read_okwan_info {
+    NSString *fileName = @"okwan_info.plist";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    if (filePath == nil) {
+        NSLog(@"找不到文件：%@", fileName);
+        return;
+    }
+    NSDictionary *dict=[NSDictionary dictionaryWithContentsOfFile:filePath];
+    self.okwan_gid=[dict valueForKey:@"okwan_gid"];
+    self.okwan_apiKey=[dict valueForKey:@"okwan_apiKey"];
+    self.okwan_secretKey=[dict valueForKey:@"okwan_secretKey"];
 }
 
 //设置web Agent
