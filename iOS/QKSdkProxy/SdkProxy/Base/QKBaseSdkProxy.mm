@@ -127,7 +127,8 @@
 
 - (void)GetPasteboard:(NSString*)strData callback:(QKUnityCallbackFunc)callback
 {
-    
+    UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
+    callback(pasteboard.string);
 }
 
 //
