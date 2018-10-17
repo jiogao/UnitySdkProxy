@@ -97,5 +97,10 @@ namespace QKSdkProxy
         {
             QKNativeBridgeManager.Instance.CallNative("UpdateUserGoods", QKUtility.ObjectToJson(userGoodsInfo), null);
         }
+
+        virtual public void RestartApp()
+        {
+            QKNativeBridgeManager.Instance.CallNative("RestartApp", null, null);
+        }
     }
 }

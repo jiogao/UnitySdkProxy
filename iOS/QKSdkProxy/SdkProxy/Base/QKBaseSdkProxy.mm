@@ -119,6 +119,17 @@
     }
 }
 
+- (void)SetPasteboard:(NSString*)strData
+{
+    UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = strData;
+}
+
+- (void)GetPasteboard:(NSString*)strData callback:(QKUnityCallbackFunc)callback
+{
+    
+}
+
 //
 
 - (void)saveServerInfo:(NSString*)strData

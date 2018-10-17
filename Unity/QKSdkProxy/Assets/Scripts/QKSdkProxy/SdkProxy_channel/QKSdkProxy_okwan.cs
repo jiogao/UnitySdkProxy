@@ -30,6 +30,15 @@ namespace QKSdkProxy
         {
             QKNativeBridgeManager.Instance.CallNative("TBwithdrawal", JsonMapper.ToJson(withdrawInfo), null);
         }
+
+        //okWan 啦啦队
+        virtual public void TBLaladui(UnityAction<bool> callback)
+        {
+            QKNativeBridgeManager.Instance.CallNative("TBLaladui", null, (string strData) =>
+            {
+                callback(QKUtility.ToBoolean(strData));
+            });
+        }
     }
 
     //public class QKSdkProxy_okwan : QKBaseSdkProxy

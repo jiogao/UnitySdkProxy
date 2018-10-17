@@ -15,11 +15,13 @@ namespace QKSdkProxy
         //注册sdk主动登出
         public const string SdkLogoutEvent = "SdkLogoutEvent";
 
+        //注册自定义事件
         virtual public void RegisterEvent(string eventName, UnityAction<string> callback)
         {
             QKNativeBridgeManager.Instance.AddCallback(eventName, callback);
         }
 
+        //获取设备信息
         virtual public void GetDeviceInfo(UnityAction<DeviceInfoRet> callback)
         {
             QKNativeBridgeManager.Instance.CallNative("GetDeviceInfo", null, (string strData) =>
@@ -37,6 +39,7 @@ namespace QKSdkProxy
             });
         }
 
+        //获取设备状态(电量,待扩展)
         virtual public void GetDeviceStatus(UnityAction<DeviceStatusRet> callback)
         {
             QKNativeBridgeManager.Instance.CallNative("GetDeviceStatus", null, (string strData) =>
@@ -54,6 +57,7 @@ namespace QKSdkProxy
             });
         }
 
+        //获取网络状态
         virtual public void GetNetWorkChanged(UnityAction<NetworkReachability> callback)
         {
             QKNativeBridgeManager.Instance.CallNative("GetNetWorkChanged", null, (string strData) =>
@@ -65,14 +69,28 @@ namespace QKSdkProxy
             });
         }
 
+        //打开链接
         virtual public void OpenUrl(string url)
         {
             QKNativeBridgeManager.Instance.CallNative("OpenUrl", url, null);
         }
 
+        //内置浏览器打开链接
         virtual public void OpenUrlWithWebView(string url)
         {
             QKNativeBridgeManager.Instance.CallNative("OpenUrlWithWebView", url, null);
+        }
+
+        //设置剪切板内容
+        virtual public void SetPasteboard(string strData)
+        {
+            QKNativeBridgeManager.Instance.CallNative("SetPasteboard", strData, null);
+        }
+
+        //获取剪切板内容
+        virtual public void GetPasteboard(UnityAction<string> callback)
+        {
+            QKNativeBridgeManager.Instance.CallNative("GetPasteboard", null, callback);
         }
     }
 }
