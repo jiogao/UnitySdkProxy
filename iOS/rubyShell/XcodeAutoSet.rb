@@ -149,10 +149,6 @@ module XcodeAutoSet
 
         #为文件夹中的所有文件添加引用
         def xcode_group_add_all_children(target, path, group)
-
-            # Embed Frameworks 列表
-            embed_frameworks_phases = get_embed_frameworks_phases(target)
-
             Dir.foreach(path) do |subItem|
                 if !subItem.start_with?('.') and subItem !="." and subItem !=".." then
                     fullSubItem = File.expand_path(subItem, path)
@@ -171,29 +167,6 @@ module XcodeAutoSet
                                 target.source_build_phase.add_file_reference(file_ref)
                             elsif subItem.end_with?('.a') or subItem.end_with?('.framework')
                                 # 库文件列表
-                                # 动态 framework 需要添加到 Embed Frameworks
-                                if @embedFrameworkArray!= nil
-                                    isNeedEmbed = false
-                                    for item in @embedFrameworkArray
-                                        if subItem.end_with?(item+'.framework')
-                                            isNeedEmbed = true
-                                            break
-                                        end
-                                    end
-                                    if isNeedEmbed
-                                        puts '库文件列表', file_ref.path
-                                        build_file = embed_frameworks_phases.add_file_reference(file_ref)
-                                        if build_file != nil
-                                            settings = build_file.settings
-                                            if settings == nil
-                                                build_file.settings = Hash.new
-                                                settings = build_file.settings
-                                            end
-                                            settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
-                                        end
-                                    end
-                                end
-
                                 target.frameworks_build_phases.add_file_reference(file_ref)
 
                                 # 为所有.a和.framework 设置 force_load
@@ -332,8 +305,10 @@ module XcodeAutoSet
             # p frameworks_build_phases.files_references 
             # frameworks_build_phases.add_file_reference()
 
+            #引用系统库
             if @frameworkArray != nil
                 for lib_name in @frameworkArray
+                    puts '添加系统库引用:', lib_name
                     # lib_name_with_suffix = lib_name + '.framework'
                     # isAdded = false
                     # for ref in frameworks_build_phases.files_references
@@ -351,8 +326,10 @@ module XcodeAutoSet
                 end
             end
 
+            #引用Tbd库
             if @systemTbdsArray != nil
                 for lib_name in @systemTbdsArray
+                    puts '添加Tbd库引用:', lib_name
                     # lib_name_with_suffix = 'lib' + lib_name + '.tbd'
                     # isAdded = false
                     # for ref in frameworks_build_phases.files_references
@@ -365,6 +342,34 @@ module XcodeAutoSet
                     # end
                     # target.add_system_library("stdc++")
                     add_system_tbds(@project, target, lib_name)
+                end
+            end
+
+            #需要添加到embed列表的动态库
+            if @embedFrameworkArray != nil
+                # Embed Frameworks 列表
+                embed_frameworks_phases = get_embed_frameworks_phases(target)
+                for lib_name in @embedFrameworkArray
+                    puts '添加动态库添加到embed列表:', file_ref.path
+                    lib_name_with_suffix = lib_name + '.framework'
+                    file_ref = nil
+                    for ref in embed_frameworks_phases.files_references
+                        if ref != nil and lib_name_with_suffix == ref.name
+                            file_ref = ref
+                        end
+                    end
+                    if file_ref != nil
+                        puts '添加动态库引用', file_ref.path
+                        build_file = embed_frameworks_phases.add_file_reference(file_ref)
+                        if build_file != nil
+                            settings = build_file.settings
+                            if settings == nil
+                                build_file.settings = Hash.new
+                                settings = build_file.settings
+                            end
+                            settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                        end
+                    end
                 end
             end
 
