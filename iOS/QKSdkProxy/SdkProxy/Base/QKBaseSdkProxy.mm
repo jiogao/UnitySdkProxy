@@ -92,6 +92,10 @@
     [self saveRoleInfo:strData isCreateRole:NO];
 }
 
+- (void)RoleChat:(NSString*)strData
+{
+}
+
 - (void)UpdateUserGoods:(NSString*)strData
 {
     [self saveGoodsInfo:strData];

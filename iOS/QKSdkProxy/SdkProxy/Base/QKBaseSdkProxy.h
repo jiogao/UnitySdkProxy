@@ -27,6 +27,7 @@
 - (void)SelectRole:(NSString*)strData;
 - (void)EnterGame:(NSString*)strData;
 - (void)LevelUp:(NSString*)strData;
+- (void)RoleChat:(NSString*)strData;
 - (void)UpdateUserGoods:(NSString*)strData;
 - (void)OpenUrl:(NSString*)strData;
 - (void)OpenBrowser:(NSString*)strData;
