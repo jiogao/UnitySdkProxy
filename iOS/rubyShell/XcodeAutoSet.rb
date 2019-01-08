@@ -9,6 +9,9 @@ require 'cocoapods'
 require "fileutils"
 require 'find'
 
+require File.expand_path('../autoSetUtility', __FILE__)
+include AutoSetUtility
+
 #https://github.com/typedef/Xcodeproj/commit/925280230c8d591d9b3e02ed9d1b0438b8d1e413
 #  add tbd type 
 #
@@ -350,24 +353,32 @@ module XcodeAutoSet
                 # Embed Frameworks 列表
                 embed_frameworks_phases = get_embed_frameworks_phases(target)
                 for lib_name in @embedFrameworkArray
-                    puts '添加动态库添加到embed列表:', file_ref.path
+                    puts '添加动态库添加到embed列表:', lib_name
                     lib_name_with_suffix = lib_name + '.framework'
-                    file_ref = nil
+                    isAdded = false
                     for ref in embed_frameworks_phases.files_references
-                        if ref != nil and lib_name_with_suffix == ref.name
-                            file_ref = ref
+                        if ref != nil and string_endswith(ref.path, lib_name_with_suffix)
+                            isAdded = true
                         end
                     end
-                    if file_ref != nil
-                        puts '添加动态库引用', file_ref.path
-                        build_file = embed_frameworks_phases.add_file_reference(file_ref)
-                        if build_file != nil
-                            settings = build_file.settings
-                            if settings == nil
-                                build_file.settings = Hash.new
-                                settings = build_file.settings
+                    if !isAdded
+                        file_ref = nil
+                        for ref in frameworks_build_phases.files_references
+                            if ref != nil and string_endswith(ref.path, lib_name_with_suffix)
+                                file_ref = ref
                             end
-                            settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                        end
+                        if file_ref != nil
+                            puts '找到指定动态库并添加到embed列表:', file_ref.path
+                            build_file = embed_frameworks_phases.add_file_reference(file_ref)
+                            if build_file != nil
+                                settings = build_file.settings
+                                if settings == nil
+                                    build_file.settings = Hash.new
+                                    settings = build_file.settings
+                                end
+                                settings['ATTRIBUTES'] = ['CodeSignOnCopy', 'RemoveHeadersOnCopy', ]
+                            end
                         end
                     end
                 end
