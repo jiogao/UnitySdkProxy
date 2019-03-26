@@ -9,9 +9,13 @@ echo "所有参数为：$@";
 # echo "当前选项：$-";
 
 unbuild=false
+unclear=false
 for i in $@; do
 	if [[ $i == "-unbuild" ]]; then
 		unbuild=true
+	fi
+	if [[ $i == "-unclear" ]]; then
+		unclear=true
 	fi
 done
 
@@ -207,8 +211,10 @@ fi
 # # security unlock-keychain "-p" 系统密码 "/Users/***/Library/Keychains/login.keychain" ;
 
 # 四、清理项目
-rm -rf "${projectDir}/build/archive/${configuration}.xcarchive" #注意防止误删
-xcodebuild clean -project "$projectPath" -scheme "$scheme"
+if [[ $unclear == false ]]; then
+	rm -rf "${projectDir}/build/archive/${configuration}.xcarchive" #注意防止误删
+	xcodebuild clean -project "$projectPath" -scheme "$scheme"
+fi
 # -configuration $configuration clean
 
 # 五、编译

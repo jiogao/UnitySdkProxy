@@ -176,6 +176,30 @@ IMPL_QKSDK_PROXY_SUBCLASS(QKSdkProxy_okwan)
     }
 }
 
+- (void)TGLaladui:(NSString*)strData callback:(QKUnityCallbackFunc)callback
+{
+    //NSURL* url = [NSURL URLWithString:@"laladui://goToGameExtension"];
+    //    NSURL* url = [NSURL URLWithString:strData];
+    //if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        //[[UIApplication sharedApplication] openURL:url];
+        //callback(@"true");
+    //} else {
+        //        NSURL* weburl = [NSURL URLWithString:@"https://www.raradui.com/shangjin_index.php"];
+        //        [[UIApplication sharedApplication] openURL:weburl];
+    //    callback(@"false");
+    //}
+
+    [TBsdkManagerCode TBLoginDistributionDidSuccess:^(NSString *urlStr){
+
+    } error :^(NSString *errorMsg){
+
+    }];
+
+    //TBLoginDistribution();
+    callback(@"true");
+
+}
+
 //--------------- for AppController ---------------
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {

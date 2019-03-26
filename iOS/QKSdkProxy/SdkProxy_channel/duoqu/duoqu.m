@@ -58,7 +58,7 @@ typedef enum
     NSString *time=dics[@"time"];
     [SdkDataManager Instance].SdkUid=userid ;
     [SdkDataManager Instance].loginToken=token;
-//    [SdkDataManager Instance].ServerName=username;
+    //    [SdkDataManager Instance].ServerName=username;
     
     NSDictionary* dic=@{@"IsSuccess":@YES,
                         @"Uid":userid,
@@ -115,25 +115,8 @@ typedef enum
 //上报用户数据
 - (void)uploadUserData:(NSString*)strData type:(UploadUserDataType)type
 {
-    NSDictionary* dic = nil;
-    switch (type) {
-        case CREATE_ROLE:
-            dic = [NSDictionary dictionaryWithObject:[SdkDataManager Instance].RoleName forKey:@"role"];
-            break;
-            
-        case ENTER_SERVER:
-            dic = [NSDictionary dictionaryWithObject:[SdkDataManager Instance].ServerId forKey:@"service"];
-            break;
-            
-        case LEVEL_UP:
-            dic = [NSDictionary dictionaryWithObject:[SdkDataManager Instance].RoleName forKey:@"grade"];
-            break;
-        default:
-            break;
-    }
-    
     breaksFramework_patient *cfs=[breaksFramework_patient sharedInstance];
-    [cfs breaksgameccount_patient:[SdkDataManager Instance].RoleId andService:[SdkDataManager Instance].ServerName andType:[QKSdkProxyUtility Json_DicToString:dic] andRolename:[SdkDataManager Instance].RoleName andRolelevel:[SdkDataManager Instance].RoleLevel];
+    [cfs breaksgameccount_patient:[SdkDataManager Instance].SdkUid andService:[SdkDataManager Instance].ServerName andType:@"1" andRolename:[SdkDataManager Instance].RoleName andRolelevel:[SdkDataManager Instance].RoleLevel];
 }
 
 //callbackStatus:充值回调状态
@@ -179,3 +162,4 @@ typedef enum
 
 
 @end
+

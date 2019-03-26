@@ -153,7 +153,7 @@ typedef enum{
 {
     [super RoleChat:strData];
     NSDictionary* infoDic = [QKSdkProxyUtility Json_StringToDic:strData];
-    [[SDKManager getInstance]roleChat:[SdkDataManager Instance].ServerId cp_uid:[infoDic valueForKey:@"UId"] role_id:[infoDic valueForKey:@"PlayerID"] role_name:[infoDic valueForKey:@"Player"] flag:[infoDic valueForKey:@"Flag"] msg:[infoDic valueForKey:@"Msg"] receiver:[infoDic valueForKey:@"Receiver"]];
+    [[SDKManager getInstance]roleChat:[SdkDataManager Instance].ServerId cp_uid:[infoDic valueForKey:@"Uid"] role_id:[infoDic valueForKey:@"PlayerID"] role_name:[infoDic valueForKey:@"Player"] flag:[infoDic valueForKey:@"Flag"] msg:[infoDic valueForKey:@"Msg"] receiver:[infoDic valueForKey:@"Receiver"]];
 }
 
 //上报用户数据
@@ -179,3 +179,4 @@ typedef enum{
 }
 
 @end
+
