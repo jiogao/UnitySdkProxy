@@ -1,0 +1,31 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:1-6:12
+	package
+		ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:70-108
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:4:5-30
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml:3:5-28
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+uses-sdk
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+		ADDED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
+		INJECTED from D:\work\u3dtools\QKSdkProxy\Android\SdkProxyBuildProj\unity-android-resources\AndroidManifest.xml
