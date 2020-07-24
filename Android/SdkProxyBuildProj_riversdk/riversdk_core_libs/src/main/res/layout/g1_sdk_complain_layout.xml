@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/g1_complain_bg">
+
+    <ImageView
+        android:id="@+id/review_close"
+        android:layout_width="@dimen/g1_dp_25"
+        android:layout_height="@dimen/g1_dp_25"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/g1_dp_6"
+        android:layout_marginRight="@dimen/g1_dp_10"
+        android:padding="@dimen/g1_dp_5"
+        android:scaleType="centerInside"
+        android:src="@drawable/r1_iv_close" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/g1_dp_20"
+        android:layout_marginRight="@dimen/g1_dp_20"
+        android:layout_marginTop="@dimen/g1_dp_26"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_complain_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="@dimen/g1_sw_3dp"
+            android:layout_marginLeft="@dimen/g1_sw_5dp"
+            android:layout_marginRight="@dimen/g1_sw_5dp"
+            android:text="@string/g1_complain_header_text"
+            android:textSize="@dimen/g1_sw_12sp" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/g1_sw_10dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/et_complain_content"
+                android:layout_width="@dimen/g1_dp_267"
+                android:layout_height="@dimen/g1_dp_100"
+                android:background="@drawable/textview_border"
+                android:gravity="top"
+                android:maxLength="200"
+                android:hint="@string/g1_review_et_hint_text"
+                android:textColorHint="@color/C999999"
+                android:textSize="@dimen/g1_sp_12" />
+
+            <TextView
+                android:id="@+id/limit_num_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:paddingRight="@dimen/g1_dp_6"
+                android:paddingBottom="@dimen/g1_dp_2"
+                android:text="@string/g1_text_count_hint"
+                android:textColor="@color/C333333"
+                android:textSize="@dimen/g1_sp_14" />
+        </FrameLayout>
+        <com.games37.riversdk.core.review.view.TagContainerLayout
+            android:id="@+id/complain_tag_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingTop="@dimen/g1_sw_5dp" />
+        <Button
+            android:id="@+id/btn_submit_complain"
+            android:layout_width="@dimen/g1_dp_267"
+            android:layout_height="@dimen/g1_dp_40"
+            android:layout_gravity="bottom|center"
+            android:layout_marginTop="@dimen/g1_dp_10"
+            android:layout_marginBottom="@dimen/g1_dp_24"
+            android:background="@drawable/g1_complain_btn"
+            android:text="@string/g1_complain_submit_text"
+            android:textColor="@color/r1_white" />
+    </LinearLayout>
+</FrameLayout>

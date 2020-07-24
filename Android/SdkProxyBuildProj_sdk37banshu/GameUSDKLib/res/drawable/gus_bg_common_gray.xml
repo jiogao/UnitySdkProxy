@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 实心 -->
+    <solid android:color="@color/gus_bg_gray"/>
+    <!-- 渐变
+    <gradient
+        android:angle="270"
+        android:endColor="#FFFFFF"
+        android:startColor="#ff8c00" />-->
+    <!-- 描边 -->
+    <stroke
+        android:width="1px"
+        android:color="#30ffffff"/>
+
+    <!-- 圆角 -->
+    <corners android:radius="8dp"/>
+
+</shape>

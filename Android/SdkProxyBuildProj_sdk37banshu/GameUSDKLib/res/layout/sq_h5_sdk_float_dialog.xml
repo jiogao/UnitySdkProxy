@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:background="@drawable/sq_h5_sdk_dialog_float_bg"
+              android:orientation="vertical"
+    >
+
+    <!-- dialog顶部  -->
+    <RelativeLayout
+        android:id="@+id/sdk_float_dialog_layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <!-- dialog 默认头像 -->
+        <ImageView
+            android:id="@+id/sdk_float_dialog_img_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/sq_h5_sdk_floatview_logo"
+            />
+
+        <!-- dialog 头部用户信息栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/sdk_float_dialog_img_head"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/sdk_float_dialog_layout_head_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/sdk_float_dialog_text_account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:maxWidth="110dp"
+                    android:minWidth="20dp"
+                    android:singleLine="true"
+                    android:text="saudwajwds"
+                    android:textColor="@color/sq_h5_sdk_withe"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:id="@+id/sdk_float_dialog_btn_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="[切换]"
+                    android:textColor="@color/sq_h5_sdk_text_gray"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sq_h5_sdk_floatview_dialog_icon_vouchers"
+                    />
+
+                <TextView
+                    android:id="@+id/sdk_float_dialog_text_vouchers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="优惠券"
+                    android:gravity="center"
+                    android:textColor="@color/sq_h5_sdk_text_blue"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/sdk_float_dialog_tv_vouchers_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0张"
+                    android:textColor="@color/sq_h5_sdk_red"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/sdk_float_dialog_text_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/sq_h5_sdk_icon_message"
+                    android:gravity="center_vertical"
+                    android:text="消息"
+                    android:textColor="@color/sq_h5_sdk_text_blue"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- dialog 关闭按钮 -->
+        <ImageView
+            android:id="@+id/sdk_float_dialog_btn_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/sq_h5_sdk_close_icon"
+            />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/sq_h5_sdk_space_line"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <GridView
+            android:id="@+id/sdk_float_dialog_grid_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:columnWidth="43dp"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4"
+            android:scrollbars="none"
+            android:stretchMode="spacingWidthUniform"
+            android:verticalSpacing="20dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- loading宽度-->
+    <dimen name="sdk_baselibs_progress_loading_view_width">50.0dip</dimen>
+    <!-- loading高度-->
+    <dimen name="sdk_baselibs_progress_loading_view_height">50.0dip</dimen>
+
+</resources>

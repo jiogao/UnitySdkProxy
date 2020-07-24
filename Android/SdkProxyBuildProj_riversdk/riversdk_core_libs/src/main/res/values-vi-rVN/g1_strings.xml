@@ -1,0 +1,94 @@
+<resources>
+    <!-- 更新提示-->
+    <string name="g1_sdk_update_message">Tin phiên bản</string>
+    <string name="g1_sdk_update_dialog_text">Phát hiện phiên bản mới, hãy click để cập nhật</string>
+    <string name="g1_sdk_update_btn_text">Cập nhật phiên bản</string>
+
+    <string name="g1_toast_login_info">Chưa đăng nhập</string>
+
+    <string name="g1_network_unstable_notice">Liên kết mạng lỗi</string>
+    <string name="g1_network_error_notice">Liên kết quá hạn, hãy thử lại!</string>
+    <string name="g1_sdk_cancel_text">Hủy</string>
+
+    <!--登录界面-->
+    <string name="g1_sdk_login_text">Đăng nhập</string>
+    <string name="g1_sdk_register_text">Đăng ký tài khoản</string>
+    <string name="g1_sdk_signup_text">Đăng ký</string>
+    <string name="g1_sdk_fb_login_text">Facebook</string>
+    <string name="g1_sdk_guest_login_text">Khách</string>
+    <string name="g1_sdk_enter_account_text">Nhập tên tài khoản</string>
+    <string name="g1_sdk_enter_pwd_text">Mật Mã</string>
+
+    <!--注册界面-->
+    <string name="g1_sdk_enter_confirm_pwd_text">Hãy nhập lại mật mã</string>
+    <string name="g1_sdk_register_agree_text1">Tôi đồng ý điều khoản</string>
+    <string name="g1_sdk_register_agree_text2">và</string>
+    <string name="g1_sdk_register_agree_service">Điều khoản phục vụ</string>
+    <string name="g1_sdk_register_agree_privacy">Chính sách bảo mật</string>
+    <string name="g1_sdk_register_decline_text">Quay về đăng nhập</string>
+    <string name="g1_sdk_register_agreement_text">Hãy đồng ý điều khoản đăng ký</string>
+    <!--注册界面-->
+
+    <string name="g1_sdk_pay_waitting">Đang chờ...</string>
+    <string name="g1_sdk_password_not_match">Mật khẩu được nhập hai lần không giống nhau</string>
+    <string name="g1_sdk_init_success">Khởi tạo thành công</string>
+    <string name="g1_sdk_switch_account_success">Đổi tài khoản thành công</string>
+    <string name="g1_sdk_dialog_cancel_btn_text">Hủy</string>
+    <string name="g1_sdk_dialog_confirm_btn_text">Xác nhận</string>
+    <string name="g1_sdk_dialog_decline_btn_text">Hủy</string>
+    <string name="g1_sdk_dialog_accept_btn_text">Đồng ý</string>
+    <string name="g1_sdk_welcome_back">Chào mừng,</string>
+    <string name="g1_sdk_copy_success">Copy thành công</string>
+
+    <!--用户协议弹窗-->
+    <string name="g1_sdk_agreements">Điều khoản người dùng</string>
+    <string name="g1_sdk_agreements_tips">Hãy đọc và đồng ý với điều khoản phục vụ và bảo mật của game</string>
+    <!--用户协议弹窗-->
+
+    <!--游戏助手-->
+    <string name="g1_sdk_gane_helper_text">Trợ lý trò chơi</string>
+    <!--游戏助手-->
+
+    <!-- 悬浮窗-->
+    <string name="g1_toast_choose_role_info">Hãy chọn nhân vật rồi truy cập</string>
+    <string name="g1_sdk_floatview_hidden_tips">Kéo đến chỗ này để ẩn</string>
+    <!--悬浮窗-->
+
+    <!--第三方登录授权app-->
+    <string name="g1_sdk_guest">Khách</string>
+    <!--第三方授权app-->
+
+    <!--申请悬浮窗权限弹窗-->
+    <string name="g1_sdk_open_game_helper">Mở trợ lý trò chơi</string>
+    <string name="g1_sdk_open_game_helper_desc">Chúng tôi cần nhận quyền sử dụng phím ảo mới được cung cấp phục vụ chuyên thuộc</string>
+    <string name="g1_sdk_open">Mở</string>
+    <string name="g1_sdk_helper_never_show">Không cần nhắc nữa</string>
+    <!--申请悬浮窗权限弹窗-->
+
+    <!--用户拒绝协议的显示弹窗-->
+    <string name="g1_sdk_dialog_notice">Lời nhắc</string>
+    <string name="g1_sdk_refuse_privacy_tips">Nếu có thắc mắc về điều khoản game, bạn có thể liên hệ CSKH để giải quyết sau khi bạn thoát game.\nBây giờ có thoát game không?</string>
+    <!--用户拒绝协议的显示弹窗-->
+
+    <!--注册界面的提醒-->
+    <string name="g1_sdk_register_account_hint">Tài khoản phải là 6-30 ký tự</string>
+    <string name="g1_sdk_register_pwd_hint">Mật khẩu phải là 6-20 ký tự</string>
+    <!--注册界面的提醒-->
+
+    <!--申请通知权限的弹窗-->
+    <string name="g1_sdk_notice_permission_dialog_title">Mở gửi</string>
+    <string name="g1_sdk_notice_permission_dialog_content">Nhận thông tin mới một cách nhanh nhất! \nKhông bỏ lỡ phúc lợi nào</string>
+    <string name="g1_sdk_notice_permission_dialog_btn_text">Được</string>
+    <!--申请通知权限的弹窗-->
+
+    <!--完善个人信息的提示弹窗-->
+    <!--提示-->
+    <string name="sdk_tip">Nhắc</string>
+    <!--根据当地法规，在完成个人信息后，你可以进入游戏。所有文件仅供审查，不得用于其他目的。-->
+    <string name="sdk_require_write_info_text">Căn cứ vào pháp quy bản địa, sau khi hoàn thiện thông tin cá nhân mới được vào game.
+Tất cả tài liệu chỉ dành cho xét duyệt, không bị dùng cho mục đích khác</string>
+    <!--关闭-->
+    <string name="sdk_close">Đóng</string>
+    <!--填写-->
+    <string name="sdk_write">Hoàn thiện</string>
+</resources>

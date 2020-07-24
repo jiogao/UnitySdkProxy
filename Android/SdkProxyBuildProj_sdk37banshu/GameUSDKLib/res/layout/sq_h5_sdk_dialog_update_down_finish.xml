@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/sq_h5_sdk_withe"
+              android:gravity="center"
+              android:layout_marginTop="20dp"
+              android:layout_marginBottom="20dp"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/sq_sdk_update_img_inner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sq_h5_sdk_update_icon_finish"
+        />
+
+    <Button
+        android:id="@+id/sq_sdk_update_btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/sq_h5_sdk_btn_red_bg"
+        android:text="更新已完成，点击安装"
+        android:textColor="@color/sq_h5_sdk_withe"/>
+</LinearLayout>

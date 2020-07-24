@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="@dimen/g1_dp_566"
+        android:layout_height="@dimen/g1_dp_235"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/g1_sdk_bg_with_corner"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/g1_dp_15"
+                android:paddingRight="@dimen/g1_dp_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/g1_sdk_gane_helper_text"
+                    android:textColor="@color/g1_sdk_dialog_title_color"
+                    android:textSize="@dimen/g1_sp_18" />
+
+                <ImageView
+                    android:id="@+id/btn_close"
+                    android:layout_width="@dimen/g1_dp_19"
+                    android:layout_height="@dimen/g1_dp_19"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/g1_sdk_iv_close" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_funtions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/g1_dp_15"/>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

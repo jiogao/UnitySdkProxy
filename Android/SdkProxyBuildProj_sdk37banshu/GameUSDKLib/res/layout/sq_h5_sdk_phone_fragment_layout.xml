@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/sq_h5_login_content_width"
+              android:layout_height="@dimen/sq_h5_login_content_height"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_goback_icon_margin"
+        android:layout_marginTop="@dimen/sq_h5_sdk_goback_icon_margin"
+        android:drawableLeft="@drawable/sq_h5_sdk_goback_icon"
+        android:drawablePadding="@dimen/sq_h5_tv_drawable_margin"
+        android:text="@string/sq_h5_sdk_go_back"
+        android:textColor="@color/sq_h5_sdk_light_gray"
+        android:textSize="@dimen/sq_h5_sdk_text_size_middle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginRight="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/view_phone_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sq_h5_sdk_phone_login_register"
+            android:textColor="@color/sq_h5_sdk_black"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_login_split"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sq_h5_split_height"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginRight="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:background="@color/sq_h5_sdk_light_gray"/>
+
+    <LinearLayout
+        android:id="@+id/ll_phone_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/sq_h5_sdk_goback_icon_margin"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginRight="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginTop="@dimen/sq_h5_sdk_goback_icon_margin"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/et_register_phone"
+                style="@style/sq_h5_sdk_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/sq_h5_sdk_pleae_enter_phone_num"
+                android:imeOptions="actionNext|flagNoExtractUi|flagNoFullscreen"
+                android:inputType="phone|number"
+                >
+
+                <requestFocus/>
+            </EditText>
+
+            <com.games37.h5gamessdk.view.CountDownView
+                android:id="@+id/count_down_view"
+                android:layout_width="@dimen/sq_h5_sdk_code_view_width"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@drawable/sq_h5_sdk_selector_blue_bg"
+                android:clickable="true"
+                android:gravity="center"/>
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/et_register_verify_code"
+            style="@style/sq_h5_sdk_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/sq_h5_sdk_pleae_enter_verify_code"
+            android:imeOptions="actionDone|flagNoExtractUi|flagNoFullscreen"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginRight="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:background="@drawable/sq_h5_sdk_selector_orange_bg"
+        android:gravity="center"
+        android:text="@string/sq_h5_sdk_login"
+        android:textColor="@color/sq_h5_sdk_withe"
+        android:textSize="@dimen/sq_h5_sdk_text_size_middle"/>
+
+    <TextView
+        android:id="@+id/tv_go_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="5dp"
+        android:text="密码登录 >>"
+        android:textColor="@drawable/sq_h5_sdk_selector_blue_text"/>
+</LinearLayout>

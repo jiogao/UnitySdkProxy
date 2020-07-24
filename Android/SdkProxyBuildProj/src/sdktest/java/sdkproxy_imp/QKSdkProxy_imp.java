@@ -22,8 +22,9 @@ public class QKSdkProxy_imp extends QKBaseSdkProxy {
     public void Login(String strData, QKUnityBridgeManager.QKUnityCallbackFunc callback) {
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("scode", "test_scode");
-            jsonObject.put("uid", "test_uid");
+            jsonObject.put("IsSuccess", true);
+            jsonObject.put("Token", "test_token");
+            jsonObject.put("Uid", "test_uid");
             callback.Invoke(jsonObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/g1_sw_5dp"
+    android:gravity="center"
+    android:id="@+id/rl_login">
+
+        <ImageView
+            android:id="@+id/iv_login_app_icon"
+            android:layout_width="@dimen/g1_sw_23dp"
+            android:layout_height="@dimen/g1_sw_23dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/g1_sw_3dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/g1_sdk_guest_login_iv" />
+
+        <TextView
+            android:id="@+id/tv_login_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_login_app_icon"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/g1_sdk_guest_login_text"
+            android:textColor="@color/g1_sdk_thrid_login_text_color"
+            android:textSize="@dimen/g1_sw_9sp" />
+</RelativeLayout>

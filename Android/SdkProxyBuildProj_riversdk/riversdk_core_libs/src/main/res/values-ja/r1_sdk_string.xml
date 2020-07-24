@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">ネットワークが不安定です。接続を確認してください</string>
+    <string name="r1_thrid_payment_close">第三方チャージのページは停止しました。アカウントの残高を確認してください。</string>
+    <string name="r1_user_cancel">キャンセル</string>
+    <string name="r1_network_error">ネットワークエラー</string>
+    <string name="r1_sdk_file_not_exists">ファイルが不存在です。</string>
+
+</resources>

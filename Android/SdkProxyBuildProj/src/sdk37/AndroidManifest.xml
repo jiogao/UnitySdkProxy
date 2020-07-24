@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.qk.hopelegends"
+    android:installLocation="preferExternal">
+  <supports-screens android:smallScreens="true"
+      android:normalScreens="true"
+      android:largeScreens="true"
+      android:xlargeScreens="true"
+      android:anyDensity="true" />
+  <application
+      android:name="com.game.usdk.GameUSDKApplication"
+      android:allowBackup="true"
+      android:label="@string/app_name"
+      android:usesCleartextTraffic="true"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:icon="@mipmap/app_icon">
+    <activity android:label="@string/app_name"
+        android:screenOrientation="sensorLandscape"
+        android:launchMode="singleTask"
+        android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+        android:hardwareAccelerated="false"
+        android:name="qksdkproxy.SdkProxy.SdkSupport.QKUnityPlayerActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <receiver android:name="com.youme.im.NetworkStatusReceiver"
+        android:label="NetworkConnection">
+      <intent-filter>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+      </intent-filter>
+    </receiver>
+    <meta-data android:name="unity.build-id" android:value="616cfd7b-8647-4b5c-920a-4ce2ce84d26e" />
+    <meta-data android:name="unity.splash-mode" android:value="2" />
+    <meta-data android:name="unity.splash-enable" android:value="True" />
+
+    <!-- 37sdk start -->
+
+    <!-- H5 GAMESDK 界面组件配置 !-->
+    <activity
+        android:name="com.games37.h5gamessdk.activity.SDKLoginActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="behind"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+        android:windowSoftInputMode="stateHidden|adjustResize" />
+
+    <activity
+        android:name="com.games37.h5gamessdk.activity.WebViewActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="behind"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+        android:windowSoftInputMode="stateHidden|adjustResize" />
+
+    <!--注意：android7.0拍照 需要注册FileProvider，改为 游戏包名.fileprovider-->
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="com.qk.hopelegends.fileprovider"
+        android:grantUriPermissions="true"
+        android:exported="false">
+      <meta-data
+          android:name="android.support.FILE_PROVIDER_PATHS"
+          android:resource="@xml/sq_file_paths" />
+    </provider>
+
+    <!-- SQ APPID 参数（数字int型，数值一般较大） 非常重要，请替换为分配给游戏对应的参数 !-->
+    <meta-data
+        android:name="SQH5SDK.appid"
+        android:value="646"/>
+
+    <!-- 聚合 GameID 参数（数字int型，数值一般较小） 非常重要，请替换为分配给游戏对应的参数 !-->
+    <meta-data
+        android:name="SDK.GAMEID"
+        android:value="69"/>
+
+    <!-- SQ Application配置 ，直接复制过去-->
+    <meta-data
+        android:name="APPLICATION_PROXY_NAME"
+        android:value="com.game.usdk.platform.SQProxyApplication" />
+    <!-- 37sdk end -->
+
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.READ_LOGS"
+      tools:ignore="ProtectedPermissions" />
+  <uses-feature android:glEsVersion="0x00020000" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+  <uses-feature android:name="android.hardware.location" android:required="false" />
+  <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+
+  <!-- 37sdk start -->
+  <!-- 通用权限 -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <!-- Android 8.0 兼容应用安装权限 -->
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+  <!-- 37sdk end -->
+
+</manifest>

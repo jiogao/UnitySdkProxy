@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主页登录界面宽度-->
+    <dimen name="sq_h5_main_content_width">320dip</dimen>
+    <!-- 主页登录界面高度-->
+    <dimen name="sq_h5_main_content_height">220dip</dimen>
+    <!-- 欢迎界面宽度-->
+    <dimen name="sq_h5_welcome_content_width">320dip</dimen>
+    <!-- 欢迎登录界面高度-->
+    <dimen name="sq_h5_welcome_content_height">180dip</dimen>
+    <!-- 主页logo缩进-->
+    <dimen name="sq_h5_main_sdk_logo_margin">15.0dip</dimen>
+    <!-- 主页登录icon缩进-->
+    <dimen name="sq_h5_main_login_icon_margin">20.0dip</dimen>
+    <!-- 主页登录提示缩进-->
+    <dimen name="sq_h5_main_login_tips_margin">15.0dip</dimen>
+    <!-- textview 与图片间距-->
+    <dimen name="sq_h5_tv_drawable_margin">8.0dip</dimen>
+
+    <!-- 登录界面宽度-->
+    <dimen name="sq_h5_login_content_width">320dip</dimen>
+    <!-- 登录界面高度-->
+    <dimen name="sq_h5_login_content_height">280dip</dimen>
+
+    <!-- 分割线高度-->
+    <dimen name="sq_h5_split_height">1dip</dimen>
+
+    <!-- 登录方式标记高度-->
+    <dimen name="sq_h5_select_login_flag_height">3dip</dimen>
+
+    <!-- 返回logo缩进-->
+    <dimen name="sq_h5_sdk_goback_icon_margin">12.0dip</dimen>
+
+    <!-- 输入框缩进-->
+    <dimen name="sq_h5_sdk_login_edittext_margin">20.0dip</dimen>
+
+    <!-- 选择框宽高-->
+    <dimen name="sq_h5_sdk_checkbox_width_and_height">18.0dip</dimen>
+
+    <!-- underline view内子view间隔-->
+    <dimen name="sq_h5_sdk_underline_child_view_margin">10.0dip</dimen>
+
+    <!-- 输入框高度-->
+    <dimen name="sq_h5_sdk_edittext_view_height">38.0dip</dimen>
+    <!-- 验证码宽度-->
+    <dimen name="sq_h5_sdk_code_view_width">80.0dip</dimen>
+
+    <!-- 帐号下拉框宽度-->
+    <dimen name="sq_h5_sdk_account_list_view_width">35.0dip</dimen>
+    <!-- 帐号下拉框高度-->
+    <dimen name="sq_h5_sdk_account_list_view_height">35.0dip</dimen>
+
+    <!-- 欢迎界面loading宽度-->
+    <dimen name="sq_h5_sdk_welcome_loading_view_width">30.0dip</dimen>
+    <!-- 欢迎界面loading高度-->
+    <dimen name="sq_h5_sdk_welcome_loading_view_height">30.0dip</dimen>
+
+    <!-- loading宽度-->
+    <dimen name="sq_h5_sdk_progress_loading_view_width">50.0dip</dimen>
+    <!-- loading高度-->
+    <dimen name="sq_h5_sdk_progress_loading_view_height">50.0dip</dimen>
+
+    <!-- floatview start-->
+    <dimen name="sq_h5_sdk_floatview_menu_item_margin">3.0dip</dimen>
+    <dimen name="sq_h5_sdk_floatview_menu_height">50.0dip</dimen>
+    <dimen name="sq_h5_sdk_floatview_size">50.0dip</dimen>
+    <!-- floatview end-->
+
+    <!-- 字体 -->
+    <dimen name="sq_h5_sdk_text_size_xxsmall">11sp</dimen>
+    <dimen name="sq_h5_sdk_text_size_xsmall">11sp</dimen>
+    <dimen name="sq_h5_sdk_text_size_small">13sp</dimen>
+    <dimen name="sq_h5_sdk_text_size_middle">15sp</dimen>
+    <dimen name="sq_h5_sdk_text_size_large">17sp</dimen>
+    <dimen name="sq_h5_sdk_text_size_xlarge">19sp</dimen>
+    <!-- 字体 -->
+</resources>

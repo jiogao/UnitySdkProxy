@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gus_white">#FFFFFFFF</color>
+    <color name="gus_orange">#FF5A00</color>
+    <color name="gus_orange_selected">#FFBA4505</color>
+    <color name="gus_orange_transparent">#30FF5A00</color>
+    <color name="gus_text_gray">#999999</color>
+    <color name="gus_text_gray_light">#cccccc</color>
+    <color name="gus_bg_gray">#eeeeee</color>
+    <color name="gus_text_gray_dark">#3e3e3e</color>
+    <color name="gus_red">#E73C40</color>
+</resources>

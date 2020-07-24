@@ -1,0 +1,87 @@
+<resources>
+    <!-- 更新提示-->
+    <string name="g1_sdk_update_message">ข้อมูลเวอร์ชั่น</string>
+    <string name="g1_sdk_update_dialog_text">พบเวอร์ชั่นใหม่ โปรดอัปเดต</string>
+    <string name="g1_sdk_update_btn_text">อัปเดต</string>
+
+    <string name="g1_toast_login_info">ยังไม่ได้ล็อกอิน</string>
+
+    <string name="g1_network_unstable_notice">เชื่อมต่ออินเทอร์เน็ตไม่สำเร็จ</string>
+    <string name="g1_network_error_notice">เชื่อมต่อล้มเหลว โปรดลงใหม่!</string>
+    <string name="g1_sdk_cancel_text">ยกเลิก</string>
+
+    <!--登录界面-->
+    <string name="g1_sdk_login_text">ล็อกอิน</string>
+    <string name="g1_sdk_register_text">สมัครบัญชี</string>
+    <string name="g1_sdk_signup_text">สมัคร</string>
+    <string name="g1_sdk_fb_login_text">Facebook</string>
+    <string name="g1_sdk_guest_login_text">ผู้เยี่ยมชม</string>
+    <string name="g1_sdk_enter_account_text">โปรดป้อนบัญชี</string>
+    <string name="g1_sdk_enter_pwd_text">โปรดป้อนรหัสผ่าน</string>
+
+    <!--注册界面-->
+    <string name="g1_sdk_enter_confirm_pwd_text">ป้อนรหัสผ่านอีกครั้ง</string>
+    <string name="g1_sdk_register_agree_text1">ฉันได้อ่านและยอมรับใน%1$s</string>
+    <string name="g1_sdk_register_agree_text2">และ</string>
+    <string name="g1_sdk_register_agree_service">เงื่อนไขการให้บริการ</string>
+    <string name="g1_sdk_register_agree_privacy">นโยบายความเป็นส่วนตัว</string>
+    <string name="g1_sdk_register_decline_text">ล็อกอิน</string>
+    <string name="g1_sdk_register_agreement_text">โปรดยอมรับเงื่อนไขการสมัครก่อน</string>
+    <!--注册界面-->
+
+    <string name="g1_sdk_pay_waitting">โปรดรอสักครู่...</string>
+    <string name="g1_sdk_password_not_match">รหัสผ่านไม่ตรงกัน</string>
+    <string name="g1_sdk_init_success">เริ่มต้นสำเร็จ</string>
+    <string name="g1_sdk_switch_account_success">เปลี่ยนบัญชีสำเร็จ</string>
+    <string name="g1_sdk_dialog_cancel_btn_text">ยกเลิก</string>
+    <string name="g1_sdk_dialog_confirm_btn_text">ยืนยัน</string>
+    <string name="g1_sdk_dialog_decline_btn_text">ยกเลิก</string>
+    <string name="g1_sdk_copy_success">คัดลอกสำเร็จ</string>
+    <string name="g1_sdk_welcome_back">ยินดีต้อนรับกลับมา</string>
+    <string name="g1_sdk_dialog_accept_btn_text">ยอมรับ</string>
+
+    <!--用户协议弹窗-->
+    <string name="g1_sdk_agreements">เงื่อนไขการให้บริการ</string>
+    <string name="g1_sdk_agreements_tips">โปรดอ่านและยอมรับเงื่อนไขการให้บริการและนโนบายความเป็นส่วนตัวของ %1$s</string>
+    <!--用户协议弹窗-->
+
+    <!--游戏助手-->
+    <string name="g1_sdk_gane_helper_text">ศูนย์ช่วยเหลือ</string>
+    <!--游戏助手-->
+
+    <!-- 悬浮窗-->
+    <string name="g1_toast_choose_role_info">โปรดเลือกตัวละครก่อน</string>
+    <string name="g1_sdk_floatview_hidden_tips">ลากมาซ่อนที่นี่</string>
+    <!--悬浮窗-->
+
+    <!--第三方登录授权app-->
+    <string name="g1_sdk_fb">Facebook</string>
+    <string name="g1_sdk_guest">ผู้เยี่ยมชม</string>
+    <string name="g1_sdk_twitter">twitter</string>
+    <string name="g1_sdk_line">Line</string>
+    <string name="g1_sdk_naver">Naver</string>
+    <!--第三方授权app-->
+
+    <!--申请悬浮窗权限弹窗-->
+    <string name="g1_sdk_open_game_helper">เปิดผู้ช่วยเกม</string>
+    <string name="g1_sdk_open_game_helper_desc">เราต้องการใช้สิทธิ์หน้าต่างลอยเพื่อให้บริการพิเศษกับท่าน</string>
+    <string name="g1_sdk_open">เปิด</string>
+    <string name="g1_sdk_helper_never_show">ไม่แสดงอีก</string>
+    <!--申请悬浮窗权限弹窗-->
+
+    <!--用户拒绝协议的显示弹窗-->
+    <string name="g1_sdk_dialog_notice">โปรดทราบ</string>
+    <string name="g1_sdk_refuse_privacy_tips">หากท่านไม่พอใจในเงื่อนไข หรือข้อตกลงของเกม สามารถติดต่อฝ่ายบริการลูกค้าได้\nแน่ใจไหมว่าจะออกจากเกม ?</string>
+    <!--用户拒绝协议的显示弹窗-->
+
+    <!--注册界面的提醒-->
+    <string name="g1_sdk_register_account_hint">ชื่อบัญชีต้องมีความยาว 6-30 ตัวอักษร</string>
+    <string name="g1_sdk_register_pwd_hint">รหัสผ่านต้องมีความยาว 6-20 ตัวอักษร</string>
+    <!--注册界面的提醒-->
+
+    <!--申请通知权限的弹窗-->
+    <string name="g1_sdk_notice_permission_dialog_title">เปิดการแจ้งเตือน</string>
+    <string name="g1_sdk_notice_permission_dialog_content">รับข่าวสารก่อนใคร!รับโบนัสไม่อั้น!</string>
+    <string name="g1_sdk_notice_permission_dialog_btn_text">ตกลง</string>
+    <!--申请通知权限的弹窗-->
+</resources>

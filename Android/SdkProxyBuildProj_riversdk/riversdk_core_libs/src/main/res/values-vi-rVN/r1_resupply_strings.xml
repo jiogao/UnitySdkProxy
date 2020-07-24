@@ -1,0 +1,9 @@
+<resources>
+    <string name="r1_sdk_ingame_resupply_tips">Kiểm tra thấy do lỗi mạng nên chưa nhận được tiền từ lần Nạp trước, chúng tôi đã gửi lại cho bạn, xin vui lòng đợi!</string>
+    <string name="r1_sdk_purchase_resupply_tips">Do lỗi mạng nên số tiền Nạp chưa nhận được, đang giúp bạn liên kết lại Server, vui lòng đợi!</string>
+    <string name="r1_sdk_contact_service_tips">Do lỗi mạng nên bạn chưa nhận được tiền Nạp, hãy liên hệ CSKH để nhận lại nhanh chóng nhất.</string>
+    <string name="r1_sdk_resupply_tips">(Nhắc: để nhận lại nhanh, bạn cần cung cấp thông tin tài khoản liên quan)</string>
+    <string name="r1_sdk_retry_later">Thử lại sau</string>
+    <string name="r1_sdk_contact_service">Liên hệ CSKH</string>
+    <string name="r1_sdk_confirm">Xác nhận</string>
+</resources>

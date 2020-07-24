@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="r1_snackbar_textcolor">#FB8D14</color>
+    <color name="r1_snackbar_bg">#333333</color>
+
+    <color name="r1_top_toast_text_color_land">#cce02a2a</color>
+    <color name="r1_top_toast_bg_land">#b34b4b4b</color>
+
+    <color name="r1_top_toast_text_color">#cce02a2a</color>
+    <color name="r1_top_toast_bg">#b3ffffff</color>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/sq_h5_login_content_width"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <!-- 手机验证码登录 -->
+    <LinearLayout
+        android:id="@+id/ll_normal_login_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:layout_marginRight="@dimen/sq_h5_sdk_login_edittext_margin"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <!-- 手机号码输入框 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+            >
+
+            <ImageView
+                android:id="@+id/iv_icon_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/sq_h5_sdk_icon_account_input"
+                />
+
+            <EditText
+                android:id="@+id/et_login_phone"
+                style="@style/sq_h5_sdk_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/sq_h5_sdk_pleae_enter_phone_num"
+                android:imeOptions="actionNext|flagNoExtractUi|flagNoFullscreen"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:paddingLeft="30dp"
+                />
+
+            <!-- 获取验证码 -->
+
+            <ImageView
+                android:id="@+id/iv_clean3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/count_down_view"
+                android:padding="4dp"
+                android:src="@drawable/sq_h5_sdk_icon_clean"
+                android:visibility="visible"/>
+
+            <com.games37.h5gamessdk.view.CountDownView
+                android:id="@+id/count_down_view"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/sq_h5_sdk_icon_getcode_on"
+                android:clickable="true"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <!-- 验证码输入框 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_icon_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/sq_h5_sdk_icon_pwd_input"
+                />
+
+            <EditText
+                android:id="@+id/et_login_phone_code"
+                style="@style/sq_h5_sdk_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sq_h5_sdk_edittext_view_height"
+                android:hint="@string/sq_h5_sdk_pleae_enter_verify_code"
+                android:imeOptions="actionDone|flagNoExtractUi|flagNoFullscreen"
+                android:inputType="number"/>
+
+            <ImageView
+                android:id="@+id/iv_clean4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:padding="4dp"
+                android:src="@drawable/sq_h5_sdk_icon_clean"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

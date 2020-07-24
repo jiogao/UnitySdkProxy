@@ -1,0 +1,5 @@
+<resources>
+    <!--RiverSDK平台版本号-->
+    <integer name="riversdk_platform_version_code">55</integer>
+    <string name="riversdk_platform_version_name">1.9.1</string>
+</resources>

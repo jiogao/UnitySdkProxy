@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.games37.h5gamessdk.view.RoundTextView android:id="@+id/tv_sq_sdk_get_sms_code"
+                                           xmlns:android="http://schemas.android.com/apk/res/android"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:text="@string/sq_h5_sdk_get_verify_code"
+                                           android:textColor="@color/sq_h5_sdk_text_getcode"
+                                           android:textSize="@dimen/sq_h5_sdk_text_size_small"/>
+

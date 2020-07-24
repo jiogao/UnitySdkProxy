@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="i1_sdk_fb_social_vertical_layout">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/i1_sdk_fb_social_myreward_listview_divider_color</item>
+    </style>
+    <style name="i1_sdk_fb_social_horizontal_layout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/i1_sdk_fb_social_myreward_listview_divider_color</item>
+    </style>
+
+</resources>

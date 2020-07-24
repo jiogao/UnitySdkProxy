@@ -1,1 +1,0 @@
-int xml network_security_config 0x7f180001

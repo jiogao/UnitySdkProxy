@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
 }
 }
 
@@ -19,19 +19,28 @@ allprojects {
             dirs 'libs'
         }
     }
+    parseLocalProperties()
 }
 
 apply plugin: 'com.android.application'
 
+configurations {
+    sdktestImplementation
+//    sdktestDebugImplementation
+//    sdktestReleaseImplementation
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':unity-android-resources')
+
+//    sdktestImplementation project(':GameUSDKLib')
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+
+    compileSdkVersion ANDROID_COMPLIE_SDK_VERSION
+    buildToolsVersion ANDROID_COMPLIE_TOOL_VERSION
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -39,8 +48,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion ANDROID_BUILD_TARGET_SDK_VERSION
         applicationId 'com.qk.hopelegends'
         ndk {
             abiFilters 'armeabi-v7a'
@@ -74,18 +83,6 @@ android {
         }
     }
 
-    flavorDimensions "channel"
-    productFlavors {
-        sdk37 {
-            dimension "channel"
-            applicationId "com.sdk37.sdk37"
-        }
-//        sdktest {
-//            dimension "channel"
-//            applicationId "com.test.test"
-//        }
-    }
-
     packagingOptions {
         doNotStrip '*/armeabi-v7a/*.so'
     }
@@ -103,24 +100,51 @@ android {
         }
     }
 
-    def targetPath = 'D:/work/HopeLegends/client_android/trunk/Export/HopeLegends/'
+    //---------- productFlavors ----------
+    flavorDimensions "channel"
+    productFlavors {
+        sdktest {
+            dimension "channel"
+            applicationId "com.test.test"
+        }
+    }
+
+    //公共代码位置
+    def sdkProxyJavaPath = "../QKSdkProxy/"
+    //请先在local.properties中添加目标工程路径, 如： targetProjPath=C\:\\Users\\K\\Desktop\\HopeLegends_Android\\ExportProj\\HopeLegends
+    def targetProjPath = project["targetProjPath"]
     def localPath = './'
-    def target_src_main = targetPath + 'src/main/'
+    def target_src_main = targetProjPath + 'src/main/'
     def local_src_main = localPath + 'src/main/'
     sourceSets {
         main {
             assets.srcDirs = [target_src_main + 'assets']                  // asset资源目录
             jniLibs.srcDirs = [target_src_main + 'jniLibs']                // jniLibs
 //            java.srcDirs = [local_src_main + 'java', target_src_main + 'java']    // 指定java源代码目录
-            java.srcDirs += target_src_main + 'java'
-        }
+            res.srcDirs = [target_src_main + 'res']
 
-//        sdk37 {
-////            java.srcDirs = ['./src/sdk37/' + 'java']
-//        }
-//
-//        sdktest {
-////            java.srcDirs = ['./src/sdktest/' + 'java']
-//        }
+            java.srcDirs += target_src_main + 'java'
+            java.srcDirs += sdkProxyJavaPath + 'java'
+        }
+        sdktest {
+//            java.srcDirs = ['./src/sdktest/' + 'java']
+        }
+    }
+}
+
+//读取local.properties配置
+//请先在local.properties中添加目标工程路径, 如： targetProjPath=C\:\\Users\\K\\Desktop\\HopeLegends_Android\\ExportProj\\HopeLegends
+def parseLocalProperties(){
+    File file = rootProject.file('local.properties')
+    if(file.exists()){
+        InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
+        Properties properties = new Properties()
+        properties.load(inputStream)
+
+        if(properties.containsKey("targetProjPath")){
+            println 'targetProjPath:'+properties.getProperty("targetProjPath")
+            ext.targetProjPath = properties.getProperty("targetProjPath") + '/'
+            println 'project[\"targetProjPath\"]:'+project["targetProjPath"]
+        }
     }
 }

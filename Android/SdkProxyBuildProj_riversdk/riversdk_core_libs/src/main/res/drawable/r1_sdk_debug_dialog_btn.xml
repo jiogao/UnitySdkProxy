@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/r1_debug_dialog_top_bg_color"/>
+
+    <corners android:radius="@dimen/r1_debug_dialog_btn_corner_radius"/>
+
+
+</shape>

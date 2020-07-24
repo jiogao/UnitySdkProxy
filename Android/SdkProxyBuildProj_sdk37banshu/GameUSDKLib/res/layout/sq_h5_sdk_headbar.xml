@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sq_h5_sdk_headbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/sq_h5_sdk_orange">
+
+    <ImageView
+        android:id="@+id/iv_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@drawable/sq_h5_sdk_back" />
+
+    <TextView
+        android:id="@+id/tv_head_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/sq_h5_sdk_withe"
+        android:textSize="@dimen/sq_h5_sdk_text_size_middle" />
+</RelativeLayout>
+

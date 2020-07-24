@@ -1,0 +1,90 @@
+<resources>
+
+    <!-- 更新提示-->
+    <string name="g1_sdk_update_message">Actualizar Info</string>
+    <string name="g1_sdk_update_dialog_text">Nueva versión disponible. Actualizar ahora.</string>
+    <string name="g1_sdk_update_btn_text">OK</string>
+
+
+    <string name="g1_toast_login_info">No has iniciado sesión.</string>
+
+    <string name="g1_network_unstable_notice">Error de red.</string>
+
+    <string name="g1_network_error_notice">timeout</string>
+
+    <string name="g1_sdk_cancel_text">Rechazar</string>
+
+    <!--登录界面-->
+    <string name="g1_sdk_login_text">INICIAR SESIÓN</string>
+    <string name="g1_sdk_register_text">REGISTRAR</string>
+    <string name="g1_sdk_signup_text">Registro</string>
+    <string name="g1_sdk_fb_login_text">Facebook</string>
+    <string name="g1_sdk_guest_login_text">Iniciar sesión como Invitado</string>
+    <string name="g1_sdk_enter_account_text">Por favor ingresa tu cuenta</string>
+    <string name="g1_sdk_enter_pwd_text">Por favor, ingresa tu contraseña</string>
+
+    <!--注册界面-->
+    <string name="g1_sdk_enter_confirm_pwd_text">Por favor, confirma tu contraseña</string>
+    <string name="g1_sdk_register_agree_text1">Estoy de acuerdo con %1$s</string>
+    <string name="g1_sdk_register_agree_text2">y</string>
+    <string name="g1_sdk_register_agree_service">Términos de Uso</string>
+    <string name="g1_sdk_register_agree_privacy">Política de Privacidad</string>
+    <string name="g1_sdk_register_decline_text">DISMINUCIÓN</string>
+    <string name="g1_sdk_register_agreement_text">Por favor lea y acepte los Términos de Uso.</string>
+    <!--注册界面-->
+
+    <string name="g1_sdk_pay_waitting">Cargando...</string>
+    <string name="g1_sdk_password_not_match">Las contraseñas no coinciden</string>
+    <string name="g1_sdk_init_success">Inicializado</string>
+    <string name="g1_sdk_switch_account_success">Cuenta cambiada</string>
+    <string name="g1_sdk_dialog_cancel_btn_text">RECHAZAR</string>
+    <string name="g1_sdk_dialog_confirm_btn_text">CONFIRMAR</string>
+    <string name="g1_sdk_dialog_decline_btn_text">RECHAZAR</string>
+    <string name="g1_sdk_dialog_accept_btn_text">ACEPTAR</string>
+    <string name="g1_sdk_welcome_back">Dar una buena acogida,</string>
+    <string name="g1_sdk_copy_success">Copiado</string>
+
+    <!--用户协议弹窗-->
+    <string name="g1_sdk_agreements_tips">Lea y acepte los Términos de Servicio y la Política de Privacidad de %1$s.</string>
+    <string name="g1_sdk_agreements">Acuerdos de Usuarios</string>
+    <!--用户协议弹窗-->
+
+    <!--游戏助手-->
+    <string name="g1_sdk_gane_helper_text">Asistente de Juego</string>
+    <!--游戏助手-->
+
+    <!-- 悬浮窗-->
+    <string name="g1_toast_choose_role_info">Entrar después de elegir tu personaje</string>
+    <string name="g1_sdk_floatview_hidden_tips">Arrastra aquí para esconderte</string>
+
+    <!--第三方登录授权app-->
+    <string name="g1_sdk_fb">Facebook</string>
+    <string name="g1_sdk_guest">Invitado</string>
+    <string name="g1_sdk_twitter">twitter</string>
+    <string name="g1_sdk_line">Line</string>
+    <string name="g1_sdk_naver">Naver</string>
+
+    <!--申请悬浮窗权限弹窗-->
+    <string name="g1_sdk_open_game_helper">Activar asistente de Juego</string>
+    <string name="g1_sdk_open_game_helper_desc">Se solicita el permiso de Floating Window\nNecesitamos este permiso para brindarle una experiencia óptima</string>
+    <string name="g1_sdk_open">Activar</string>
+    <string name="g1_sdk_helper_never_show">No mostrar</string>
+    <!--申请悬浮窗权限弹窗-->
+
+    <!--用户拒绝协议的显示弹窗-->
+    <string name="g1_sdk_dialog_notice">Aviso</string>
+    <string name="g1_sdk_refuse_privacy_tips">Si tienes alguna pregunta relacionada con los acuerdos, no dudes en ponerte en contacto con nuestro Servicio al Clientea través del sitio web oficial después de salir del juego.¿Salir ahora?</string>
+    <!--用户拒绝协议的显示弹窗-->
+
+    <!--注册界面的提醒-->
+    <string name="g1_sdk_register_account_hint">6 - 30 caracteres requeridos</string>
+    <string name="g1_sdk_register_pwd_hint">6 - 20 caracteres requeridos</string>
+    <!--注册界面的提醒-->
+
+    <!--申请通知权限的弹窗-->
+    <string name="g1_sdk_notice_permission_dialog_title">Notificaciones Automáticas</string>
+    <string name="g1_sdk_notice_permission_dialog_content">Habilite notificaciónes automáticas para obtener los últimos bonos y ofertas</string>
+    <string name="g1_sdk_notice_permission_dialog_btn_text">Confirmar</string>
+    <!--申请通知权限的弹窗-->
+
+</resources>

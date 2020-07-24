@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">網路鏈接超時,請重新嘗試!</string>
+    <string name="r1_thrid_payment_close">儲值頁面關閉，請檢查您的賬戶餘額</string>
+    <string name="r1_user_cancel">取消</string>
+    <string name="r1_network_error">網路連接錯誤</string>
+    <string name="r1_sdk_file_not_exists">文件不存在</string>
+</resources>

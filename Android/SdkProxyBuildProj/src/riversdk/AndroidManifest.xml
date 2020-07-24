@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.qk.hopelegends"
+    android:installLocation="preferExternal">
+  <supports-screens android:smallScreens="true"
+      android:normalScreens="true"
+      android:largeScreens="true"
+      android:xlargeScreens="true"
+      android:anyDensity="true" />
+  <application
+      android:name="sdkproxy_imp.ProxyApplication"
+      android:label="@string/app_name"
+      android:usesCleartextTraffic="true"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:icon="@mipmap/app_icon">
+    <activity android:label="@string/app_name"
+        android:screenOrientation="sensorLandscape"
+        android:launchMode="singleTask"
+        android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+        android:hardwareAccelerated="false"
+        android:name="qksdkproxy.SdkProxy.SdkSupport.QKUnityPlayerActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <!-- 以下为游戏深度链接配置，请在游戏MainActivity（第一个启动的Activity）内配置以下intent-filter -->
+      <intent-filter>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+
+        <action android:name="android.intent.action.VIEW"/>
+        <!-- 深度链接配置 scheme由sdk方提供 -->
+        <data android:scheme="globalxwmlink"/>
+      </intent-filter>
+      <!-- 点击推送通知唤起页面的配置，请在初始化riverSDKApi的-activity添加以下intent-filter -->
+      <intent-filter>
+        <action android:name="ACTION_OPEN_GAME_ACTIVITY"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+    <receiver android:name="com.youme.im.NetworkStatusReceiver"
+        android:label="NetworkConnection">
+      <intent-filter>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+      </intent-filter>
+    </receiver>
+    <meta-data android:name="unity.build-id" android:value="${unity_build_id}" />
+    <meta-data android:name="unity.splash-mode" android:value="2" />
+    <meta-data android:name="unity.splash-enable" android:value="True" />
+
+    <!-- RiverSDK all start -->
+    <!-- RiverSDK start -->
+    <!-- SDK登录页面配置 -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:name="com.games37.riversdk.core.login.activity.SDKLoginActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- SDK Webview页面配置 -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:launchMode="singleTop" android:name="com.games37.riversdk.core.webveiew.WebViewActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- SDK Google登录页面配置 -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:name="com.games37.riversdk.functions.googleplay.login.GoogleActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- SDK Google储值页面配置 -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:launchMode="singleTop" android:name="com.games37.riversdk.core.purchase.activity.GooglePlayV3Activity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- SDK Facebook社交中心页面配置 -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:name="com.games37.riversdk.core.facebook.social.FacebookSocialActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- RiverSDK end -->
+
+
+    <!-- GlobalSDk start -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:name="com.games37.riversdk.global.floatview.GameHelperActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateHidden|adjustResize"/>
+    <!-- GlobalSDK end -->
+
+
+    <!-- Facebook SDK登录start -->
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" android:name="com.facebook.FacebookActivity"/>
+    <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+
+        <data android:scheme="@string/fb_login_protocol_scheme"/>
+      </intent-filter>
+    </activity>
+    <activity android:name="com.facebook.CustomTabMainActivity"/>
+    <!-- Facebook SDK登录end -->
+
+
+    <!-- FacebookSDK配置 4.33.0新增 -->
+    <provider android:authorities="com.blancozone.xwm.gp.FacebookInitProvider" android:exported="false" android:name="com.facebook.internal.FacebookInitProvider"/>
+
+    <receiver android:exported="false" android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver">
+      <intent-filter>
+        <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"/>
+      </intent-filter>
+    </receiver>
+    <!-- FacebookSDK配置 4.33.0新增 -->
+    <!-- facebook分享配置start -->
+    <!-- APP_ID 为Facebook应用编号，可参考SDKConfig.java分FACEBOOK_APP_ID字段值 -->
+    <!-- 例如：某应用FacebookAppId为123456则配置为如下： -->
+    <!-- <provider android:authorities="com.facebook.app.FacebookContentProvider123456" -->
+    <provider android:authorities="com.facebook.app.FacebookContentProvider2888796024516583" android:exported="true" android:name="com.facebook.FacebookContentProvider"/>
+
+    <!-- FacebookSDK配置 5.5.1 新增 -->
+    <receiver android:exported="true" android:name="com.facebook.CampaignTrackingReceiver" android:permission="android.permission.INSTALL_PACKAGES">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER"/>
+      </intent-filter>
+    </receiver>
+    <!-- FacebookSDK配置 5.5.1 新增 -->
+    <!-- facebook分享配置end -->
+
+
+    <!-- AD start -->
+    <!-- Appsflyer 安装广播必须放在所有广播的第一位！ -->
+    <receiver android:exported="true" android:name="com.appsflyer.MultipleInstallBroadcastReceiver">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER"/>
+      </intent-filter>
+    </receiver>
+    <receiver android:exported="true" android:name="com.ad.sdk.ADBroadcastReceiver">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER"/>
+      </intent-filter>
+    </receiver>
+
+    <service android:name="com.appsflyer.FirebaseMessagingServiceListener">
+      <intent-filter>
+        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+      </intent-filter>
+    </service>
+    <!-- AD end -->
+    <!--    <provider android:authorities="com.blancozone.xwm.gp.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">-->
+    <!--      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>-->
+    <!--    </provider>-->
+
+    <!-- 发布平台，默认为googlePlay -->
+    <meta-data android:name="RiverSDK.PublishPlatform" android:value="googlePlay"/>
+    <!-- 游戏包标识 -->
+    <meta-data android:name="RiverSDK.Pid" android:value="800013"/>
+    <!-- Google Service 版本号配置 -->
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+    <!-- 游戏包深度链接 -->
+    <meta-data android:name="RiverSDK.DeepLink" android:value="globalxwmlink"/>
+    <!-- Facebook应用id配置 -->
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+    <meta-data android:name="firebase_performance_logcat_enabled" android:value="true"/>
+    <meta-data android:name="io.fabric.ApiKey" android:value="04abd0c91e2a0a5e8586c0949b40f66eef92e6b1"/>
+    <meta-data android:name="RiverSDK.DebugMode" android:value="false"/>
+
+    <!-- 谷歌预注册商品项ID -->
+    <meta-data android:name="RiverSDK.PreRegisterId" android:value="google.reg.package"/>
+
+    <activity android:exported="false" android:name="com.twitter.sdk.android.tweetcomposer.ComposerActivity" android:windowSoftInputMode="adjustResize|stateVisible"/>
+
+    <service android:enabled="true" android:exported="false" android:name="com.twitter.sdk.android.tweetcomposer.TweetUploadService"/>
+
+    <activity android:configChanges="orientation|screenSize" android:excludeFromRecents="true" android:exported="false" android:name="com.twitter.sdk.android.core.identity.OAuthActivity"/>
+
+    <meta-data android:name="com.google.android.play.billingclient.version" android:value="2.0.3"/>
+
+    <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:name="com.android.billingclient.api.ProxyBillingActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/> <!-- Google Service start -->
+    <!-- auth start -->
+    <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+    <!--
+        Service handling Google Sign-In user revocation. For apps that do not integrate with
+        Google Sign-In, this service will never be started.
+    -->
+    <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"/> <!-- auth end -->
+    <!-- base start -->
+    <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/> <!-- base end -->
+    <!-- Google Service end -->
+    <!-- firebase start -->
+    <!-- firebase analytic start -->
+    <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+    <receiver android:enabled="true" android:exported="true" android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:permission="android.permission.INSTALL_PACKAGES">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER"/>
+      </intent-filter>
+    </receiver>
+
+    <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/> <!-- firebase analytic end -->
+    <!-- firebase analytic impl start -->
+    <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver">
+    </receiver>
+
+    <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/> <!-- firebase analytic impl end -->
+    <!-- firebase common start -->
+    <provider android:authorities="com.blancozone.xwm.gp.firebaseinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/> <!-- firebase common end -->
+<!--    <provider android:authorities="com.blancozone.xwm.gp.firebaseperfprovider" android:exported="false" android:initOrder="101" android:name="com.google.firebase.perf.provider.FirebasePerfProvider"/> &lt;!&ndash; firebase iid start &ndash;&gt;-->
+    <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+
+        <category android:name="com.blancozone.xwm.gp"/>
+      </intent-filter>
+    </receiver> <!-- firebase iid end -->
+    <service android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.perf.FirebasePerfRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+    </service> <!-- firebase messaging start -->
+    <!--
+        FirebaseMessagingService performs security checks at runtime,
+        no need for explicit permissions despite exported="true"
+    -->
+    <service android:exported="true" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+      <intent-filter android:priority="-500">
+        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+      </intent-filter>
+    </service>
+    <!--
+     "launchMode" of this activity must not be singleInstance and singleTask because, this is
+     launched with using startActivityForResult().
+     This activity must be stacked on same Activity Stack of the caller.
+    -->
+    <meta-data android:name="RiverSDK.SLD"
+        android:value="blancozone"/>
+    <!-- RiverSDK all end -->
+
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.TYPE_APPLICATION_OVERLAY" />
+<!--  <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+<!--  <uses-permission android:name="android.permission.READ_LOGS"-->
+<!--      tools:ignore="ProtectedPermissions" />-->
+  <uses-feature android:glEsVersion="0x00020000" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+  <uses-feature android:name="android.hardware.location" android:required="false" />
+  <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+
+  <!-- riversdk start -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <!--内购相关权限-->
+  <uses-permission android:name="com.android.vending.BILLING" />
+  <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+  <!--悬浮窗权限-->
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <!-- Appsflyer SDK追踪权限-->
+  <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+  <!-- Optional permission for Analytics to run. -->
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <!-- ${applicationId} 修改为对应包名-->
+  <permission
+      android:name="${applicationId}.permission.C2D_MESSAGE"
+      android:protectionLevel="signature" />
+  <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+  <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+  <!-- riversdk end -->
+
+</manifest>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="40dp"
+             android:layout_gravity="center"
+             android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/progressbar_download"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/gus_orange_transparent"
+        android:indeterminate="false"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:maxHeight="40dp"
+        android:minHeight="40dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/gus_progress_orange"/>
+
+    <TextView
+        android:id="@+id/text_download_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:gravity="center"
+        android:text="@string/gus_update_text"
+        android:textColor="@color/gus_white"/>
+</FrameLayout>

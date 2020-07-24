@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal">
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/g1_dp_260"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/g1_dp_6">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/g1_dp_70"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/iv_function_logo"
+            android:src="@drawable/g1_sdk_game_helper_item_bg"
+            android:scaleType="fitStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/g1_sp_12"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="帮助支持"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxEms="6"
+            android:id="@+id/tv_funciton_name"
+            android:textColor="@color/g1_sdk_item_text_color"
+            android:layout_marginRight="@dimen/g1_dp_20"/>
+
+        <ImageView
+            android:layout_width="@dimen/g1_dp_26"
+            android:layout_height="@dimen/g1_dp_26"
+            android:src="@drawable/g1_sdk_new_item"
+            android:id="@+id/iv_red_point"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

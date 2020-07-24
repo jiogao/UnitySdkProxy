@@ -1,2 +1,0 @@
-com.qk.hopelegends.resources
-xml network_security_config

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--补单对话框横屏界面宽度-->
+    <dimen name="r1_resupply_dialog_width">330dp</dimen>
+    <!--补单对话框竖屏屏界面margin-->
+    <dimen name="r1_resupply_dialog_margin_left">20dp</dimen>
+    <!--补单对话框横屏界面高度-->
+    <dimen name="r1_resupply_dialog_height">210dp</dimen>
+    <!--按钮高度-->
+    <dimen name="r1_resupply_dialog_btn_height">50dp</dimen>
+    <!--其他内容字体大小-->
+    <dimen name="r1_resupply_dialog_content_textsize">20sp</dimen>
+    <dimen name="r1_resupply_dialog_tips_textsize">15sp</dimen>
+    <!--联系客服提示语与温馨提示之间的间隔-->
+    <dimen name="r1_resupply_remind_tv_margin">20dp</dimen>
+    <!--文本内容间距-->
+    <dimen name="r1_resupply_dialog_layout_tv_content_margin">10dp</dimen>
+    <!--用户升级横屏界面宽度-->
+    <dimen name="r1_user_update_dialog_width">330dp</dimen>
+    <!--用户升级对话框竖屏屏界面margin-->
+    <dimen name="r1_user_update_dialog_margin_left">20dp</dimen>
+    <!--用户升级对话框横屏界面高度-->
+    <dimen name="r1_user_update_dialog_height">180dp</dimen>
+    <!--按钮高度-->
+    <dimen name="r1_user_update_dialog_btn_height">50dp</dimen>
+    <!--其他内容字体大小-->
+    <dimen name="r1_user_update_dialog_content_textsize">20sp</dimen>
+    <dimen name="r1_user_update_dialog_tips_textsize">15sp</dimen>
+    <!--文本内容间距-->
+    <dimen name="r1_user_update_dialog_layout_tv_content_margin">10dp</dimen>
+
+    <!--悬浮窗申请横屏界面宽度-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_width">380dp</dimen>
+    <!--悬浮窗申请对话框竖屏屏界面margin-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_margin_left">20dp</dimen>
+    <!--悬浮窗申请对话框横屏界面高度-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_height">180dp</dimen>
+    <!--按钮高度-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_btn_height">50dp</dimen>
+    <!--其他内容字体大小-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_content_textsize">20sp</dimen>
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_tips_textsize">15sp</dimen>
+    <!--文本内容间距-->
+    <dimen name="r1_sdk_floatview_apply_permission_dialog_layout_tv_content_margin">10dp</dimen>
+
+    <!--动态指引对话框宽度-->
+    <dimen name="r1_dynamic_dialog_width">300dp</dimen>
+
+    <!--动态指引对话框的文字间距-->
+    <dimen name="r1_dynamic_dialog_text_margin">10dp</dimen>
+    <!--动态指引对话框的按钮高度-->
+    <dimen name="r1_dynamic_dialog_btn_height">35dp</dimen>
+    <dimen name="r1_dynamic_dialog_bg_corner_radius">10dp</dimen>
+    <!--动态指引对话框的标题字体大小-->
+    <dimen name="r1_dynamic_dialog_bg_title_size">15sp</dimen>
+    <!--动态指引对话框的字体大小-->
+    <dimen name="r1_dynamic_dialog_bg_text_size">13sp</dimen>
+    <!--动态指引对话框的按钮间距-->
+    <dimen name="r1_dynamic_dialog_btn_margin">20dp</dimen>
+
+
+    <!--debug提示框-->
+    <!--圆角半径-->
+    <dimen name="r1_debug_dialog_corner_radius">8dp</dimen>
+    <!--对话框宽度-->
+    <dimen name="r1_debug_dialog_width">250dp</dimen>
+    <!--顶部背景高度-->
+    <dimen name="r1_debug_debug_top_height">80dp</dimen>
+    <!--文字空白-->
+    <dimen name="r1_debug_dialog_text_padding">15dp</dimen>
+    <!--文字大小-->
+    <dimen name="r1_debug_dialog_text_size">12sp</dimen>
+    <!--按钮宽度-->
+    <dimen name="r1_debug_dialog_btn_width">100dp</dimen>
+    <!--按钮高度-->
+    <dimen name="r1_debug_dialog_btn_height">30dp</dimen>
+    <!--按钮阴影-->
+    <dimen name="r1_debug_dialog_btn_elevation">3dp</dimen>
+    <!--按钮间距-->
+    <dimen name="r1_debug_dialog_btn_margin">20dp</dimen>
+    <!--按钮圆角半径-->
+    <dimen name="r1_debug_dialog_btn_corner_radius">15dp</dimen>
+    <!--debug提示框-->
+
+</resources>

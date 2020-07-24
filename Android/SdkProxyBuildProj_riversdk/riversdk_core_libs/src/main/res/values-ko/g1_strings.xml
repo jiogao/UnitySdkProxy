@@ -1,0 +1,88 @@
+<resources>
+    <!-- 更新提示-->
+    <string name="g1_sdk_update_message">새 업데이트 사용 가능!</string>
+    <string name="g1_sdk_update_dialog_text">버전 정보</string>
+    <string name="g1_sdk_update_btn_text">확인</string>
+
+    <string name="g1_toast_login_info">로그인하지 않음</string>
+
+    <string name="g1_network_unstable_notice">돌아온 걸 환영합니다</string>
+    <string name="g1_network_error_notice">돌아온 걸 환영합니다</string>
+    <string name="g1_sdk_cancel_text">취소</string>
+
+    <!--登录界面-->
+    <string name="g1_sdk_login_text">계정으로 로그인</string>
+    <string name="g1_sdk_register_text">회원 가입</string>
+    <string name="g1_sdk_signup_text">회원 가입</string>
+    <string name="g1_sdk_fb_login_text">Facebook</string>
+    <string name="g1_sdk_guest_login_text">게스트 로그인</string>
+    <string name="g1_sdk_enter_account_text">계정 입력하세요</string>
+    <string name="g1_sdk_enter_pwd_text">비밀번호 입력하세요</string>
+
+    <!--注册界面-->
+    <string name="g1_sdk_enter_confirm_pwd_text">비밀번호 입력하세요</string>
+    <string name="g1_sdk_register_agree_text1">%1$s</string>
+    <string name="g1_sdk_register_agree_text2">과</string>
+    <string name="g1_sdk_register_agree_service">이용약관</string>
+    <string name="g1_sdk_register_agree_privacy">개인정보 보호정책</string>
+    <string name="g1_sdk_register_agree_text">에 동의합니다.</string>
+    <string name="g1_sdk_register_decline_text">뒤로</string>
+    <string name="g1_sdk_register_agreement_text">회원 가입 조건을 동의하세요</string>
+    <!--注册界面-->
+
+    <string name="g1_sdk_pay_waitting">로딩...</string>
+    <string name="g1_sdk_password_not_match">두번 입력하신 비밀번호가 같지 않습니다!</string>
+    <string name="g1_sdk_init_success">초기화 완료!</string>
+    <string name="g1_sdk_switch_account_success">계정 변경하였습니다!</string>
+    <string name="g1_sdk_dialog_cancel_btn_text">취소</string>
+    <string name="g1_sdk_dialog_confirm_btn_text">동의</string>
+    <string name="g1_sdk_dialog_decline_btn_text">취소</string>
+    <string name="g1_sdk_dialog_accept_btn_text">동의</string>
+    <string name="g1_sdk_welcome_back">돌아온 걸 환영합니다,</string>
+    <string name="g1_sdk_copy_success">복사 성공</string>
+
+    <!--用户协议弹窗-->
+    <string name="g1_sdk_agreements">이용약관</string>
+    <string name="g1_sdk_agreements_tips">%1$s 이용약관과 개인정보 보호정책에 동의하세요.</string>
+    <!--用户协议弹窗-->
+
+    <!--游戏助手-->
+    <string name="g1_sdk_gane_helper_text">게임 도우미</string>
+    <!--游戏助手-->
+
+    <!-- 悬浮窗-->
+    <string name="g1_toast_choose_role_info">캐릭터를 선택하세요</string>
+    <string name="g1_sdk_floatview_hidden_tips">끌어서 숨기기</string>
+    <!--悬浮窗-->
+
+    <!--第三方登录授权app-->
+    <string name="g1_sdk_fb">Facebook</string>
+    <string name="g1_sdk_guest">게스트 로그인</string>
+    <string name="g1_sdk_twitter">twitter</string>
+    <string name="g1_sdk_line">Line</string>
+    <string name="g1_sdk_naver">Naver</string>
+    <!--第三方授权app-->
+
+    <!--申请悬浮窗权限弹窗-->
+    <string name="g1_sdk_open_game_helper">게임 도우미 활성화</string>
+    <string name="g1_sdk_open_game_helper_desc">위젯 권한을 획득해야 해당 서비스를 제공할 수 있습니다</string>
+    <string name="g1_sdk_open">활성화</string>
+    <string name="g1_sdk_helper_never_show">다시 알리지 않기</string>
+    <!--申请悬浮窗权限弹窗-->
+
+    <!--用户拒绝协议的显示弹窗-->
+    <string name="g1_sdk_dialog_notice">도움말</string>
+    <string name="g1_sdk_refuse_privacy_tips"> 게임 조항에 대해 의문점이 있으시면 게임에서 나가신 후에 공식 홈페이지의 고객 센터를 통해 의문점을 해결할 수 있습니다.\n지금 나가시겠습니까?</string>
+    <!--用户拒绝协议的显示弹窗-->
+
+    <!--注册界面的提醒-->
+    <string name="g1_sdk_register_account_hint">계정은 6-30자여야 합니다</string>
+    <string name="g1_sdk_register_pwd_hint">비밀번호: 6-20자</string>
+    <!--注册界面的提醒-->
+
+    <!--申请通知权限的弹窗-->
+    <string name="g1_sdk_notice_permission_dialog_title">푸시 메시지</string>
+    <string name="g1_sdk_notice_permission_dialog_content">최신 정보를 한 눈에 보고 대박 선물 받기</string>
+    <string name="g1_sdk_notice_permission_dialog_btn_text">확인</string>
+    <!--申请通知权限的弹窗-->
+</resources>

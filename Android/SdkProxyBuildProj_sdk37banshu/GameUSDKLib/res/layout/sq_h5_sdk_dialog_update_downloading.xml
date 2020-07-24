@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/sq_h5_sdk_withe"
+              android:gravity="center"
+              android:layout_marginTop="20dp"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/sq_sdk_update_img_inner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sq_h5_sdk_update_icon_in"
+            />
+
+        <ImageView
+            android:id="@+id/sq_sdk_update_img_outer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sq_h5_sdk_update_icon_out"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/sq_sdk_update_text_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="开始后台更新中，请耐心等待！
+新版本更精彩哟~"
+        android:textAlignment="center"
+        android:textColor="@color/sq_h5_sdk_text_gray_deep"
+        android:visibility="visible"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/sq_sdk_update_layout_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/sq_sdk_update_text_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="更新中 - 9%"
+            android:textColor="@color/sq_h5_sdk_red"/>
+
+
+        <ProgressBar
+            android:id="@+id/sq_sdk_update_progress_download"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/sq_h5_sdk_progress_dialog_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/sq_h5_sdk_progress_red"/>
+    </LinearLayout>
+
+</LinearLayout>

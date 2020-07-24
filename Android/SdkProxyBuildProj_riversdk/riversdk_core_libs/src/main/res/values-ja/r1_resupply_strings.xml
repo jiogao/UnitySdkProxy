@@ -1,0 +1,9 @@
+<resources>
+    <string name="r1_sdk_confirm">確定</string>
+    <string name="r1_sdk_ingame_resupply_tips">検測によると、インタネットの異常は発生した為、チャージされた金額はまだ入金確認出来ていません。現在支払いしておりますので、少々お待ちください。</string>
+    <string name="r1_sdk_purchase_resupply_tips">インタネットの異常は発生した為、チャージされた金額は入金確認出来ていません。今再びサーターと接続して通信を行うので、少々お待ちください。</string>
+    <string name="r1_sdk_contact_service_tips">インタネットの異常は発生した為、チャージされた金額は入金確認出来ていません。お客様サポートに連絡して、一括払いをお申し込みください。</string>
+    <string name="r1_sdk_resupply_tips">（ヒント：一括払いを申し込む際、アカウント関連の情報が必要なので、ご了承ください。）</string>
+    <string name="r1_sdk_retry_later">後ほどリトライしてください。</string>
+    <string name="r1_sdk_contact_service">お客様サポートに連絡</string>
+</resources>

@@ -16,6 +16,7 @@ namespace QKSdkProxy
         public string game_id;
         public string channel_id;
         public string game_channel_id;
+        public string pfid;
     }
 
     //设备信息

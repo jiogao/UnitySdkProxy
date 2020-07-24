@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_firebase_get_token_failed">get firebase token failed</string>
+    <string name="r1_firebase_subscribe_topic_success">subscribe to topic success</string>
+    <string name="r1_firebase_subscribe_topic_failed">subscribe to topic failed</string>
+
+    <string name="r1_firebase_unsubscribe_topic_success">unsubscribe from topic success</string>
+    <string name="r1_firebase_unsubscribe_topic_failed">unsubscribe from topic failed</string>
+</resources>

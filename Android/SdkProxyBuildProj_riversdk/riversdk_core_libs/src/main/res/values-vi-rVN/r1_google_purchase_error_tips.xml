@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_gp_service_disconnect">Đã mất liên kết với dịch vụ Google, hãy thử lại</string>
+    <string name="r1_gp_service_unavailable">Không thể sử dụng được dịch vụ Google, hãy xác nhận trạng thái đăng nhập</string>
+    <string name="r1_gp_user_canceled">Bạn đã hủy bỏ nạp game.</string>
+    <string name="r1_gp_purchase_error">Đã xuất hiện lỗi trong quá trình mua.</string>
+    <string name="r1_gp_item_not_owned">Không thể xác nhận thương phẩm này.</string>
+    <string name="r1_gp_item_unavailable">Xin lỗi, không thể mua được thương phẩm này, hãy thử lại</string>
+    <string name="r1_gp_item_already_owned">Xuất hiện lỗi, hãy thử xóa bỏ bộ nhớ đệm của APP Google Play</string>
+    <string name="r1_gp_store_lack_of_perm">Xuất hiện lỗi, hãy thử xóa bỏ bộ nhớ đệm của APP Google Play</string>
+
+    <string name="r1_pop_from_backgroudd">Giao diện Pop-up ở hậu trường</string>
+    <string name="r1_allow_pop_from_background">Cho phép app sử dụng giao diện Pop-up ở hậu trường</string>
+    <string name="r1_goto_activate">Tới mở</string>
+    <string name="r1_ok">Xác nhận</string>
+
+    <string name="r1_purchase_fail">Mua thất bại</string>
+</resources>

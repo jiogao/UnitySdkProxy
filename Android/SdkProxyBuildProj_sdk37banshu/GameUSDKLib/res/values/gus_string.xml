@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gus_update_text" formatted="false">更新中 - %1$d </string>
+</resources>

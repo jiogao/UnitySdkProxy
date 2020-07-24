@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/g1_sw_5dp"
+        android:paddingLeft="@dimen/g1_sw_20dp"
+        android:paddingTop="@dimen/g1_sw_5dp"
+        android:text="123456"
+        android:textColor="@color/g1_sdk_pop_account_color"
+        android:textSize="@dimen/g1_sw_10sp" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="@dimen/g1_sw_20dp"
+        android:layout_height="@dimen/g1_sw_20dp"
+        android:layout_gravity="center"
+        android:paddingRight="@dimen/g1_sw_9dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/g1_sdk_iv_close" />
+</LinearLayout>

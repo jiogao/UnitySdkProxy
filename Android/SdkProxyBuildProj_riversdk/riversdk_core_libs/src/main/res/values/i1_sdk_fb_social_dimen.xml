@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- title字体大小-->
+    <dimen name="i1_sdk_fb_social_tv_title_textsize">18sp</dimen>
+    <!-- title字间隔-->
+    <dimen name="i1_sdk_fb_social_tv_title_text_margin">10dp</dimen>
+
+    <!-- 关闭按钮间隔-->
+    <dimen name="i1_sdk_fb_social_iv_title_close_img_margin">25dp</dimen>
+
+    <!-- 问号按钮间隔-->
+    <dimen name="i1_sdk_fb_social_iv_title_question_img_margin">30dp</dimen>
+
+    <!-- 头像宽高-->
+    <dimen name="i1_sdk_fb_social_iv_user_avtar_size">61dp</dimen>
+    <!-- 头像间隔-->
+    <dimen name="i1_sdk_fb_social_iv_user_avtar_margin_top">20dp</dimen>
+    <dimen name="i1_sdk_fb_social_iv_user_avtar_margin_left">10dp</dimen>
+    <dimen name="i1_sdk_fb_social_iv_user_avtar_padding">1dp</dimen>
+
+    <!-- 用户名padding-->
+    <dimen name="i1_sdk_fb_social_tv_username_margin_left">5dp</dimen>
+
+    <!-- fb点赞-->
+    <dimen name="i1_sdk_fb_social_iv_fblike_width">50dp</dimen>
+    <dimen name="i1_sdk_fb_social_iv_fblike_height">30dp</dimen>
+    <dimen name="i1_sdk_fb_social_iv_fblike_margin_left">3.5dp</dimen>
+    <!-- fb点赞-->
+
+    <!-- 邀请信息-->
+    <dimen name="i1_sdk_fb_social_tv_invited_margin">10dp</dimen>
+    <!-- fb分享按钮-->
+    <dimen name="i1_sdk_fb_social_btn_fb_share_margin_left">21.00dp</dimen>
+    <dimen name="i1_sdk_fb_social_btn_fb_share_margin_top">17.00dp</dimen>
+    <!-- line分享按钮-->
+    <dimen name="i1_sdk_fb_social_btn_fb_line_margin_left">11.00dp</dimen>
+    <!-- 内容区域-->
+    <dimen name="i1_sdk_fb_social_ll_share_padding">20.00dp</dimen>
+
+    <!-- 列表项高度-->
+    <dimen name="i1_sdk_fb_social_list_item_height">50.00dp</dimen>
+
+    <!-- 菜单选项-->
+    <dimen name="i1_sdk_fb_social_item_icon_margin">12.00dp</dimen>
+    <dimen name="i1_sdk_fb_social_item_text_size">20sp</dimen>
+    <dimen name="i1_sdk_fb_social_item_pic_selector_margin_right">20dp</dimen>
+    <!-- 菜单选项-->
+
+    <dimen name="i1_sdk_fb_social_item_iv_redpoint_size">6dp</dimen>
+    <dimen name="i1_sdk_fb_social_item_iv_redpoint_margin">10dp</dimen>
+
+    <!-- faq dialog宽度-->
+    <dimen name="i1_sdk_fb_social_faq_dialog_width">200dp</dimen>
+    <!-- faq dialog高度-->
+    <dimen name="i1_sdk_fb_social_faq_dialog_height">160dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_tv_title_text_size">16sp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_tv_title_margin">1dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_tv_title_padding">10dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_iv_close_margin">8dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_sc_margin">1dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_tv_content_padding">12dp</dimen>
+    <dimen name="i1_sdk_fb_social_faq_tv_content_text_size">14sp</dimen>
+
+    <!--间隔大小 -->
+    <dimen name="i1_sdk_fb_social_split_size">16dp</dimen>
+
+    <!-- invite friend layout -->
+    <dimen name="i1_sdk_fb_social_invite_fri_gw_margin_left">22dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_gw_spacing">15dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_height">47dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_margin_bottom">21dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_margin_top">20dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_margin_left">48.5dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_margin_right">22.5dp</dimen>
+    <dimen name="i1_sdk_fb_social_invite_fri_btn_send_text_size">22sp</dimen>
+    <!-- invite friend layout -->
+
+    <!-- friend item layout -->
+    <dimen name="i1_sdk_fb_social_friend_item_iv_avtar_size">40dp</dimen>
+    <dimen name="i1_sdk_fb_social_friend_item_tv_name_margin">11dp</dimen>
+    <dimen name="i1_sdk_fb_social_friend_item_cb_selector_margin">15dp</dimen>
+    <dimen name="i1_sdk_fb_social_friend_item_iv_friend_state_size">20dp</dimen>
+    <dimen name="i1_sdk_fb_social_friend_item_iv_friend_state_margin">15dp</dimen>
+    <!-- friend item layout -->
+
+    <!-- reward center layout -->
+    <dimen name="i1_sdk_fb_social_reward_center_gw_rewards_marginTop">30dp</dimen>
+    <!-- reward center layout -->
+
+    <!-- reward item layout -->
+    <dimen name="i1_sdk_fb_social_reward_item_tv_content_margin">8dp</dimen>
+    <dimen name="i1_sdk_fb_social_reward_item_tv_content_textsize">12sp</dimen>
+    <!-- reward item layout -->
+
+    <!-- myreward item layout -->
+    <dimen name="i1_sdk_fb_social_myreward_item_text_size">12sp</dimen>
+    <dimen name="i1_sdk_fb_social_myreward_header_text_size">16sp</dimen>
+    <dimen name="i1_sdk_fb_social_myreward_item_padding">10dp</dimen>
+    <dimen name="i1_sdk_fb_social_myreward_layout_margin">20dp</dimen>
+    <!-- myreward item layout -->
+
+    <!-- present firend layout-->
+    <dimen name="i1_sdk_fb_social_present_layout_btn_height">40dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_marginRight">22.5dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_marginLeft">10dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_marginBottom">21dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_marginTop">20dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_padding">5dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_btn_textsize">18sp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_pb_receive_padding">5dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_pb_receive_height">15dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_iv_receive_status_size">20dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_tv_receive_status_tetxsize">13sp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_tv_receive_marginLeft">5dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_tv_tips_marginTop">3dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_tv_tips_textsize">11sp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_ll_status_marginLeft">22dp</dimen>
+    <dimen name="i1_sdk_fb_social_present_layout_ll_status_marginRight">10dp</dimen>
+    <!-- present firend layout-->
+
+    <!-- dot progress-->
+    <dimen name="i1_sdk_fb_social_dot_progress_layout_marginLeft">21dp</dimen>
+    <dimen name="i1_sdk_fb_social_dot_progress_layout_marginTop">8dp</dimen>
+    <!-- dot progress-->
+
+</resources>

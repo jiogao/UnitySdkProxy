@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">Liên kết quá hạn, hãy thử lại!</string>
+    <string name="r1_thrid_payment_close">Đóng trang Nạp bên thứ ba, hãy kiểm tra số dư tài khoản của bạn</string>
+    <string name="r1_user_cancel">Hủy</string>
+    <string name="r1_network_error">Liên kết mạng lỗi</string>
+    <string name="r1_sdk_file_not_exists">Tệp không tồn tại</string>
+</resources>

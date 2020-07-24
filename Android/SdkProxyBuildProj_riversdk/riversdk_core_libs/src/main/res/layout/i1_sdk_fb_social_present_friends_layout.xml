@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridView
+        android:id="@+id/gv_sendable_firends"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/i1_sdk_fb_social_invite_fri_gw_margin_left"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:horizontalSpacing="@dimen/i1_sdk_fb_social_invite_fri_gw_spacing"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/i1_sdk_fb_social_invite_fri_gw_spacing" />
+
+    <TextView
+        android:id="@+id/tv_firends_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/i1_sdk_fb_social_invite_fri_gw_margin_left"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/i1_sdk_fb_social_invite_fri_gw_spacing"
+        android:text="@string/i1_sdk_fb_social_present_empty_text"
+        android:textColor="@color/i1_sdk_fb_social_invite_empty_text_color"
+        android:verticalSpacing="@dimen/i1_sdk_fb_social_invite_fri_gw_spacing"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/i1_sdk_fb_social_fl_fb_content_area_bg">
+
+        <Button
+            android:id="@+id/btn_social_present_gift"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/i1_sdk_fb_social_present_layout_btn_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/i1_sdk_fb_social_present_layout_btn_marginBottom"
+            android:layout_marginLeft="@dimen/i1_sdk_fb_social_present_layout_btn_marginLeft"
+            android:layout_marginRight="@dimen/i1_sdk_fb_social_present_layout_btn_marginRight"
+            android:layout_marginTop="@dimen/i1_sdk_fb_social_present_layout_btn_marginTop"
+            android:background="@drawable/i1_sdk_fb_social_btn"
+            android:padding="@dimen/i1_sdk_fb_social_present_layout_btn_padding"
+            android:text="@string/i1_sdk_fb_social_present"
+            android:textColor="@color/i1_sdk_fb_social_white"
+            android:textSize="@dimen/i1_sdk_fb_social_present_layout_btn_textsize" />
+
+        <Button
+            android:id="@+id/btn_social_receive_gift"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/i1_sdk_fb_social_present_layout_btn_height"
+            android:layout_alignBottom="@id/btn_social_present_gift"
+            android:layout_toLeftOf="@id/btn_social_present_gift"
+            android:background="@drawable/i1_sdk_fb_social_btn"
+            android:gravity="center"
+            android:padding="@dimen/i1_sdk_fb_social_present_layout_btn_padding"
+            android:text="@string/i1_sdk_fb_social_receive"
+            android:textColor="@color/i1_sdk_fb_social_white"
+            android:textSize="@dimen/i1_sdk_fb_social_present_layout_btn_textsize" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/btn_social_receive_gift"
+            android:layout_marginLeft="@dimen/i1_sdk_fb_social_present_layout_ll_status_marginLeft"
+            android:layout_marginRight="@dimen/i1_sdk_fb_social_present_layout_ll_status_marginRight"
+            android:layout_toLeftOf="@id/btn_social_receive_gift"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ProgressBar
+                        android:id="@+id/pb_receive_progress"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/i1_sdk_fb_social_present_layout_pb_receive_height"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:max="10"
+                        android:paddingLeft="@dimen/i1_sdk_fb_social_present_layout_pb_receive_padding"
+                        android:progress="4"
+                        android:progressDrawable="@drawable/i1_sdk_fb_social_layer_list_progress_drawable" />
+
+                    <ImageView
+                        android:layout_width="@dimen/i1_sdk_fb_social_present_layout_iv_receive_status_size"
+                        android:layout_height="@dimen/i1_sdk_fb_social_present_layout_iv_receive_status_size"
+                        android:src="@drawable/i1_sdk_fb_social_gift_vaild" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_receive_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/i1_sdk_fb_social_present_layout_tv_receive_marginLeft"
+                    android:text="4/10"
+                    android:textColor="@color/i1_sdk_fb_social_present_layout_receive_textcolor"
+                    android:textSize="@dimen/i1_sdk_fb_social_present_layout_tv_receive_status_tetxsize" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/linear1"
+                android:layout_marginTop="@dimen/i1_sdk_fb_social_present_layout_tv_tips_marginTop"
+                android:text="@string/i1_sdk_fb_social_present_restrictions"
+                android:textColor="@color/i1_sdk_fb_social_black"
+                android:textSize="@dimen/i1_sdk_fb_social_present_layout_tv_tips_textsize" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/btn_social_present_gift" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="50dp"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <!-- small float view -->
+    <RelativeLayout
+        android:id="@+id/sq_sdk_float_layout_small"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/sq_sdk_float_img_small_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sq_h5_sdk_floatview_logo"/>
+
+    </RelativeLayout>
+
+
+    <!-- float menu view -->
+    <LinearLayout
+        android:id="@+id/sq_sdk_float_layout_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/sq_h5_sdk_floatview_menu_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!-- logo  left-->
+
+        <LinearLayout
+            android:id="@+id/sq_sdk_float_layout_menu_logo_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/sq_sdk_float_img_menu_logo_left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/sq_h5_sdk_floatview_logo"/>
+        </LinearLayout>
+
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/sq_sdk_float_left_block"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            />
+
+        <!-- 个人中心 -->
+        <RelativeLayout
+            android:id="@+id/sq_sdk_float_layout_user_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:drawableTop="@drawable/sq_h5_sdk_floatview_user"
+                android:text="帐号"
+                android:gravity="center"
+                android:textColor="#2d2d2d"
+                android:textSize="@dimen/sq_h5_sdk_text_size_xsmall"/>
+
+        </RelativeLayout>
+
+
+        <!-- 礼包 -->
+        <RelativeLayout
+            android:id="@+id/sq_sdk_float_layout_gift_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/sq_h5_sdk_floatview_gift"
+                android:gravity="center"
+                android:text="礼包"
+                android:textColor="#2d2d2d"
+                android:textSize="@dimen/sq_h5_sdk_text_size_xsmall"/>
+
+        </RelativeLayout>
+
+        <!-- 客服 -->
+        <RelativeLayout
+            android:id="@+id/sq_sdk_float_layout_kefu_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/sq_h5_sdk_floatview_service"
+                android:gravity="center"
+                android:text="客服"
+                android:textColor="#2d2d2d"
+                android:textSize="@dimen/sq_h5_sdk_text_size_xsmall"/>
+
+        </RelativeLayout>
+
+        <!-- 新闻中心 -->
+        <RelativeLayout
+            android:id="@+id/sq_sdk_float_layout_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/sq_h5_sdk_floatview_sa"
+                android:gravity="center"
+                android:text="注销"
+                android:textColor="#2d2d2d"
+                android:textSize="@dimen/sq_h5_sdk_text_size_xsmall"/>
+        </RelativeLayout>
+        <View
+            android:visibility="visible"
+            android:id="@+id/sq_sdk_float_right_block"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            />
+
+        <LinearLayout
+            android:id="@+id/sq_sdk_float_layout_menu_logo_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <!-- logo right-->
+            <ImageView
+                android:id="@+id/sq_sdk_float_img_menu_logo_right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/sq_h5_sdk_floatview_logo"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

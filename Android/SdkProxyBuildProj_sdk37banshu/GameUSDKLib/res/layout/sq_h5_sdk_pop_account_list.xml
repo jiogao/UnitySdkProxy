@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:background="@drawable/sq_h5_sdk_edittext_half_bottom_bg"
+              android:orientation="vertical"
+              android:paddingBottom="3dp">
+
+    <ListView
+        android:id="@+id/lvAccountList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#a0eeeeee"
+        android:dividerHeight="1dp"
+        android:listSelector="#f3f3f3"
+        android:paddingBottom="3dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="3dp"
+        android:scrollbars="vertical"
+        android:scrollIndicators="right"
+        android:scrollbarSize="4dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarThumbVertical="@color/sq_h5_sdk_light_gray"
+        android:smoothScrollbar="true"
+
+        />
+</LinearLayout>

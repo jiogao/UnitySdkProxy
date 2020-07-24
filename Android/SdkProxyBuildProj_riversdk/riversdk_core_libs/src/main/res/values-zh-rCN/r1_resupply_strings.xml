@@ -1,0 +1,13 @@
+<resources>
+    <!--重新进入游戏检测到丢单提示-->
+    <string name="r1_sdk_ingame_resupply_tips">检测到因网络异常导致上一笔充值金额暂未到账，现为您重新发放，请耐心等待！</string>
+    <!--储值检测到丢单提示-->
+    <string name="r1_sdk_purchase_resupply_tips">因网络异常导致充值金额暂未到账，现为您重新连接服务器，请稍后！</string>
+    <!--多次请求无效，引导用户联系客服-->
+    <string name="r1_sdk_contact_service_tips">因网络异常导致您的充值金额无法到账，请联系客服为您快捷发放。</string>
+
+    <string name="r1_sdk_resupply_tips">(温馨提示：快捷发放需要您提供账号相关信息)</string>
+    <string name="r1_sdk_confirm">确定</string>
+    <string name="r1_sdk_retry_later">稍后再试</string>
+    <string name="r1_sdk_contact_service">联系客服</string>
+</resources>

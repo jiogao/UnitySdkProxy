@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/g1_sdk_transparent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/g1_sw_28dp"
+        android:background="@color/g1_sdk_white">
+
+        <EditText
+            android:id="@+id/et_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/g1_sdk_login_et_bg"
+            android:gravity="center_vertical|left"
+            android:hint="@string/g1_sdk_enter_account_text"
+            android:paddingLeft="@dimen/g1_sw_20dp"
+            android:singleLine="true"
+            android:textColor="@color/g1_sdk_black"
+            android:textColorHint="@color/g1_sdk_login_hint_color"
+            android:textSize="@dimen/g1_sw_10sp" />
+
+        <ImageView
+            android:id="@+id/iv_input_icon"
+            android:layout_width="@dimen/g1_sw_11dp"
+            android:layout_height="@dimen/g1_sw_13dp"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="@dimen/g1_sw_5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/g1_sdk_login_account_icon" />
+
+        <ImageView
+            android:id="@+id/iv_pass_icon"
+            android:layout_width="@dimen/g1_sw_13dp"
+            android:layout_height="@dimen/g1_sw_13dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="@dimen/g1_sw_8dp"
+            android:padding="@dimen/g1_sw_1dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/g1_sdk_login_iv_verify_pass_icon"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/g1_sw_20dp"
+        android:maxLines="2"
+        android:text="I have agreed to the Platform Terms of Service and Privacy"
+        android:textColor="@color/g1_sdk_register_error_text_color"
+        android:textSize="@dimen/g1_sw_7sp"
+        android:visibility="gone" />
+</LinearLayout>

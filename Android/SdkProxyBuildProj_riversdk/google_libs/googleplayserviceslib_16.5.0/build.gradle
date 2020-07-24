@@ -1,0 +1,5 @@
+evaluationDependsOn(':google_libs')
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':google_libs:googleplayserviceslib_base_16.0.1')
+}

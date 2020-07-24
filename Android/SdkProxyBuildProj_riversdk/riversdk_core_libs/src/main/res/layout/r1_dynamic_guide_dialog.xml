@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/r1_dyncmic_guide_dialog_bg">
+
+    <LinearLayout
+        android:layout_width="@dimen/r1_dynamic_dialog_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/r1_sdk_debug_dialog_top_bg">
+
+        <TextView
+            android:id="@+id/tv_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="errorcode"
+            android:textStyle="bold"
+            android:textSize="@dimen/r1_dynamic_dialog_bg_title_size"
+            android:layout_margin="@dimen/r1_dynamic_dialog_text_margin"
+            android:textColor="@color/r1_white" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="msg"
+            android:textSize="@dimen/r1_dynamic_dialog_bg_text_size"
+            android:layout_margin="@dimen/r1_dynamic_dialog_text_margin"
+            android:textColor="@color/r1_dynamic_guide_dialog_text_color" />
+
+
+        <TextView
+            android:id="@+id/tv_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="resolve tip"
+            android:textSize="12sp"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_marginLeft="@dimen/r1_dynamic_dialog_text_margin"
+            android:layout_marginRight="@dimen/r1_dynamic_dialog_text_margin"
+            android:textColor="@color/r1_dynamic_guide_dialog_text_color" />
+
+
+        <Button
+            android:layout_width="@dimen/r1_debug_dialog_btn_width"
+            android:layout_height="@dimen/r1_debug_dialog_btn_height"
+            android:text="OK"
+            android:id="@+id/btn_commit"
+            android:textColor="@color/r1_white"
+            android:background="@drawable/r1_sdk_debug_dialog_btn"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/r1_dynamic_dialog_btn_margin"
+            android:layout_marginBottom="@dimen/r1_dynamic_dialog_btn_margin"
+            android:elevation="@dimen/r1_debug_dialog_btn_elevation"
+            android:textSize="@dimen/r1_debug_dialog_text_size"
+            />
+    </LinearLayout>
+
+</FrameLayout>
