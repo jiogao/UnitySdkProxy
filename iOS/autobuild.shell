@@ -202,6 +202,10 @@ if [[ -n "${infoExtraPlistPath}" ]]; then
 fi
 /usr/libexec/PlistBuddy -c "Save" "${infoPlistPath}"
 
+# 修改权限
+chmod +ux "${projectDir}/MapFileParser.sh"
+chmod +ux "${projectDir}/process_symbols.sh"
+
 if [[ $unbuild == true ]]; then
 	exit
 fi
