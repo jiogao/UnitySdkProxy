@@ -66,10 +66,17 @@ module XcodeAutoSet
             dstRootDir = 'XcodeAutoSet'
 
             # # 1、显示所有的target
-            # project.targets.each do |target|
-            #   puts target.name
-            # end
-            target = @project.targets.first
+            unityiPhoneTarget = nil
+            unityFrameworkTarget = nil
+            @project.targets.each do |iTarget|
+                puts iTarget.name
+                if iTarget.name == "UnityFramework"
+                    unityFrameworkTarget = iTarget
+                elsif iTarget.name == "Unity-iPhone"
+                    unityiPhoneTarget = iTarget
+                end
+            end
+            # target = @project.targets.first
 
             #删除旧文件
             fullDstRootDir = File::expand_path(dstRootDir, @rootDir)
@@ -84,12 +91,14 @@ module XcodeAutoSet
                 end
             end
 
-            xcode_group_readd(target, fullDstRootDir)
+            xcode_set_indentifier(unityiPhoneTarget)
+
+            xcode_group_readd(unityFrameworkTarget, fullDstRootDir)
 
             #工程设置
 
-            xcode_set_build_settings(target)
-            xcode_add_frameworks(target)
+            xcode_set_build_settings(unityFrameworkTarget)
+            xcode_add_frameworks(unityFrameworkTarget)
 
             @project.save
             puts '文件添加完成'
@@ -193,6 +202,10 @@ module XcodeAutoSet
                 # puts configuration
                 #Other Linker Flags
                 other_Linker_Flags = configuration.build_settings['OTHER_LDFLAGS']
+                if other_Linker_Flags == nil
+                    other_Linker_Flags = Array.new
+                    configuration.build_settings['OTHER_LDFLAGS'] = other_Linker_Flags
+                end
                 flag_str = '$(PROJECT_DIR)' + relatively_path
                 search_paths_settings = nil
                 if relatively_path.end_with?('.framework')
@@ -222,6 +235,14 @@ module XcodeAutoSet
             end
         end
 
+        #包名设置
+        def xcode_set_indentifier(target)
+            configurations = target.build_configurations
+            configurations.each do |configuration|
+                configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @productBundleIdentifier
+            end
+        end
+
         #编译设置
         def xcode_set_build_settings(target)
             configurations = target.build_configurations
@@ -233,7 +254,6 @@ module XcodeAutoSet
 
                 #Enable Bitcode
                 configuration.build_settings['ENABLE_BITCODE'] = 'NO'
-                configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = @productBundleIdentifier
 
                 #$(SRCROOT) 和 $(SRCROOT)/Libraries 带有双引号会导致找不到库文件， 原因不明
                 library_search_paths = reset_setting_to_array(configuration.build_settings, 'LIBRARY_SEARCH_PATHS')
