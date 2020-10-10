@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# 当前脚本目录
+shellDir=$(dirname "$0")
+
+subChannelName="$1"
+
+unzipPath="$shellDir/output_ios"
+zipPath="${unzipPath}.zip"
+
+outp="${unzipPath}_${subChannelName}"
+
+rm -r $unzipPath
+
+# unzip $zipPath -d $shellDir
+mkdir $unzipPath
+tar -pzxvf $zipPath -C $shellDir
+
+rm -r $outp
+mv $unzipPath $outp
+chmod +x "$outp/MapFileParser.sh"
+chmod +x "$outp/process_symbols.sh"
+
+~/AutoBuildRes/Channel/build_switch.shell \
+    -target "${outp}/Unity-iPhone.xcodeproj" \
+    -channel "MainChannel_${subChannelName}" \
+    -type "ad-hoc" \
+    # -unbuild
