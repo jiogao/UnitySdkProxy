@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/i1_sdk_fb_social_dot_progress_layout_marginLeft"
+    android:layout_marginRight="@dimen/i1_sdk_fb_social_dot_progress_layout_marginLeft"
+    android:layout_marginTop="@dimen/i1_sdk_fb_social_dot_progress_layout_marginTop"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_reach_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/i1_sdk_fb_social_progressbar_num"
+        android:gravity="center_horizontal"
+        android:text="20人"
+        android:textColor="@color/i1_sdk_fb_social_white" />
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_loading_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/i1_sdk_fb_social_progressbar_bg" />
+
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/i1_sdk_fb_social_progressbar_loading"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_hover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/i1_sdk_fb_social_progressbar_dot_hover"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/iv_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/i1_sdk_fb_social_progressbar_dot_current"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>
+

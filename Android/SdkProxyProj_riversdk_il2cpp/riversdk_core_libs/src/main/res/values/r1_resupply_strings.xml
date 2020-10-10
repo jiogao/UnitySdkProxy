@@ -1,0 +1,13 @@
+<resources>
+    <!--重新进入游戏检测到丢单提示-->
+    <string name="r1_sdk_ingame_resupply_tips">Your purchase is not successful. Purchased item will be sent again, please wait.</string>
+    <!--储值检测到丢单提示-->
+    <string name="r1_sdk_purchase_resupply_tips">Your purchase is not successful. Reconnecting to the server, please wait.</string>
+    <!--多次请求无效，引导用户联系客服-->
+    <string name="r1_sdk_contact_service_tips">Your purchase is not successful. Please contact our customer service.</string>
+
+    <string name="r1_sdk_resupply_tips">(Reminder: please provide your account info when contacting our customer service)</string>
+    <string name="r1_sdk_confirm">OK</string>
+    <string name="r1_sdk_retry_later">Retry Later</string>
+    <string name="r1_sdk_contact_service">Contact CS</string>
+</resources>

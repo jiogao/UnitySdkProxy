@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_gp_service_disconnect">Disconnesso dai servizi Google, riprova</string>
+    <string name="r1_gp_service_unavailable">Impossibile utilizzare Google Play Services. Controlla lo stato di accesso di Google.</string>
+    <string name="r1_gp_user_canceled">Acquisto annullato</string>
+    <string name="r1_gp_purchase_error">Errore di acquisto</string>
+    <string name="r1_gp_item_not_owned">Impossibile confermare questo oggetto</string>
+    <string name="r1_gp_item_unavailable">Ci dispiace, questo oggetto non è acquistabile</string>
+    <string name="r1_gp_item_already_owned">Errore di acquisto. Prova a svuotare le cache di Google Play</string>
+    <string name="r1_gp_store_lack_of_perm">Acquisto fallito. Concedi l\'autorizzazione della finestra a comparsa a Google Play</string>
+
+    <string name="r1_pop_from_backgroudd">Finestra pop-up nel backstage</string>
+    <string name="r1_allow_pop_from_background">Concedi l\'autorizzazione Finestra pop-up all\'app</string>
+    <string name="r1_goto_activate">Concedere</string>
+    <string name="r1_ok">Okay</string>
+
+    <string name="r1_purchase_fail">Acquisto fallito</string>
+</resources>

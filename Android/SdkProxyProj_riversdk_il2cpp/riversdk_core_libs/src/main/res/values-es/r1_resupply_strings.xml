@@ -1,0 +1,13 @@
+<resources>
+    <!--重新进入游戏检测到丢单提示-->
+    <string name="r1_sdk_ingame_resupply_tips">Tu compra falló. Objeto comprado será enviado de nuevo, por favor espere.</string>
+    <!--储值检测到丢单提示-->
+    <string name="r1_sdk_purchase_resupply_tips">Tu compra falló. Reconectando al servidor, por favor espere.</string>
+    <!--多次请求无效，引导用户联系客服-->
+    <string name="r1_sdk_contact_service_tips">Tu compra falló. Por favor, contacta con nuestro servicio al cliente.</string>
+
+    <string name="r1_sdk_resupply_tips">(Recordatorio: cuando estás poniendo en contacto con servicio al cliente, por favor proporciona la informacion de tu cuenta)</string>
+    <string name="r1_sdk_confirm">Confirmar</string>
+    <string name="r1_sdk_retry_later">Reintentar más\ntarde</string>
+    <string name="r1_sdk_contact_service">Contacta Servicio\nal Cliente</string>
+</resources>

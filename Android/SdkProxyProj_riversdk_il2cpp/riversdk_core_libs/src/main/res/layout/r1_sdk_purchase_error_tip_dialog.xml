@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/r1_white">
+        
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/iv_close_btn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/r1_iv_close"
+            android:layout_marginRight="8dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/r1_purchase_fail"
+            android:id="@+id/tv_title"
+            android:textSize="17sp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/r1_purchase_error_text_color"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/tv_title"
+            android:id="@+id/iv_setting"
+            android:src="@drawable/r1_sdk_open_setting"/>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/tv_content"
+            android:layout_marginTop="13dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="13sp"
+            android:textColor="@color/r1_purchase_error_msg_color"
+            android:layout_below="@+id/iv_setting"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tv_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:id="@+id/ll_btn_container"
+            android:orientation="horizontal"
+            android:background="#0f9be3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/r1_ok"
+                android:id="@+id/tv_btn"
+                android:textColor="@color/r1_white" />
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:id="@+id/iv_arrow"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/r1_sdk_right_arrow"/>
+
+        </LinearLayout>
+
+        
+    </RelativeLayout>
+
+</RelativeLayout>

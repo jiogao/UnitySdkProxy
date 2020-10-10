@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_gp_service_disconnect">구글 서비스가 중단되었습니다. 다시 시도해주세요.</string>
+    <string name="r1_gp_service_unavailable">구글 플레이 서비스 상태 이상. 로그인 상태를 확인해주세요.</string>
+    <string name="r1_gp_user_canceled">결제를 취소했습니다.</string>
+    <string name="r1_gp_purchase_error">구매 시 에러가 발생했습니다.</string>
+    <string name="r1_gp_item_not_owned">해당 상품을 구매할 수 없습니다.</string>
+    <string name="r1_gp_item_unavailable">해당 상품을 구매할 수 없습니다. 다시 시도해주세요.</string>
+    <string name="r1_gp_item_already_owned">결제 오류. 구글 플레이 스토어 캐시 삭제 후 다시 히도해주세요.</string>
+    <string name="r1_gp_store_lack_of_perm">구매 실패. 설정에서 구글 플레이 스토어의 팝업창을 허용해주세요.</string>
+
+    <string name="r1_pop_from_backgroudd">백그라운드 팝업 인터페이스</string>
+    <string name="r1_allow_pop_from_background">백그라운드 팝업 인터페이스 허용</string>
+    <string name="r1_goto_activate">권한 부여</string>
+    <string name="r1_ok">확인</string>
+
+    <string name="r1_purchase_fail">구매 실패</string>
+</resources>

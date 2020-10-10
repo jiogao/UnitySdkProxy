@@ -1,0 +1,5 @@
+<resources>
+    <string name="r1_select_pic">Please select</string>
+    <string name="r1_album_string">Album</string>
+    <string name="r1_camera_string">Camera</string>
+</resources>

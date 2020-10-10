@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="g1_sdk_black">#000000</color>
+    <color name="g1_sdk_white">#FFFFFF</color>
+    <!-- 透明-->
+    <color name="g1_sdk_transparent">#00000000</color>
+    <color name="g1_sdk_half_transparent">#80000000</color>
+
+    <!--登录-->
+    <color name="g1_sdk_thrid_login_text_color">#7a7a7a</color>
+    <color name="g1_sdk_login_hint_color">#cacaca</color>
+
+    <!--注册-->
+    <color name="g1_sdk_register_agree_text_color">#a1a1a1</color>
+    <color name="g1_sdk_register_agree_highlight_color">#268eda</color>
+    <color name="g1_sdk_register_decline_color">#8e8e8e</color>
+    <color name="g1_sdk_register_error_text_color">#fb694d</color>
+
+
+    <color name="g1_sdk_notice_dialog_cancel_btn_bg">#949494</color>
+
+    <color name="g1_sdk_pop_account_divider">#eeeeee</color>
+    <color name="g1_sdk_pop_account_selected">#f3f3f3</color>
+    <color name="g1_sdk_pop_account_color">#666666</color>
+
+    <color name="g1_sdk_agreements_btn_color">#62aee4</color>
+    <color name="g1_sdk_accept_btn_color">#5fd193</color>
+    <color name="g1_sdk_dialog_title_color">#414141</color>
+    <color name="g1_sdk_item_text_color">#314c92</color>
+
+    <color name="g1_sdk_game_helper_bg">#f0f0f0</color>
+
+    <color name="g1_sdk_floatview_dialog_btn_bg">#314c92</color>
+    <color name="g1_sdk_snackbar_bg">#b3ffffff</color>
+    <color name="g1_sdk_snackbar_text_color">#cce02a2a</color>
+
+    <color name="g1_sdk_purchase_error_dialog_theme_color">#0f9be3</color>
+</resources>

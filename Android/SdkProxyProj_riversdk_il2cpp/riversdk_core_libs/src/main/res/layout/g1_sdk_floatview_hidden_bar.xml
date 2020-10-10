@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/g1_dp_50"
+    android:background="@drawable/g1_sdk_floatview_hidden_bar_bg">
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/g1_dp_10"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="@dimen/g1_dp_5"
+        android:paddingLeft="@dimen/g1_dp_10"
+        android:paddingRight="@dimen/g1_dp_10"
+        android:paddingTop="@dimen/g1_dp_5">
+
+        <ImageView
+            android:id="@+id/tv_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/g1_dp_5"
+            android:src="@drawable/g1_sdk_floatview_hidden_bar_eye" />
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_eye"
+            android:text="@string/g1_sdk_floatview_hidden_tips"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+</FrameLayout>

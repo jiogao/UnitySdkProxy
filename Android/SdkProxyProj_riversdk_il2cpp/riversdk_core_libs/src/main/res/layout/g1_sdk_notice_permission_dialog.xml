@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/g1_sdk_bg_with_corner"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/g1_dp_296"
+        android:layout_height="@dimen/g1_dp_284">
+
+        <ImageView
+            android:id="@+id/iv_close_btn"
+            android:layout_width="@dimen/g1_dp_15"
+            android:layout_height="@dimen/g1_dp_15"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/g1_dp_14"
+            android:layout_marginRight="@dimen/g1_dp_14"
+            android:src="@drawable/g1_sdk_iv_close" />
+
+        <ImageView
+            android:layout_width="@dimen/g1_dp_248"
+            android:layout_height="@dimen/g1_dp_93"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/g1_dp_9"
+            android:src="@drawable/g1_sdk_dialog_decoration"/>
+
+        <ImageView
+            android:layout_width="@dimen/g1_dp_70"
+            android:layout_height="@dimen/g1_dp_70"
+            android:layout_below="@id/iv_close_btn"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/iv_notice_icon"
+            android:layout_marginTop="@dimen/g1_dp_30"
+            android:src="@drawable/g1_sdk_notice_icon" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/g1_sp_18"
+            android:text="開啟推送"
+            android:id="@+id/tv_title"
+            android:includeFontPadding="false"
+            android:layout_marginTop="@dimen/g1_dp_15"
+            android:textColor="@color/g1_sdk_dialog_title_color"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_notice_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最新資訊第一時間通知!\n好康福利領不停"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_title"
+            android:textSize="@dimen/g1_sp_13"
+            android:includeFontPadding="false"
+            android:textColor="@color/r1_text_color"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/g1_dp_8"
+            android:id="@+id/tv_content"/>
+
+        <Button
+            android:layout_width="@dimen/g1_dp_228"
+            android:layout_height="@dimen/g1_dp_30"
+            android:text="好的"
+            android:layout_below="@id/tv_content"
+            android:id="@+id/btn_commit"
+            android:layout_marginTop="@dimen/g1_dp_32"
+            android:textSize="@dimen/g1_sp_15"
+            android:textColor="@color/r1_white"
+            android:background="@drawable/g1_sdk_positive_btn_bg"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,4 @@
+evaluationDependsOn(':twitter-3.3.0')
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+}

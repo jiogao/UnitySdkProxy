@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="i1_sdk_fb_social_present_gift">互送禮物</string>
+    <string name="app_name">Facebook社交中心</string>
+    <string name="i1_sdk_fb_social_cancel">取消</string>
+    <string name="i1_sdk_fb_social_reward">我的獎勵</string>
+    <string name="i1_sdk_fb_social_reward_center">禮包中心</string>
+    <string name="i1_sdk_fb_social_invite_friend">邀請好友</string>
+    <string name="i1_sdk_fb_social_invite_string">已成功邀请了%1$d人</string>
+    <string name="i1_sdk_fb_social_text_send">發送</string>
+    <string name="i1_sdk_fb_social_all_check">全選</string>
+    <string name="i1_sdk_fb_social_invite_empty_text">您暫無可邀請的好友</string>
+    <string name="i1_sdk_fb_social_present_empty_text">您暫無可赠送的好友</string>
+    <string name="i1_sdk_fb_social_copy_serial_num_success">已複製序列號</string>
+    <string name="i1_sdk_fb_social_reward_name">獎勵名称</string>
+    <string name="i1_sdk_fb_social_time">時間</string>
+    <string name="i1_sdk_fb_social_status">狀態</string>
+    <string name="i1_sdk_fb_social_reward_gottype">發放形式</string>
+    <string name="i1_sdk_fb_social_present">一鍵贈送</string>
+    <string name="i1_sdk_fb_social_receive">一鍵接收</string>
+    <string name="i1_sdk_fb_social_present_restrictions">每日最多可領取10份禮物</string>
+    <string name="i1_sdk_fb_social_toast_choose_role_info">請選擇角色后再訪問</string>
+    <string name="i1_sdk_fb_social_toast_no_receive_gift">无可接收对象</string>
+    <string name="i1_sdk_fb_social_toast_no_send_gift">无可赠送对象</string>
+    <string name="i1_sdk_fb_social_toast_no_choose_friend">未選取Facebook好友</string>
+    <string name="i1_sdk_fb_social_unknown_friend">未知好友</string>
+    <string name="i1_sdk_fb_social_not_found_line_app">未偵測到LINE應用程式!</string>
+</resources>

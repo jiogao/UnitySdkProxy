@@ -1,0 +1,85 @@
+<resources>
+    <!-- 更新提示-->
+    <string name="g1_sdk_update_message">版本信息</string>
+    <string name="g1_sdk_update_dialog_text">发现新版本,请点击更新!</string>
+    <string name="g1_sdk_update_btn_text">更新</string>
+
+    <string name="g1_toast_login_info">尚未登录</string>
+
+    <string name="g1_network_unstable_notice">网络不可用,请重试!</string>
+    <string name="g1_network_error_notice">网络连接错误!</string>
+    <string name="g1_sdk_cancel_text">取消</string>
+
+    <!--登录界面-->
+    <string name="g1_sdk_login_text">账号登入</string>
+    <string name="g1_sdk_register_text">注册账号</string>
+    <string name="g1_sdk_signup_text">注册</string>
+    <string name="g1_sdk_fb_login_text">Facebook</string>
+    <string name="g1_sdk_guest_login_text">游客访问</string>
+    <string name="g1_sdk_enter_account_text">请输入账号</string>
+    <string name="g1_sdk_enter_pwd_text">请输入密码</string>
+
+    <!--注册界面-->
+    <string name="g1_sdk_enter_confirm_pwd_text">再输入密码</string>
+    <string name="g1_sdk_register_agree_text1">我已同意%1$s平台</string>
+    <string name="g1_sdk_register_agree_text2">和</string>
+    <string name="g1_sdk_register_agree_service">服务条款</string>
+    <string name="g1_sdk_register_agree_privacy">隐私条款</string>
+    <string name="g1_sdk_register_decline_text">返回登录</string>
+    <string name="g1_sdk_register_agreement_text">请先同意会员注册条款!</string>
+    <!--注册界面-->
+
+    <string name="g1_sdk_pay_waitting">请稍候...</string>
+    <string name="g1_sdk_password_not_match">两次输入的密码不一致!</string>
+    <string name="g1_sdk_init_success">初始化成功!</string>
+    <string name="g1_sdk_switch_account_success">切换账号成功!</string>
+    <string name="g1_sdk_dialog_cancel_btn_text">取消</string>
+    <string name="g1_sdk_dialog_confirm_btn_text">确认</string>
+    <string name="g1_sdk_dialog_decline_btn_text">取消</string>
+    <string name="g1_sdk_dialog_accept_btn_text">同意</string>
+    <string name="g1_sdk_welcome_back">欢迎回来,</string>
+    <string name="g1_sdk_copy_success">复制成功!</string>
+
+    <!--用户协议弹窗-->
+    <string name="g1_sdk_agreements">用户条款</string>
+    <string name="g1_sdk_agreements_tips">请先阅读并接受%1$s服务条款和隐私政策</string>
+    <!--用户协议弹窗-->
+
+    <!--游戏助手-->
+    <string name="g1_sdk_gane_helper_text">游戏助手</string>
+    <!--游戏助手-->
+
+    <!-- 悬浮窗-->
+    <string name="g1_toast_choose_role_info">请选择角色后再访问</string>
+    <string name="g1_sdk_floatview_hidden_tips">拖到此处隐藏</string>
+
+    <!--第三方登录授权app-->
+    <string name="g1_sdk_fb">Facebook</string>
+    <string name="g1_sdk_guest">游客访问</string>
+    <string name="g1_sdk_twitter">twitter</string>
+    <string name="g1_sdk_line">Line</string>
+    <string name="g1_sdk_naver">Naver</string>
+
+    <!--申请悬浮窗权限弹窗-->
+    <string name="g1_sdk_open_game_helper">开启游戏助手</string>
+    <string name="g1_sdk_open_game_helper_desc">我们需要获得悬浮窗权限\n才能为您提供尊属服务</string>
+    <string name="g1_sdk_open">开启</string>
+    <string name="g1_sdk_helper_never_show">不再提示</string>
+    <!--申请悬浮窗权限弹窗-->
+
+    <!--用户拒绝协议的显示弹窗-->
+    <string name="g1_sdk_dialog_notice">提示</string>
+    <string name="g1_sdk_refuse_privacy_tips">如果对游戏条款有任何的不认同，您可以在退出游戏后通过官网联系客服解答您的疑惑。\n是否现在退出游戏？</string>
+    <!--用户拒绝协议的显示弹窗-->
+
+    <!--注册界面的提醒-->
+    <string name="g1_sdk_register_account_hint">账号必须为6-30位字符</string>
+    <string name="g1_sdk_register_pwd_hint">密码必须为6-20位字符</string>
+    <!--注册界面的提醒-->
+
+    <!--申请通知权限的弹窗-->
+    <string name="g1_sdk_notice_permission_dialog_title">开启推送</string>
+    <string name="g1_sdk_notice_permission_dialog_content">最新游戏第一时间通知!福利领不停 </string>
+    <string name="g1_sdk_notice_permission_dialog_btn_text">好的</string>
+    <!--申请通知权限的弹窗-->
+</resources>

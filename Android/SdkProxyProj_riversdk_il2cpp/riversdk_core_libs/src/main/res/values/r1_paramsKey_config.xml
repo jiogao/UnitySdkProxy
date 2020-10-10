@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- google广告参数之ID信息-->
+	<string name="PARAMS_ADWORDS_APP_ID">GOOGLE_INSTALL_ID</string>
+	<!-- google广告安装标签 -->
+	<string name="PARAMS_ADWORDS_APP_INSTALL_LABEL">GOOGLE_INSTALL_LABEL</string>
+	<!-- google广告参数之安装标签对应的价值 -->
+	<string name="PARAMS_ADWORDS_APP_INSTALL_VALUE">ADWORDS_APP_INSTALL_VALUE</string>
+	<!-- appsflyer广告参数 -->
+	<string name="PARAMS_ADWORDS_PURCHASE_LABEL">GOOGLE_PURCHASE_LABEL</string>
+	<!-- appsflyer广告参数 -->
+	<string name="PARAMS_APPFLYER_KEY">APPSFLYER_DEV_KEY</string>
+	<!-- charboost appid-->
+	<string name="PARAMS_CHARTBOOST_APP_ID">CHARTBOOST_APP_ID</string>
+	<!-- charboost应用签名-->
+	<string name="PARAMS_CHARTBOOST_APP_SIGNATURE">CHARTBOOST_APP_SIGNATURE</string>
+	<!-- inmobi appid-->
+	<string name="PARAMS_INMOBI_APP_ID">INMOBI_AD</string>
+	<!-- 应用名字-->
+	<string name="PARAMS_APP_NAME">APP_NAME</string>
+	<!-- 状态 0是未审核， 1是已审核，2 上架， -1下架 -->
+	<string name="PARAMS_STATE">STATE</string>
+	<!-- facebook 深度链接-->
+	<string name="PARAMS_FACEBOOK_DEEPLINK_SCHEME">FACEBOOK_DEEPLINK_SCHEME</string>
+	<!-- 应用包名-->
+	<string name="PARAMS_APP_PACKAGE_NAME">APP_PACKAGE_NAME</string>
+	<!-- 储值通信密钥-->
+	<string name="PARAMS_SECRETKEY">TXSECRET</string>
+	<!-- SDK配置平台参数-->
+	<string name="PARAMS_PTCODE">PT_CODE</string>
+	<!-- 1:IOS 2.ANDROID-->
+	<string name="PARAMS_SERVICE_TYPE">SERVICE_TYPE</string>
+	<!-- SDK配置区域内的游戏ID 对应GameId -->
+	<string name="PARAMS_PRODUCTID">GAME_ID</string>
+	<!-- SDK配置区域内的游戏简码 -->
+	<string name="PARAMS_GAMECODE">GAME_CODE</string>
+	<!-- google analytics 参数-->
+	<string name="PARAMS_GA_USER_ID">GA_USER_ID</string>
+	<!-- 设置类型 ANDROID/IOS-->
+	<string name="PARAMS_TYPE">TYPE</string>
+	<!-- 游戏 appId-->
+	<string name="PARAMS_ID">ID</string>
+	<string name="PARAMS_LOCATION">LOCATION</string>
+	<!-- 谷歌储值密钥-->
+	<string name="PARAMS_GOOGLE_API_KEY">APP_PAY_KEY</string>
+	<!-- facebook应用id-->
+	<string name="PARAMS_FACEBOOK_APP_ID">FACEBOOK_APP_ID</string>
+	<!-- firebase文件下载地址-->
+	<string name="PARAMS_FIREBASE_URL">FIREBASE_URL</string>
+	<!-- facebook应用名-->
+	<string name="PARAMS_FACEBOOK_APP_NAME">FACEBOOK_USER_NAME</string>
+	<!-- 与前段Session通信加密字符串 参数-->
+	<string name="PARAMS_PASSPORTKEY">PASSPORTKEY</string>
+	<!-- 当前游戏包keyhash-->
+	<string name="PARAMS_FACEBOOK_KEYHASH">KEY_HASH</string>
+	<!-- 当前游戏包LAUNCHER Activity-->
+	<string name="PARAMS_LAUNCHER_ACTIVITY">LAUNCHER_ACTIVITY</string>
+</resources>

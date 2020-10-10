@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/r1_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@color/r1_notice_dialog_bg">
+
+        <ImageView
+            android:id="@+id/iv_close_btn"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/i1_sdk_dialog_close_btn" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/iv_close_btn"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/iv_notice_icon"
+            android:src="@drawable/i1_sdk_notice_icon" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="開啟推送"
+            android:id="@+id/tv_title"
+            android:includeFontPadding="false"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/r1_text_color"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_notice_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最新資訊第一時間通知!\n好康福利領不停"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_title"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/r1_text_color"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="11dp"
+            android:id="@+id/tv_content"/>
+        
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:text="好的"
+            android:layout_below="@id/tv_content"
+            android:id="@+id/btn_commit"
+            android:layout_marginTop="11dp"
+            android:textSize="12sp"
+            android:textColor="@color/r1_white"
+            android:background="@color/r1_notice_dialog_btn_color"
+            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

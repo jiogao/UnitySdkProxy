@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_friends_avtar"
+        android:layout_width="@dimen/i1_sdk_fb_social_friend_item_iv_avtar_size"
+        android:layout_height="@dimen/i1_sdk_fb_social_friend_item_iv_avtar_size"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tv_friends_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/i1_sdk_fb_social_friend_item_tv_name_margin"
+        android:gravity="center_horizontal"
+        android:textColor="@color/i1_sdk_fb_social_black"
+        android:text="Hee00000000" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <CheckBox
+        android:id="@+id/cb_friends_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:layout_marginRight="@dimen/i1_sdk_fb_social_friend_item_cb_selector_margin"
+        android:button="@drawable/i1_sdk_fb_social_invite_check_btn" />
+
+    <ImageView
+        android:id="@+id/iv_friends_state"
+        android:layout_width="@dimen/i1_sdk_fb_social_friend_item_iv_friend_state_size"
+        android:layout_height="@dimen/i1_sdk_fb_social_friend_item_iv_friend_state_size"
+        android:layout_gravity="center|right"
+        android:layout_marginRight="@dimen/i1_sdk_fb_social_friend_item_iv_friend_state_margin"
+        android:src="@drawable/i1_sdk_fb_social_gift_invaild"
+        android:visibility="gone" />
+</LinearLayout>

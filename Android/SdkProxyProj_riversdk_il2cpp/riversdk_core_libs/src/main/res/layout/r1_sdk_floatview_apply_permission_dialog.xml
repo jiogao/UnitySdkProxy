@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:id="@+id/ll_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/r1_sdk_floatview_apply_permission_dialog_margin_left"
+        android:layout_marginRight="@dimen/r1_sdk_floatview_apply_permission_dialog_margin_left"
+        android:layout_height="@dimen/r1_sdk_floatview_apply_permission_dialog_height"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:background="@drawable/r1_sdk_user_update_dialog_content_bg">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/r1_sdk_floatview_apply_permission_dialog_layout_tv_content_margin"
+                android:layout_marginRight="@dimen/r1_sdk_floatview_apply_permission_dialog_layout_tv_content_margin"
+                android:gravity="center"
+                android:text="content"
+                android:textColor="@color/r1_white"
+                android:textSize="@dimen/r1_sdk_floatview_apply_permission_dialog_content_textsize"
+                android:visibility="visible" />
+        </FrameLayout>
+
+
+        <View
+            android:id="@+id/horizontal_split"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:alpha="0.8"
+            android:background="@color/r1_black" />
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/r1_sdk_floatview_apply_permission_dialog_btn_height"
+            android:background="@drawable/r1_sdk_user_update_dialog_btn_bg"
+            android:alpha="0.8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="cancel"
+                android:textColor="@color/r1_blue"
+                android:textSize="@dimen/r1_sdk_floatview_apply_permission_dialog_content_textsize"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="confirm"
+                android:textColor="@color/r1_blue"
+                android:textSize="@dimen/r1_sdk_floatview_apply_permission_dialog_content_textsize"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vertical_split"
+        android:layout_width="0.2dp"
+        android:layout_height="@dimen/r1_sdk_floatview_apply_permission_dialog_btn_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/r1_black" />
+</FrameLayout>

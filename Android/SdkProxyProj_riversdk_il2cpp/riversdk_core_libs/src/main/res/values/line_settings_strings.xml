@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="riversdk_line_channel_id">1575008232</string>
+    <string name="riversdk_line_channel_secret">72cd9db026b65761ff82155894354741</string>
+</resources>

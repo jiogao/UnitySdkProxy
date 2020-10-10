@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/g1_dp_297"
+    android:layout_height="wrap_content"
+    android:background="@drawable/g1_app_review_bg">
+
+    <ImageView
+        android:id="@+id/review_close"
+        android:layout_width="@dimen/g1_dp_22"
+        android:layout_height="@dimen/g1_dp_22"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/g1_dp_6"
+        android:layout_marginRight="@dimen/g1_dp_6"
+        android:scaleType="centerInside"
+        android:src="@drawable/r1_iv_close" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/g1_dp_297"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/g1_dp_40">
+
+        <TextView
+            android:id="@+id/tv_review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/g1_dp_15"
+            android:layout_marginRight="@dimen/g1_dp_15"
+            android:text="@string/g1_review_reduc_text"
+            android:textColor="@color/r1_black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/g1_dp_40"
+            android:layout_marginTop="@dimen/g1_dp_41"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_app_complain"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/g1_dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/complain_btn_bg"
+                android:text="@string/g1_review_complain_text"
+                android:textColor="@color/C666666" />
+
+            <Button
+                android:id="@+id/btn_app_review"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/g1_dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/review_btn_bg"
+                android:text="@string/g1_review_rate_text"
+                android:textColor="@color/r1_white" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

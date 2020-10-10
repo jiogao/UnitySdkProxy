@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/g1_app_review_bg">
+    <ImageView
+        android:id="@+id/review_close"
+        android:layout_width="@dimen/g1_dp_25"
+        android:layout_height="@dimen/g1_dp_25"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/g1_dp_4"
+        android:layout_marginRight="@dimen/g1_dp_8"
+        android:padding="@dimen/g1_dp_2"
+        android:scaleType="centerInside"
+        android:src="@drawable/r1_iv_close" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/g1_dp_297"
+        android:layout_height="@dimen/g1_dp_116"
+        android:gravity="center"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/tv_result_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/g1_dp_14"
+            android:layout_marginRight="@dimen/g1_dp_14"
+            android:textColor="@color/r1_black"
+            android:gravity="center"
+            android:textSize="@dimen/g1_sp_18"
+            android:text="@string/g1_review_result_text" />
+    </RelativeLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">Auszeit</string>
+    <string name="r1_thrid_payment_close">Bitte überprüfen Sie den Kontostand</string>
+    <string name="r1_user_cancel">ABBRECHEN</string>
+    <string name="r1_network_error">Netzwerk-Fehler.</string>
+    <string name="r1_sdk_file_not_exists">Datei existiert nicht!</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_gp_service_disconnect">Google 服務已斷開，請重試</string>
+    <string name="r1_gp_service_unavailable">Google Play服務不可用，請檢查是否登錄Google賬號</string>
+    <string name="r1_gp_user_canceled">您已取消儲值。</string>
+    <string name="r1_gp_purchase_error">購買過程中發生錯誤。</string>
+    <string name="r1_gp_item_not_owned">無法確認該商品。</string>
+    <string name="r1_gp_item_unavailable">抱歉，該商品不可購買，請重試</string>
+    <string name="r1_gp_item_already_owned">購買出錯，請嘗試清除Google Play商店應用緩存。</string>
+    <string name="r1_gp_store_lack_of_perm">購買失敗，請前往設置打開Google Play商店彈出界面權限。</string>
+
+    <string name="r1_pop_from_backgroudd">後臺彈出界面</string>
+    <string name="r1_allow_pop_from_background">允许应用在后台弹出界面</string>
+    <string name="r1_goto_activate">前往開啟</string>
+    <string name="r1_ok">好的</string>
+
+    <string name="r1_purchase_fail">購買失敗</string>
+</resources>

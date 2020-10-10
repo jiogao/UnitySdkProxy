@@ -25,7 +25,9 @@ public class QKUnityPlayerActivity extends UnityPlayerActivity {
 
         QKSdkProxyFactory.setSdkProxyType(QKSdkProxy_imp.class, this);
         QKSdkProxyFactory.getSdkProxy().onCreate(savedInstanceState);
-    }@Override
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         QKSdkProxyFactory.getSdkProxy().onStart();

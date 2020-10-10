@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/i1_sdk_fb_social_reward_item_bg_normal" />
+
+    <ImageView
+        android:id="@+id/iv_reward_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/i1_sdk_fb_social_reward_item_bg_checked" />
+
+    <TextView
+        android:id="@+id/tv_reward_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:layout_marginLeft="@dimen/i1_sdk_fb_social_reward_item_tv_content_margin"
+        android:text="钻石100\n豪华大礼包"
+        android:textColor="@color/i1_sdk_fb_social_reward_content_text_color"
+        android:textSize="@dimen/i1_sdk_fb_social_reward_item_tv_content_textsize" />
+
+    <TextView
+        android:id="@+id/tv_target_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:layout_marginRight="@dimen/i1_sdk_fb_social_reward_item_tv_content_margin"
+        android:gravity="right"
+        android:text="礼包20\n可领取"
+        android:textColor="@color/i1_sdk_fb_social_white"
+        android:textSize="@dimen/i1_sdk_fb_social_reward_item_tv_content_textsize" />
+
+    <ImageView
+        android:id="@+id/iv_reward_got"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/i1_sdk_fb_social_reward_item_bg_got" />
+</FrameLayout>

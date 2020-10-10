@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">timeout</string>
+    <string name="r1_thrid_payment_close">si prega di controllare il saldo del conto</string>
+    <string name="r1_user_cancel">Annulla</string>
+    <string name="r1_network_error">Errore di rete.</string>
+    <string name="r1_sdk_file_not_exists">file inesistente!</string>
+</resources>

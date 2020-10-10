@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <View style="@style/i1_sdk_fb_social_vertical_layout" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/i1_sdk_fb_social_white"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/i1_sdk_fb_social_myreward_item_padding"
+        android:singleLine="true"
+        android:text="@string/i1_sdk_fb_social_time"
+        android:textColor="@color/i1_sdk_fb_social_myreward_item_textcolor"
+        android:textSize="@dimen/i1_sdk_fb_social_myreward_item_text_size" />
+
+    <View style="@style/i1_sdk_fb_social_vertical_layout" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/i1_sdk_fb_social_white"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/i1_sdk_fb_social_myreward_item_padding"
+        android:singleLine="true"
+        android:text="@string/i1_sdk_fb_social_reward_name"
+        android:textColor="@color/i1_sdk_fb_social_myreward_item_textcolor"
+        android:textSize="@dimen/i1_sdk_fb_social_myreward_item_text_size" />
+
+    <View style="@style/i1_sdk_fb_social_vertical_layout" />
+
+    <TextView
+        android:id="@+id/tv_gottype"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/i1_sdk_fb_social_white"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/i1_sdk_fb_social_myreward_item_padding"
+        android:singleLine="true"
+        android:text="@string/i1_sdk_fb_social_reward_gottype"
+        android:textColor="@color/i1_sdk_fb_social_myreward_item_textcolor"
+        android:textSize="@dimen/i1_sdk_fb_social_myreward_item_text_size" />
+
+    <View style="@style/i1_sdk_fb_social_vertical_layout" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/i1_sdk_fb_social_white"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/i1_sdk_fb_social_myreward_item_padding"
+        android:singleLine="true"
+        android:text="@string/i1_sdk_fb_social_status"
+        android:textColor="@color/i1_sdk_fb_social_myreward_item_textcolor"
+        android:textSize="@dimen/i1_sdk_fb_social_myreward_item_text_size" />
+
+    <View style="@style/i1_sdk_fb_social_vertical_layout" />
+</LinearLayout>

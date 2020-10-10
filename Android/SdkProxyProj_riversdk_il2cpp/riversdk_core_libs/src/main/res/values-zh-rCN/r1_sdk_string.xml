@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="r1_sdk_request_timeout">网络连接超时,请重试!</string>
+    <string name="r1_thrid_payment_close">第三方充值页面关闭，请检查您的账户余额</string>
+    <string name="r1_user_cancel">取消</string>
+    <string name="r1_network_error">网络连接错误</string>
+    <string name="r1_sdk_file_not_exists">文件不存在</string>
+</resources>
