@@ -230,34 +230,51 @@ echo `/usr/libexec/PlistBuddy -c "print" "$exportOptionsPlistPath"`
 
 # xcodebuild archive -workspace "${projectPath}/project.xcworkspace" \
 
-if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
-	xcodebuild archive -project $projectPath -scheme "$scheme" \
-	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
-	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
-	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
-	 CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
-	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
-	 PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
-	 PROVISIONING_PROFILE="$PROVISIONING_PROFILE" \
-	 IPHONEOS_DEPLOYMENT_TARGET="10.0"
+# # 2019.3之前 start
+# if [[ "${CODE_SIGN_STYLE}" == "Manual" ]]; then
+# 	xcodebuild archive -project $projectPath -scheme "$scheme" \
+# 	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
+# 	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+# 	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+# 	 CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
+# 	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
+# 	 PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
+# 	 PROVISIONING_PROFILE="$PROVISIONING_PROFILE" \
+# 	 IPHONEOS_DEPLOYMENT_TARGET="10.0"
 
-	# 3、导出ipa
-	xcodebuild -exportArchive \
-	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
-	# -exportFormat IPA  -exportProvisioningProfile $profileName
-elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
-	xcodebuild archive -project $projectPath -scheme "$scheme" \
-	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
-	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
-	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
-	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
-	 IPHONEOS_DEPLOYMENT_TARGET="10.0"
+# 	# 3、导出ipa
+# 	xcodebuild -exportArchive \
+# 	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
+# 	# -exportFormat IPA  -exportProvisioningProfile $profileName
+# elif [[ "${CODE_SIGN_STYLE}" == "Automatic" ]]; then
+# 	xcodebuild archive -project $projectPath -scheme "$scheme" \
+# 	 -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
+# 	 DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+# 	 CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+# 	 PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
+# 	 IPHONEOS_DEPLOYMENT_TARGET="10.0"
 
-	# 3、导出ipa
-	xcodebuild -exportArchive -allowProvisioningUpdates \
-	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
-	# -exportFormat IPA  -exportProvisioningProfile $profileName
-fi
+# 	# 3、导出ipa
+# 	xcodebuild -exportArchive -allowProvisioningUpdates \
+# 	 -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
+# 	# -exportFormat IPA  -exportProvisioningProfile $profileName
+# fi
+# # 2019.3之前 end
+
+# 2019.3之后 start
+# todo: autoSetCommand 增加单独设置主target证书
+
+xcodebuild archive -project $projectPath -scheme "$scheme" \
+ -derivedDataPath "$derivedDataPath" -archivePath "$archivePath" \
+ # DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+ # CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+ # PRODUCT_BUNDLE_IDENTIFIER="$PRODUCT_BUNDLE_IDENTIFIER" \
+ IPHONEOS_DEPLOYMENT_TARGET="10.0"
+
+# 3、导出ipa
+xcodebuild -exportArchive -allowProvisioningUpdates \
+ -archivePath "$archivePath" -exportPath "$exportPath" -exportOptionsPlist "$exportOptionsPlistPath"
+# 2019.3之后 end
 
 open "$exportPath"
 

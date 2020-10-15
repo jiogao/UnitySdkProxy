@@ -99,6 +99,8 @@ module XcodeAutoSet
 
             xcode_set_build_settings(unityFrameworkTarget)
             xcode_add_frameworks(unityFrameworkTarget)
+            
+            xcode_add_embed_frameworks(unityiPhoneTarget, unityFrameworkTarget)
 
             @project.save
             puts '文件添加完成'
@@ -368,10 +370,24 @@ module XcodeAutoSet
                 end
             end
 
+            # for ref in frameworks_build_phases.files_references
+            #     p 'refref:'
+            #     # p ref
+            #     p ref,ref.path,ref.source_tree
+            # end
+        end
+
+        #引用embed库
+        #unityiPhoneTarget 设置 embed 引用到 unityiPhoneTarget
+        #获取 frameworks_build_phases 的来源是 unityFrameworkTarget
+        def xcode_add_embed_frameworks(unityiPhoneTarget, unityFrameworkTarget)
+
+            frameworks_build_phases = unityFrameworkTarget.frameworks_build_phases
+
             #需要添加到embed列表的动态库
             if @embedFrameworkArray != nil
                 # Embed Frameworks 列表
-                embed_frameworks_phases = get_embed_frameworks_phases(target)
+                embed_frameworks_phases = get_embed_frameworks_phases(unityiPhoneTarget)
                 for lib_name in @embedFrameworkArray
                     puts '添加动态库添加到embed列表:', lib_name
                     lib_name_with_suffix = lib_name + '.framework'
@@ -403,12 +419,6 @@ module XcodeAutoSet
                     end
                 end
             end
-
-            # for ref in frameworks_build_phases.files_references
-            #     p 'refref:'
-            #     # p ref
-            #     p ref,ref.path,ref.source_tree
-            # end
         end
     end
 end
