@@ -1,6 +1,6 @@
 # UnitySdkProxy iOS
 
-功能: 一键添加指定文件到xcode工程，添加文件引用，并为. a和.framework自动设置force_load 等参数, 并打包导出ipa 到 xcode工程目录下的 build/export 文件夹中
+功能: 一键添加指定文件到xcode工程，添加文件引用，并为.a和.framework自动设置force_load 等参数, 并打包导出ipa 到 xcode工程目录下的 build/export 文件夹中
 
 依赖： ruby; cocoapods
 
