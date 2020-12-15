@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="r1_sdk_request_timeout">เชื่อมต่ออินเทอร์เน็ตไม่สำเร็จ</string>
-    <string name="r1_thrid_payment_close">หน้าเติมเงินปิดให้บริการแล้ว โปรดเช็คยอดเงินในบัญชีของคุณ</string>
-    <string name="r1_user_cancel">ยกเลิก</string>
-    <string name="r1_network_error">เชื่อมต่ออินเทอร์เน็ตไม่สำเร็จ</string>
-    <string name="r1_sdk_file_not_exists">ไม่มีไฟล์นี้</string>
-</resources>

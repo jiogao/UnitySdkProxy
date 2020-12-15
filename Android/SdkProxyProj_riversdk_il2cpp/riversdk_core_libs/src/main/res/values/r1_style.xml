@@ -1,6 +1,0 @@
-<resources>
-    <style name="r1_sdk_activity_close_splitting_style" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
-        <item name="android:windowEnableSplitTouch">false</item>
-        <item name="android:splitMotionEvents">false</item>
-    </style>
-</resources>

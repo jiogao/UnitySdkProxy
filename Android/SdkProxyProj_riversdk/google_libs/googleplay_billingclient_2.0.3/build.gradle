@@ -1,8 +1,0 @@
-evaluationDependsOn(':google_libs')
-dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':support_libs:android-support-appcompat-v7-27.0.2')
-    api project(':support_libs:android-support-cardview-v7-27.0.2')
-    api project(':support_libs:android-support-compat-v4-27.0.2')
-    api project(':support_libs:android-support-customtabs-27.0.2')
-}

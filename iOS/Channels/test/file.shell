@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 当前脚本目录
+shellDir=$(dirname "$0")
+
+# 工程路径
+xcodeprojPath="$1"
+
+xcodeprojDir=$(dirname "$xcodeprojPath")
+
+# 生成icon
+# 先替换 Contents.json 使用xcode 自动配置后的格式
+setupXcodeIconShell="${shellDir}/../../setupXcodeIcon/setupXcodeIcon.py"
+
+# icon 原图
+originIcon="${shellDir}/ios-marketing-1024.png"
+# icon设置json文件
+iconContents="${xcodeprojDir}/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Contents.json"
+cp "${shellDir}/Contents.json" "$iconContents"
+# 生成icon
+"${setupXcodeIconShell}" -o "${originIcon}" -t "${iconContents}"
+
+# 替换文件
+cp "${shellDir}/PlatformSettings.txt" "${xcodeprojDir}/Data/Raw/PlatformSettings.txt"

@@ -1,0 +1,72 @@
+#!/bin/bash
+
+info="参数列表：
+-target [目标工程]
+-channel [渠道名]
+-type [打包类型] (app-store, ad-hoc, enterprise, development)
+-unbuild (只配置工程,不出包)"
+
+# 当前脚本目录
+shellDir=$(dirname "$0")
+
+index=0
+arg=($*)
+echo "autobuild 所有参数为：$*";
+
+for i in ${arg[*]}; do
+	# echo $i
+	# echo $index
+	index=$(expr ${index} + 1)
+	if [[ $i == "-h" ]]; then
+		echo "${info}"
+	fi
+	if [[ $i == "-target" ]]; then
+		xcodeprojPath=${arg[$index]}
+	fi
+	if [[ $i == "-channel" ]]; then
+		channelName=${arg[$index]}
+	fi
+	if [[ $i == "-type" ]]; then
+		type=${arg[$index]}
+	fi
+	if [[ $i == "-unbuild" ]]; then
+		unbuild=true
+	fi
+done
+
+# 调用相应渠道的文件替换脚本
+fileShellPath="${shellDir}/${channelName}/file_${type}.shell"
+if [[ ! -f "$fileShellPath" ]]; then
+	fileShellPath="${shellDir}/${channelName}/file.shell"
+fi
+"$fileShellPath" "${xcodeprojPath}"
+
+# 打包配置文件
+# 自动打包配置 配置证书等
+exportOptionsPath="${shellDir}/${channelName}/BuildOptions_${type}.plist"
+# info.plist 额外内容配置
+infoExtra="${shellDir}/${channelName}/InfoExtra_${type}.plist"
+if [[ ! -f "$infoExtra" ]]; then
+	infoExtra="${shellDir}/${channelName}/InfoExtra.plist"
+fi
+
+# 编译出包
+buildShell="${shellDir}/../UnitySdkProxy/iOS/autobuild.shell"
+
+if [[ $unbuild ]]; then
+	# 导出ipa
+	"${buildShell}" \
+	    "${xcodeprojPath}" \
+	    "${exportOptionsPath}" \
+	    "${infoExtra}" \
+	    -unbuild
+else
+	# 不导出ipa
+	"${buildShell}" \
+	    "${xcodeprojPath}" \
+	    "${exportOptionsPath}" \
+	    "${infoExtra}" \
+	    # -unbuild
+fi
+    
+

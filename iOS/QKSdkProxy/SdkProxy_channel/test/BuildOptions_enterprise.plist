@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<string>1.2.5</string>
+	<key>buildVersion</key>
+	<string>1.2.5</string>
+	<key>bundleDisplayName</key>
+	<string>屠龙世界</string>
+	<key>scheme</key>
+	<string>Unity-iPhone</string>
+	<key>configuration</key>
+	<string>enterprise</string>
+	<key>CODE_SIGN_IDENTITY</key>
+	<string></string>
+	<key>DEVELOPMENT_TEAM</key>
+	<string>M33VC739Z2</string>
+	<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+	<string>com.qiku.qk2dgame</string>
+	<key>CODE_SIGN_STYLE</key>
+	<string>Automatic</string>
+	<key>PROVISIONING_PROFILE_SPECIFIER</key>
+	<string></string>
+	<key>PROVISIONING_PROFILE</key>
+	<string></string>
+	<key>srcArray</key>
+	<array>
+		<string>/Users/wending/Desktop/AutoBuildRes/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy</string>
+		<string>/Users/wending/Desktop/AutoBuildRes/UnitySdkProxy/iOS/QKSdkProxy/SdkProxy_channel/test</string>
+		<string>/Users/wending/Desktop/AutoBuildRes/Sdks/Bugly</string>
+	</array>
+	<key>frameworkArray</key>
+	<array>
+		<string>StoreKit</string>
+		<string>CoreTelephony</string>
+		<string>AdSupport</string>
+	</array>
+	<key>systemTbdsArray</key>
+	<array>
+		<string>z</string>
+		<string>sqlite3</string>
+	</array>
+</dict>
+</plist>

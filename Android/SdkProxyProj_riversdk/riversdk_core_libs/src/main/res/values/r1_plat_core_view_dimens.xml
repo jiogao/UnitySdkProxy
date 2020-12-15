@@ -1,4 +1,0 @@
-<resources>
-    <!-- webview进度条高度 -->
-    <dimen name="r1_webview_pb_height">3dp</dimen>
-</resources>

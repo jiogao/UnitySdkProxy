@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="g1_sdk_content_view_bg">#00000000</color>
-    <color name="g1_sdk_register_text_color">#81acd9</color>
-    <color name="g1_sdk_floatview_dialog_no_show_text_color">#969696</color>
-</resources>

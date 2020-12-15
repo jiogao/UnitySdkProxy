@@ -1,9 +1,0 @@
-<resources>
-    <string name="r1_sdk_confirm">ยืนยัน</string>
-    <string name="r1_sdk_ingame_resupply_tips">เนื่องจากระบบขัดข้อง ยอดเงินที่เติมจึงยังไม่เข้าบัญชี เราจะส่งให้ใหม่อีกครั้ง โปรดรอสักครู่!</string>
-    <string name="r1_sdk_purchase_resupply_tips">เนื่องจากระบบขัดข้อง ยอดเงินที่เติมจึงยังไม่เข้าบัญชี เรากำลังเชื่อมต่ออินเทอร์เน็ตให้ใหม่ โปรดรอสักครู่!</string>
-    <string name="r1_sdk_contact_service_tips">เนื่องจากระบบขัดข้อง เงินที่เติมจึงไม่เข้าบัญชี โปรดติดต่อฝ่ายบริการลูกค้าเพื่อดำเนินการ</string>
-    <string name="r1_sdk_resupply_tips">(โปรดทราบ: คุณต้องเตรียมข้อมูลที่เกี่ยวกับบัญชีให้พร้อม)</string>
-    <string name="r1_sdk_retry_later">โปรดลองภายหลัง</string>
-    <string name="r1_sdk_contact_service">ติดต่อฝ่ายบริการลูกค้า</string>
-</resources>
